@@ -1,0 +1,97 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00067.jpg"/></div>
+<p style="position:absolute; top:67.755; left:72.000" id="bm000005"></p>
+<div style="position:absolute;top:273.570;left:132.145;"><nobr>
+<span style="font-size:37.923;font-weight:bold;">Chapter 4</span>
+</nobr></div>
+<div style="position:absolute;top:378.027;left:132.145;"><nobr>
+<span style="font-size:45.493;font-weight:bold;">Supervisor-Level ISA, Version 1.11</span>
+</nobr></div>
+<div style="position:absolute;top:511.995;left:132.145;"><nobr>
+<span style="font-size:20.022;">This chapter describes the RISC-V supervisor-level architecture, which contains a common core</span>
+</nobr></div>
+<div style="position:absolute;top:536.864;left:132.145;"><nobr>
+<span style="font-size:20.022;">that is used with various supervisor-level address translation and protection schemes.</span>
+</nobr></div>
+<div style="position:absolute;top:599.401;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Supervisor mode is deliberately restricted in terms of interactions with underlying physical hard-</span>
+</nobr></div>
+<div style="position:absolute;top:621.343;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">ware, such as physical memory and device interrupts, to support clean virtualization. In this</span>
+</nobr></div>
+<div style="position:absolute;top:643.286;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">spirit, certain supervisor-level facilities, including requests for timer and interprocessor inter-</span>
+</nobr></div>
+<div style="position:absolute;top:665.228;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">rupts, are provided by implementation-specific mechanisms. In some systems, a supervisor execu-</span>
+</nobr></div>
+<div style="position:absolute;top:687.170;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tion environment (SEE) provides these facilities in a manner specified by a superivsor binary in-</span>
+</nobr></div>
+<div style="position:absolute;top:709.111;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">terface (SBI). Other systems supply these facilities directly, through some other implementation-</span>
+</nobr></div>
+<div style="position:absolute;top:731.053;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">defined mechanism.</span>
+</nobr></div>
+<div style="position:absolute;top:808.717;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">4.1</span>
+</nobr></div>
+<div style="position:absolute;top:808.717;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Supervisor CSRs</span>
+</nobr></div>
+<div style="position:absolute;top:876.763;left:132.145;"><nobr>
+<span style="font-size:20.022;">A number of CSRs are provided for the supervisor.</span>
+</nobr></div>
+<div style="position:absolute;top:939.301;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The supervisor should only view CSR state that should be visible to a supervisor-level operating</span>
+</nobr></div>
+<div style="position:absolute;top:961.242;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">system. In particular, there is no information about the existence (or non-existence) of higher</span>
+</nobr></div>
+<div style="position:absolute;top:983.184;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">privilege levels (hypervisor or machine) visible in the CSRs accessible by the supervisor.</span>
+</nobr></div>
+<div style="position:absolute;top:1005.858;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Many supervisor CSRs are a subset of the equivalent machine-mode CSR, and the machine-</span>
+</nobr></div>
+<div style="position:absolute;top:1027.800;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mode chapter should be read first to help understand the supervisor-level CSR descriptions.</span>
+</nobr></div>
+<div style="position:absolute;top:1099.039;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.1.1</span>
+</nobr></div>
+<div style="position:absolute;top:1099.039;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Supervisor Status Register (</span>
+<span style="font-size:21.942;">sstatus)</span>
+</nobr></div>
+<div style="position:absolute;top:1157.143;left:132.145;"><nobr>
+<span style="font-size:20.022;">The sstatus register is an SXLEN-bit read/write register formatted as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(67); return false">4.1</a></span>
+<span style="font-size:20.022;">for</span>
+</nobr></div>
+<div style="position:absolute;top:1182.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">RV32 and Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(67); return false">4.2</a></span>
+<span style="font-size:20.022;">for RV64. The sstatus register keeps track of the processor’s current operating</span>
+</nobr></div>
+<div style="position:absolute;top:1206.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">state.</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">The SPP bit indicates the privilege level at which a hart was executing before entering supervisor</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">mode. When a trap is taken, SPP is set to 0 if the trap originated from user mode, or 1 otherwise.</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">When an SRET instruction (see Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(51); return false">3.2.2</a></span>
+<span style="font-size:20.022;">) is executed to return from the trap handler, the</span>
+</nobr></div>
+<div style="position:absolute;top:1349.981;left:551.605;"><nobr>
+<span style="font-size:20.022;">55</span>
+</nobr></div>
+</td></tr>
+</table>

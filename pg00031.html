@@ -1,0 +1,141 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00031.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">19</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">Open-source project architecture IDs are allocated globally by the RISC-V Foundation, and have</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">non-zero architecture IDs with a zero most-significant-bit (MSB). Commercial architecture IDs are</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">allocated by each commercial vendor independently, but must have the MSB set and cannot contain</span>
+</nobr></div>
+<div style="position:absolute;top:205.174;left:132.145;"><nobr>
+<span style="font-size:20.022;">zero in the remaining MXLEN-1 bits.</span>
+</nobr></div>
+<div style="position:absolute;top:267.434;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The intent is for the architecture ID to represent the microarchitecture associated with the repo</span>
+</nobr></div>
+<div style="position:absolute;top:289.378;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">around which development occurs rather than a particular organization. Commercial fabrica-</span>
+</nobr></div>
+<div style="position:absolute;top:311.319;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tions of open-source designs should (and might be required by the license to) retain the original</span>
+</nobr></div>
+<div style="position:absolute;top:333.261;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">architecture ID. This will aid in reducing fragmentation and tool support costs, as well as provide</span>
+</nobr></div>
+<div style="position:absolute;top:355.203;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">attribution. Open-source architecture IDs should be administered by the Foundation and should</span>
+</nobr></div>
+<div style="position:absolute;top:377.144;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">only be allocated to released, functioning open-source projects. Commercial architecture IDs can</span>
+</nobr></div>
+<div style="position:absolute;top:399.086;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">be managed independently by any registered vendor but are required to have IDs disjoint from</span>
+</nobr></div>
+<div style="position:absolute;top:421.029;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the open-source architecture IDs (MSB set) to prevent collisions if a vendor wishes to use both</span>
+</nobr></div>
+<div style="position:absolute;top:442.971;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">closed-source and open-source microarchitectures.</span>
+</nobr></div>
+<div style="position:absolute;top:465.588;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The convention adopted within the following Implementation field can be used to segregate</span>
+</nobr></div>
+<div style="position:absolute;top:487.530;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">branches of the same architecture design, including by organization. The</span>
+<span style="font-size:18.285;">misa</span>
+<span style="font-size:18.285;font-style:italic;">register also helps</span>
+</nobr></div>
+<div style="position:absolute;top:509.471;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">distinguish different variants of a design.</span>
+</nobr></div>
+<div style="position:absolute;top:580.226;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.4</span>
+</nobr></div>
+<div style="position:absolute;top:580.226;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Implementation ID Register</span>
+<span style="font-size:21.942;">mimpid</span>
+</nobr></div>
+<div style="position:absolute;top:638.278;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mimpid CSR provides a unique encoding of the version of the processor implementation. This</span>
+</nobr></div>
+<div style="position:absolute;top:663.145;left:132.145;"><nobr>
+<span style="font-size:20.022;">register must be readable in any implementation, but a value of 0 can be returned to indicate that</span>
+</nobr></div>
+<div style="position:absolute;top:688.013;left:132.145;"><nobr>
+<span style="font-size:20.022;">the field is not implemented. The Implementation value should reflect the design of the RISC-V</span>
+</nobr></div>
+<div style="position:absolute;top:712.880;left:132.145;"><nobr>
+<span style="font-size:20.022;">processor itself and not any surrounding system.</span>
+</nobr></div>
+<div style="position:absolute;top:757.887;left:269.929;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:757.887;left:851.173;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:777.462;left:503.354;"><nobr>
+<span style="font-size:16.456;">Implementation</span>
+</nobr></div>
+<div style="position:absolute;top:798.308;left:530.145;"><nobr>
+<span style="font-size:16.456;">MXLEN</span>
+</nobr></div>
+<div style="position:absolute;top:845.724;left:305.252;"><nobr>
+<span style="font-size:20.022;">Figure 3.4: Machine Implementation ID register ( mimpid ).</span>
+</nobr></div>
+<div style="position:absolute;top:914.103;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The format of this field is left to the provider of the architecture source code, but will often be</span>
+</nobr></div>
+<div style="position:absolute;top:936.045;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">printed by standard tools as a hexadecimal string without any leading or trailing zeros, so the</span>
+</nobr></div>
+<div style="position:absolute;top:957.986;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Implementation value can be left-justified (i.e., filled in from most-significant nibble down) with</span>
+</nobr></div>
+<div style="position:absolute;top:979.928;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">subfields aligned on nibble boundaries to ease human readability.</span>
+</nobr></div>
+<div style="position:absolute;top:1050.683;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.5</span>
+</nobr></div>
+<div style="position:absolute;top:1050.683;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Hart ID Register</span>
+<span style="font-size:21.942;">mhartid</span>
+</nobr></div>
+<div style="position:absolute;top:1108.735;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mhartid CSR is an MXLEN-bit read-only register containing the integer ID of the hardware</span>
+</nobr></div>
+<div style="position:absolute;top:1133.602;left:132.145;"><nobr>
+<span style="font-size:20.022;">thread running the code. This register must be readable in any implementation. Hart IDs might</span>
+</nobr></div>
+<div style="position:absolute;top:1158.471;left:132.145;"><nobr>
+<span style="font-size:20.022;">not necessarily be numbered contiguously in a multiprocessor system, but at least one hart must</span>
+</nobr></div>
+<div style="position:absolute;top:1183.338;left:132.145;"><nobr>
+<span style="font-size:20.022;">have a hart ID of zero. Hart IDs must be unique.</span>
+</nobr></div>
+<div style="position:absolute;top:1228.346;left:269.929;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:1228.346;left:851.173;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1247.921;left:532.119;"><nobr>
+<span style="font-size:16.456;">Hart ID</span>
+</nobr></div>
+<div style="position:absolute;top:1268.765;left:530.145;"><nobr>
+<span style="font-size:16.456;">MXLEN</span>
+</nobr></div>
+<div style="position:absolute;top:1316.183;left:388.678;"><nobr>
+<span style="font-size:20.022;">Figure 3.5: Hart ID register ( mhartid ).</span>
+</nobr></div>
+</td></tr>
+</table>

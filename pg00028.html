@@ -1,0 +1,149 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00028.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">16</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:128.598;left:499.252;"><nobr>
+<span style="font-size:20.022;">MXL</span>
+</nobr></div>
+<div style="position:absolute;top:154.195;left:535.126;"><nobr>
+<span style="font-size:20.022;">1</span>
+</nobr></div>
+<div style="position:absolute;top:179.062;left:535.126;"><nobr>
+<span style="font-size:20.022;">2</span>
+</nobr></div>
+<div style="position:absolute;top:203.931;left:535.126;"><nobr>
+<span style="font-size:20.022;">3</span>
+</nobr></div>
+<div style="position:absolute;top:128.598;left:567.810;"><nobr>
+<span style="font-size:20.022;">XLEN</span>
+</nobr></div>
+<div style="position:absolute;top:154.195;left:603.961;"><nobr>
+<span style="font-size:20.022;">32</span>
+</nobr></div>
+<div style="position:absolute;top:179.062;left:603.961;"><nobr>
+<span style="font-size:20.022;">64</span>
+</nobr></div>
+<div style="position:absolute;top:203.931;left:593.949;"><nobr>
+<span style="font-size:20.022;">128</span>
+</nobr></div>
+<div style="position:absolute;top:268.082;left:377.638;"><nobr>
+<span style="font-size:20.022;">Table 3.1: Encoding of MXL field in misa</span>
+</nobr></div>
+<div style="position:absolute;top:328.741;left:132.145;"><nobr>
+<span style="font-size:20.022;">always denotes the current MXLEN. If a write to misa causes MXLEN to change, the position of</span>
+</nobr></div>
+<div style="position:absolute;top:353.608;left:132.145;"><nobr>
+<span style="font-size:20.022;">MXL moves to the most-significant two bits of misa at the new width.</span>
+</nobr></div>
+<div style="position:absolute;top:412.704;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The base width can be quickly ascertained using branches on the sign of the returned</span>
+<span style="font-size:18.285;">misa</span>
+<span style="font-size:18.285;font-style:italic;">value,</span>
+</nobr></div>
+<div style="position:absolute;top:434.646;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">and possibly a shift left by one and a second branch on the sign. These checks can be written</span>
+</nobr></div>
+<div style="position:absolute;top:456.587;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">in assembly code without knowing the register width (XLEN) of the machine. The base width is</span>
+</nobr></div>
+<div style="position:absolute;top:482.117;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">given by XLEN</span>
+<span style="font-size:18.285;">= 2</span>
+<span style="font-size:18.285;font-style:italic;">MXL+4 .</span>
+</nobr></div>
+<div style="position:absolute;top:504.101;left:212.232;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The base width can also be found if</span>
+<span style="font-size:18.285;">misa</span>
+<span style="font-size:18.285;font-style:italic;">is zero, by placing the immediate 4 in a register</span>
+</nobr></div>
+<div style="position:absolute;top:526.042;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">then shifting the register left by 31 bits at a time. If zero after one shift, then the machine is</span>
+</nobr></div>
+<div style="position:absolute;top:547.984;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">RV32. If zero after two shifts, then the machine is RV64, else RV128.</span>
+</nobr></div>
+<div style="position:absolute;top:585.611;left:132.145;"><nobr>
+<span style="font-size:20.022;">The Extensions field encodes the presence of the standard extensions, with a single bit per letter</span>
+</nobr></div>
+<div style="position:absolute;top:610.478;left:132.145;"><nobr>
+<span style="font-size:20.022;">of the alphabet (bit 0 encodes presence of extension “A” , bit 1 encodes presence of extension “B”,</span>
+</nobr></div>
+<div style="position:absolute;top:635.345;left:132.145;"><nobr>
+<span style="font-size:20.022;">through to bit 25 which encodes “Z”). The “I” bit will be set for RV32I, RV64I, RV128I base ISAs,</span>
+</nobr></div>
+<div style="position:absolute;top:660.212;left:132.145;"><nobr>
+<span style="font-size:20.022;">and the “E” bit will be set for RV32E. The Extensions field is a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">field that can contain</span>
+</nobr></div>
+<div style="position:absolute;top:685.081;left:132.145;"><nobr>
+<span style="font-size:20.022;">writable bits where the implementation allows the supported ISA to be modified. At reset, the</span>
+</nobr></div>
+<div style="position:absolute;top:709.948;left:132.145;"><nobr>
+<span style="font-size:20.022;">Extensions field should contain the maximal set of supported extensions, and I should be selected</span>
+</nobr></div>
+<div style="position:absolute;top:734.816;left:132.145;"><nobr>
+<span style="font-size:20.022;">over E if both are available.</span>
+</nobr></div>
+<div style="position:absolute;top:777.968;left:132.145;"><nobr>
+<span style="font-size:20.022;">The RV128I base ISA is not yet frozen, and while much of the remainder of this specification is</span>
+</nobr></div>
+<div style="position:absolute;top:802.835;left:132.145;"><nobr>
+<span style="font-size:20.022;">expected to apply to RV128, this version of the document focuses only on RV32 and RV64.</span>
+</nobr></div>
+<div style="position:absolute;top:845.988;left:132.145;"><nobr>
+<span style="font-size:20.022;">The “G” bit is used as an escape to allow expansion to a larger space of standard extension names.</span>
+</nobr></div>
+<div style="position:absolute;top:924.424;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">G is used to indicate the combination IMAFD, so is redundant in the</span>
+<span style="font-size:18.285;">misa</span>
+<span style="font-size:18.285;font-style:italic;">CSR, hence we</span>
+</nobr></div>
+<div style="position:absolute;top:946.365;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">reserve the bit to indicate that additional standard extensions are present.</span>
+</nobr></div>
+<div style="position:absolute;top:978.464;left:132.145;"><nobr>
+<span style="font-size:20.022;">The “U” and “S” bits will be set if there is support for user and supervisor modes respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:1021.617;left:132.145;"><nobr>
+<span style="font-size:20.022;">The “X” bit will be set if there are any non-standard extensions.</span>
+</nobr></div>
+<div style="position:absolute;top:1080.711;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The</span>
+<span style="font-size:18.285;">misa</span>
+<span style="font-size:18.285;font-style:italic;">CSR exposes a rudimentary catalog of CPU features to machine-mode code. More</span>
+</nobr></div>
+<div style="position:absolute;top:1102.653;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">extensive information can be obtained in machine mode by probing other machine registers, and</span>
+</nobr></div>
+<div style="position:absolute;top:1124.596;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">examining other ROM storage in the system as part of the boot process.</span>
+</nobr></div>
+<div style="position:absolute;top:1146.578;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We require that lower privilege levels execute environment calls instead of reading CPU</span>
+</nobr></div>
+<div style="position:absolute;top:1168.520;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">registers to determine features available at each privilege level. This enables virtualization layers</span>
+</nobr></div>
+<div style="position:absolute;top:1190.463;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to alter the ISA observed at any level, and supports a much richer command interface without</span>
+</nobr></div>
+<div style="position:absolute;top:1212.405;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">burdening hardware designs.</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">The “E” bit is read-only. Unless misa is hardwired to zero, the “E” bit always reads as the</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">complement of the “I” bit. An implementation that supports both RV32E and RV32I can select</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">RV32E by clearing the “I” bit.</span>
+</nobr></div>
+</td></tr>
+</table>

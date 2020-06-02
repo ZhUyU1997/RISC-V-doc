@@ -1,0 +1,128 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00056.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">44</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">translation. To aid in system debugging, we strongly recommend that, where possible, RISC-V</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">processors precisely trap physical memory accesses that fail PMA checks. Precisely trapped PMA</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">violations manifest as load, store, or instruction-fetch access exceptions, distinct from virtual-</span>
+</nobr></div>
+<div style="position:absolute;top:205.174;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory page-fault exceptions. Precise PMA traps might not always be possible, for example, when</span>
+</nobr></div>
+<div style="position:absolute;top:230.041;left:132.145;"><nobr>
+<span style="font-size:20.022;">probing a legacy bus architecture that uses access failures as part of the discovery mechanism. In</span>
+</nobr></div>
+<div style="position:absolute;top:254.910;left:132.145;"><nobr>
+<span style="font-size:20.022;">this case, error responses from slave devices will be reported as imprecise bus-error interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:298.061;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMAs must also be readable by software to correctly access certain devices or to correctly configure</span>
+</nobr></div>
+<div style="position:absolute;top:322.930;left:132.145;"><nobr>
+<span style="font-size:20.022;">other hardware components that access memory, such as DMA engines. As PMAs are tightly tied</span>
+</nobr></div>
+<div style="position:absolute;top:347.797;left:132.145;"><nobr>
+<span style="font-size:20.022;">to a given physical platform’s organization, many details are inherently platform-specific, as is the</span>
+</nobr></div>
+<div style="position:absolute;top:372.664;left:132.145;"><nobr>
+<span style="font-size:20.022;">means by which software can learn the PMA values for a platform. Some devices, particularly</span>
+</nobr></div>
+<div style="position:absolute;top:397.532;left:132.145;"><nobr>
+<span style="font-size:20.022;">legacy buses, do not support discovery of PMAs and so will give error responses or time out if</span>
+</nobr></div>
+<div style="position:absolute;top:422.399;left:132.145;"><nobr>
+<span style="font-size:20.022;">an unsupported access is attempted. Typically, platform-specific machine-mode code will extract</span>
+</nobr></div>
+<div style="position:absolute;top:447.268;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMAs and ultimately present this information to higher-level less-privileged software using some</span>
+</nobr></div>
+<div style="position:absolute;top:472.135;left:132.145;"><nobr>
+<span style="font-size:20.022;">standard representation.</span>
+</nobr></div>
+<div style="position:absolute;top:515.288;left:132.145;"><nobr>
+<span style="font-size:20.022;">Where platforms support dynamic reconfiguration of PMAs, an interface will be provided to set</span>
+</nobr></div>
+<div style="position:absolute;top:540.155;left:132.145;"><nobr>
+<span style="font-size:20.022;">the attributes by passing requests to a machine-mode driver that can correctly reconfigure the</span>
+</nobr></div>
+<div style="position:absolute;top:565.022;left:132.145;"><nobr>
+<span style="font-size:20.022;">platform. For example, switching cacheability attributes on some memory regions might involve</span>
+</nobr></div>
+<div style="position:absolute;top:589.889;left:132.145;"><nobr>
+<span style="font-size:20.022;">platform-specific operations, such as cache flushes, that are available only to machine-mode.</span>
+</nobr></div>
+<div style="position:absolute;top:660.328;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.5.1</span>
+</nobr></div>
+<div style="position:absolute;top:660.328;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Main Memory versus I/O versus Empty Regions</span>
+</nobr></div>
+<div style="position:absolute;top:717.743;left:132.145;"><nobr>
+<span style="font-size:20.022;">The most important characterization of a given memory address range is whether it holds regular</span>
+</nobr></div>
+<div style="position:absolute;top:742.612;left:132.145;"><nobr>
+<span style="font-size:20.022;">main memory, or I/O devices, or is empty. Regular main memory is required to have a number</span>
+</nobr></div>
+<div style="position:absolute;top:767.479;left:132.145;"><nobr>
+<span style="font-size:20.022;">of properties, specified below, whereas I/O devices can have a much broader range of attributes.</span>
+</nobr></div>
+<div style="position:absolute;top:792.347;left:132.145;"><nobr>
+<span style="font-size:20.022;">Memory regions that do not fit into regular main memory, for example, device scratchpad RAMs,</span>
+</nobr></div>
+<div style="position:absolute;top:817.214;left:132.145;"><nobr>
+<span style="font-size:20.022;">are categorized as I/O regions. Empty regions are also classified as I/O regions but with attributes</span>
+</nobr></div>
+<div style="position:absolute;top:842.081;left:132.145;"><nobr>
+<span style="font-size:20.022;">specifying that no accesses are supported.</span>
+</nobr></div>
+<div style="position:absolute;top:912.520;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.5.2</span>
+</nobr></div>
+<div style="position:absolute;top:912.520;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Supported Access Type PMAs</span>
+</nobr></div>
+<div style="position:absolute;top:969.935;left:132.145;"><nobr>
+<span style="font-size:20.022;">Access types specify which access widths, from 8-bit byte to long multi-word burst, are supported,</span>
+</nobr></div>
+<div style="position:absolute;top:994.804;left:132.145;"><nobr>
+<span style="font-size:20.022;">and also whether misaligned accesses are supported for each access width.</span>
+</nobr></div>
+<div style="position:absolute;top:1052.867;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Although software running on a RISC-V hart cannot directly generate bursts to memory, software</span>
+</nobr></div>
+<div style="position:absolute;top:1074.810;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">might have to program DMA engines to access I/O devices and might therefore need to know</span>
+</nobr></div>
+<div style="position:absolute;top:1096.752;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">which access sizes are supported.</span>
+</nobr></div>
+<div style="position:absolute;top:1133.388;left:132.145;"><nobr>
+<span style="font-size:20.022;">Main memory regions always support read, write, and execute of all access widths required by the</span>
+</nobr></div>
+<div style="position:absolute;top:1158.255;left:132.145;"><nobr>
+<span style="font-size:20.022;">attached devices.</span>
+</nobr></div>
+<div style="position:absolute;top:1216.320;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">In some cases, the design of a processor or device accessing main memory might support other</span>
+</nobr></div>
+<div style="position:absolute;top:1238.261;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">widths, but must be able to function with the types supported by the main memory.</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">I/O regions can specify which combinations of read, write, or execute accesses to which data widths</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">are supported.</span>
+</nobr></div>
+</td></tr>
+</table>

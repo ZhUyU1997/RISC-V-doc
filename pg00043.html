@@ -1,0 +1,148 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00043.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">31</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">The UEIP field in mip provides user-mode external interrupts when the N extension for user-mode</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupts is implemented. It is defined analogously to SEIP.</span>
+</nobr></div>
+<div style="position:absolute;top:198.592;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MEIE, SEIE, and UEIE fields in the mie CSR enable M-mode external interrupts, S-mode</span>
+</nobr></div>
+<div style="position:absolute;top:223.460;left:132.145;"><nobr>
+<span style="font-size:20.022;">external interrupts, and U-mode external interrupts, respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:293.359;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The non-maskable interrupt is not made visible via the</span>
+<span style="font-size:18.285;">mip</span>
+<span style="font-size:18.285;font-style:italic;">register as its presence is implicitly</span>
+</nobr></div>
+<div style="position:absolute;top:315.300;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">known when executing the NMI trap handler.</span>
+</nobr></div>
+<div style="position:absolute;top:361.568;left:132.145;"><nobr>
+<span style="font-size:20.022;">For all the various interrupt types (software, timer, and external), if a privilege level is not sup-</span>
+</nobr></div>
+<div style="position:absolute;top:386.437;left:132.145;"><nobr>
+<span style="font-size:20.022;">ported, or if U-mode is supported but the N extension is not supported, then the associated pending</span>
+</nobr></div>
+<div style="position:absolute;top:411.304;left:132.145;"><nobr>
+<span style="font-size:20.022;">and interrupt-enable bits are hardwired to zero in the mip and mie registers respectively. Hence,</span>
+</nobr></div>
+<div style="position:absolute;top:436.171;left:132.145;"><nobr>
+<span style="font-size:20.022;">these are all effectively</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">fields.</span>
+</nobr></div>
+<div style="position:absolute;top:479.324;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations may add additional platform-specific interrupt sources to bits 16 and above of</span>
+</nobr></div>
+<div style="position:absolute;top:504.191;left:132.145;"><nobr>
+<span style="font-size:20.022;">the mip and mie registers. Some platforms may avail these interrupts for custom use. The other</span>
+</nobr></div>
+<div style="position:absolute;top:529.058;left:132.145;"><nobr>
+<span style="font-size:20.022;">unallocated interrupt sources (15–12, 10, 6, and 2) are reserved for future standard use.</span>
+</nobr></div>
+<div style="position:absolute;top:572.211;left:132.145;"><nobr>
+<span style="font-size:20.022;">An interrupt</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">will be taken if bit</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">is set in both mip and mie , and if interrupts are globally enabled.</span>
+</nobr></div>
+<div style="position:absolute;top:597.078;left:132.145;"><nobr>
+<span style="font-size:20.022;">By default, M-mode interrupts are globally enabled if the hart’s current privilege mode is less than</span>
+</nobr></div>
+<div style="position:absolute;top:621.945;left:132.145;"><nobr>
+<span style="font-size:20.022;">M, or if the current privilege mode is M and the MIE bit in the mstatus register is set. If bit</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+</nobr></div>
+<div style="position:absolute;top:646.814;left:132.145;"><nobr>
+<span style="font-size:20.022;">in mideleg is set, however, interrupts are considered to be globally enabled if the hart’s current</span>
+</nobr></div>
+<div style="position:absolute;top:671.682;left:132.145;"><nobr>
+<span style="font-size:20.022;">privilege mode equals the delegated privilege mode (S or U) and that mode’s interrupt enable bit</span>
+</nobr></div>
+<div style="position:absolute;top:696.549;left:132.145;"><nobr>
+<span style="font-size:20.022;">(SIE or UIE in mstatus ) is set, or if the current privilege mode is less than the delegated privilege</span>
+</nobr></div>
+<div style="position:absolute;top:721.416;left:132.145;"><nobr>
+<span style="font-size:20.022;">mode.</span>
+</nobr></div>
+<div style="position:absolute;top:764.569;left:132.145;"><nobr>
+<span style="font-size:20.022;">Multiple simultaneous interrupts destined for different privilege modes are handled in decreasing</span>
+</nobr></div>
+<div style="position:absolute;top:789.436;left:132.145;"><nobr>
+<span style="font-size:20.022;">order of destined privilege mode. Multiple simultaneous interrupts destined for the same privilege</span>
+</nobr></div>
+<div style="position:absolute;top:814.303;left:132.145;"><nobr>
+<span style="font-size:20.022;">mode are handled in the following decreasing priority order: MEI, MSI, MTI, SEI, SSI, STI, UEI,</span>
+</nobr></div>
+<div style="position:absolute;top:839.172;left:132.145;"><nobr>
+<span style="font-size:20.022;">USI, UTI. Synchronous exceptions are of lower priority than all interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:909.069;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The machine-level interrupt fixed-priority ordering rules were developed with the following ra-</span>
+</nobr></div>
+<div style="position:absolute;top:931.012;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tionale.</span>
+</nobr></div>
+<div style="position:absolute;top:955.156;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Interrupts for higher privilege modes must be serviced before interrupts for lower privilege</span>
+</nobr></div>
+<div style="position:absolute;top:977.098;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">modes to support preemption.</span>
+</nobr></div>
+<div style="position:absolute;top:1001.242;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The platform-specific machine-level interrupt sources in bits 16 and above have platform-</span>
+</nobr></div>
+<div style="position:absolute;top:1023.184;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">specific priority, but are typically chosen to have the highest service priority to support very fast</span>
+</nobr></div>
+<div style="position:absolute;top:1045.125;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">local vectored interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:1069.269;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">External interrupts are handled before internal (timer/software) interrupts as external in-</span>
+</nobr></div>
+<div style="position:absolute;top:1091.211;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">terrupts are usually generated by devices that might require low interrupt service times.</span>
+</nobr></div>
+<div style="position:absolute;top:1115.355;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Software interrupts are handled before internal timer interrupts, because internal timer in-</span>
+</nobr></div>
+<div style="position:absolute;top:1137.298;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">terrupts are usually intended for time slicing, where time precision is less important, whereas</span>
+</nobr></div>
+<div style="position:absolute;top:1159.240;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">software interrupts are used for inter-processor messaging. Software interrupts can be avoided</span>
+</nobr></div>
+<div style="position:absolute;top:1181.182;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">when high-precision timing is required, or high-precision timer interrupts can be routed via a</span>
+</nobr></div>
+<div style="position:absolute;top:1203.123;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">different interrupt path. Software interrupts are located in the lowest four bits of</span>
+<span style="font-size:18.285;">mip</span>
+<span style="font-size:18.285;font-style:italic;">as these</span>
+</nobr></div>
+<div style="position:absolute;top:1225.065;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">are often written by software, and this position allows the use of a single CSR instruction with</span>
+</nobr></div>
+<div style="position:absolute;top:1247.006;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">a five-bit immediate.</span>
+</nobr></div>
+<div style="position:absolute;top:1271.152;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Synchronous exceptions are given the lowest priority to minimize worst-case interrupt la-</span>
+</nobr></div>
+<div style="position:absolute;top:1293.094;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tency.</span>
+</nobr></div>
+</td></tr>
+</table>

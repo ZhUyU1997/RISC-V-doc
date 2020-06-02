@@ -1,0 +1,72 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">13</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">an illegal value, but the legal value returned should deterministically depend on the illegal written</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">value and the value of the field prior to the write.</span>
+</nobr></div>
+<div style="position:absolute;top:232.432;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">2.4</span>
+</nobr></div>
+<div style="position:absolute;top:232.432;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">CSR Width Modulation</span>
+</nobr></div>
+<div style="position:absolute;top:299.788;left:132.145;"><nobr>
+<span style="font-size:20.022;">If the width of a CSR is changed (for example, by changing MXLEN or UXLEN, as described in</span>
+</nobr></div>
+<div style="position:absolute;top:324.657;left:132.145;"><nobr>
+<span style="font-size:20.022;">Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(32); return false">3.1.6.2</a></span>
+<span style="font-size:20.022;">), the values of the</span>
+<span style="font-size:20.022;font-style:italic;">writable</span>
+<span style="font-size:20.022;">fields and bits of the new-width CSR are, unless specified</span>
+</nobr></div>
+<div style="position:absolute;top:349.524;left:132.145;"><nobr>
+<span style="font-size:20.022;">otherwise, determined from the previous-width CSR as though by this algorithm:</span>
+</nobr></div>
+<div style="position:absolute;top:414.619;left:156.616;"><nobr>
+<span style="font-size:20.022;">1. The value of the previous-width CSR is copied to a temporary register of the same width.</span>
+</nobr></div>
+<div style="position:absolute;top:455.942;left:156.616;"><nobr>
+<span style="font-size:20.022;">2. For the read-only bits of the previous-width CSR, the bits at the same positions in the</span>
+</nobr></div>
+<div style="position:absolute;top:480.811;left:182.201;"><nobr>
+<span style="font-size:20.022;">temporary register are set to zeros.</span>
+</nobr></div>
+<div style="position:absolute;top:522.133;left:156.616;"><nobr>
+<span style="font-size:20.022;">3. The width of the temporary register is changed to the new width. If the new width</span>
+<span style="font-size:20.022;font-style:italic;">W</span>
+<span style="font-size:20.022;">is</span>
+</nobr></div>
+<div style="position:absolute;top:547.001;left:182.201;"><nobr>
+<span style="font-size:20.022;">narrower than the previous width, the least-significant</span>
+<span style="font-size:20.022;font-style:italic;">W</span>
+<span style="font-size:20.022;">bits of the temporary register are</span>
+</nobr></div>
+<div style="position:absolute;top:571.870;left:182.201;"><nobr>
+<span style="font-size:20.022;">retained and the more-significant bits are discarded. If the new width is wider than the</span>
+</nobr></div>
+<div style="position:absolute;top:596.737;left:182.201;"><nobr>
+<span style="font-size:20.022;">previous width, the temporary register is zero-extended to the wider width.</span>
+</nobr></div>
+<div style="position:absolute;top:638.060;left:156.616;"><nobr>
+<span style="font-size:20.022;">4. Each writable field of the new-width CSR takes the value of the bits at the same positions in</span>
+</nobr></div>
+<div style="position:absolute;top:662.929;left:182.201;"><nobr>
+<span style="font-size:20.022;">the temporary register.</span>
+</nobr></div>
+<div style="position:absolute;top:728.023;left:132.145;"><nobr>
+<span style="font-size:20.022;">Changing the width of a CSR is not a read or write of the CSR and thus does not trigger any side</span>
+</nobr></div>
+<div style="position:absolute;top:752.890;left:132.145;"><nobr>
+<span style="font-size:20.022;">effects.</span>
+</nobr></div>
+</td></tr>
+</table>

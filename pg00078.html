@@ -1,0 +1,212 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00078.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">66</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:129.451;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">If</span>
+<span style="font-size:20.022;font-style:italic;">rs1</span>
+<span style="font-size:20.022;">= x0 and</span>
+<span style="font-size:20.022;font-style:italic;">rs2</span>
+<span style="font-size:20.022;">= x0 , the fence orders all reads and writes made to any level of the page</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:182.201;"><nobr>
+<span style="font-size:20.022;">tables, for all address spaces.</span>
+</nobr></div>
+<div style="position:absolute;top:197.012;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">If</span>
+<span style="font-size:20.022;font-style:italic;">rs1</span>
+<span style="font-size:20.022;">= x0 and</span>
+<span style="font-size:20.022;font-style:italic;">rs2 ̸</span>
+<span style="font-size:20.022;">= x0 , the fence orders all reads and writes made to any level of the page</span>
+</nobr></div>
+<div style="position:absolute;top:223.001;left:182.201;"><nobr>
+<span style="font-size:20.022;">tables, but only for the address space identified by integer register</span>
+<span style="font-size:20.022;font-style:italic;">rs2</span>
+<span style="font-size:20.022;">. Accesses to</span>
+<span style="font-size:20.022;font-style:italic;">global</span>
+</nobr></div>
+<div style="position:absolute;top:247.868;left:182.201;"><nobr>
+<span style="font-size:20.022;">mappings (see Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(78); return false">4.3.1</a></span>
+<span style="font-size:20.022;">) are not ordered.</span>
+</nobr></div>
+<div style="position:absolute;top:289.441;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">If</span>
+<span style="font-size:20.022;font-style:italic;">rs1 ̸</span>
+<span style="font-size:20.022;">= x0 and</span>
+<span style="font-size:20.022;font-style:italic;">rs2</span>
+<span style="font-size:20.022;">= x0 , the fence orders only reads and writes made to the leaf page table</span>
+</nobr></div>
+<div style="position:absolute;top:315.431;left:182.201;"><nobr>
+<span style="font-size:20.022;">entry corresponding to the virtual address in</span>
+<span style="font-size:20.022;font-style:italic;">rs1</span>
+<span style="font-size:20.022;">, for all address spaces.</span>
+</nobr></div>
+<div style="position:absolute;top:357.004;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">If</span>
+<span style="font-size:20.022;font-style:italic;">rs1 ̸</span>
+<span style="font-size:20.022;">= x0 and</span>
+<span style="font-size:20.022;font-style:italic;">rs2 ̸</span>
+<span style="font-size:20.022;">= x0 , the fence orders only reads and writes made to the leaf page table</span>
+</nobr></div>
+<div style="position:absolute;top:382.992;left:182.201;"><nobr>
+<span style="font-size:20.022;">entry corresponding to the virtual address in</span>
+<span style="font-size:20.022;font-style:italic;">rs1</span>
+<span style="font-size:20.022;">, for the address space identified by integer</span>
+</nobr></div>
+<div style="position:absolute;top:407.859;left:182.201;"><nobr>
+<span style="font-size:20.022;">register</span>
+<span style="font-size:20.022;font-style:italic;">rs2</span>
+<span style="font-size:20.022;">. Accesses to global mappings are not ordered.</span>
+</nobr></div>
+<div style="position:absolute;top:474.325;left:132.145;"><nobr>
+<span style="font-size:20.022;">When</span>
+<span style="font-size:20.022;font-style:italic;">rs2 ̸</span>
+<span style="font-size:20.022;">= x0 , bits SXLEN-1:ASIDMAX of the value held in</span>
+<span style="font-size:20.022;font-style:italic;">rs2</span>
+<span style="font-size:20.022;">are reserved for future use and</span>
+</nobr></div>
+<div style="position:absolute;top:499.192;left:132.145;"><nobr>
+<span style="font-size:20.022;">should be zeroed by software and ignored by current implementations. Furthermore, if ASI-</span>
+</nobr></div>
+<div style="position:absolute;top:524.059;left:132.145;"><nobr>
+<span style="font-size:20.022;">DLEN</span>
+<span style="font-size:20.022;font-style:italic;">&lt;</span>
+<span style="font-size:20.022;">ASIDMAX, the implementation shall ignore bits ASIDMAX-1:ASIDLEN of the value</span>
+</nobr></div>
+<div style="position:absolute;top:548.926;left:132.145;"><nobr>
+<span style="font-size:20.022;">held in</span>
+<span style="font-size:20.022;font-style:italic;">rs2</span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:609.527;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Simpler implementations can ignore the virtual address in</span>
+<span style="font-size:18.285;">rs1</span>
+<span style="font-size:18.285;font-style:italic;">and the ASID value in</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+</nobr></div>
+<div style="position:absolute;top:631.469;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">always perform a global fence.</span>
+</nobr></div>
+<div style="position:absolute;top:670.299;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations may perform implicit reads of the translation data structures pointed to by the</span>
+</nobr></div>
+<div style="position:absolute;top:695.167;left:132.145;"><nobr>
+<span style="font-size:20.022;">current satp register arbitrarily early and speculatively. The results of these reads may be held in</span>
+</nobr></div>
+<div style="position:absolute;top:720.034;left:132.145;"><nobr>
+<span style="font-size:20.022;">an incoherent cache but not shared with other harts. Cache entries may only be established for</span>
+</nobr></div>
+<div style="position:absolute;top:744.901;left:132.145;"><nobr>
+<span style="font-size:20.022;">the ASID currently loaded into the satp register, or for global entries. The cache may only satisfy</span>
+</nobr></div>
+<div style="position:absolute;top:769.768;left:132.145;"><nobr>
+<span style="font-size:20.022;">implicit reads for entries that have been established for the ASID currently loaded into satp , or for</span>
+</nobr></div>
+<div style="position:absolute;top:794.637;left:132.145;"><nobr>
+<span style="font-size:20.022;">global entries. Changes in the satp register do not necessarily flush any such translation caches.</span>
+</nobr></div>
+<div style="position:absolute;top:819.504;left:132.145;"><nobr>
+<span style="font-size:20.022;">To ensure the implicit reads observe writes to the same memory locations, an SFENCE.VMA</span>
+</nobr></div>
+<div style="position:absolute;top:844.371;left:132.145;"><nobr>
+<span style="font-size:20.022;">instruction must be executed after the writes to flush the relevant cached translations.</span>
+</nobr></div>
+<div style="position:absolute;top:887.524;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations must only perform implicit reads of the translation data structures pointed to by</span>
+</nobr></div>
+<div style="position:absolute;top:912.391;left:132.145;"><nobr>
+<span style="font-size:20.022;">the current contents of the satp register, and must only raise exceptions for implicit accesses that</span>
+</nobr></div>
+<div style="position:absolute;top:937.259;left:132.145;"><nobr>
+<span style="font-size:20.022;">are generated as a result of instruction execution, not those that are performed speculatively.</span>
+</nobr></div>
+<div style="position:absolute;top:997.860;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The following common situations typically require executing an SFENCE.VMA instruction:</span>
+</nobr></div>
+<div style="position:absolute;top:1020.646;left:207.095;"><nobr>
+<span style="font-size:18.285;font-style:italic;">• When software recycles an ASID (i.e., reassociates it with a different page table), it should</span>
+</nobr></div>
+<div style="position:absolute;top:1043.611;left:226.249;"><nobr>
+<span style="font-size:18.285;">first</span>
+<span style="font-size:18.285;font-style:italic;">change</span>
+<span style="font-size:18.285;">satp</span>
+<span style="font-size:18.285;font-style:italic;">to point to the new page table using the recycled ASID,</span>
+<span style="font-size:18.285;">then</span>
+<span style="font-size:18.285;font-style:italic;">execute</span>
+</nobr></div>
+<div style="position:absolute;top:1065.553;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">SFENCE.VMA with</span>
+<span style="font-size:18.285;">rs1</span>
+<span style="font-size:18.285;font-style:italic;">=</span>
+<span style="font-size:18.285;">x0</span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">set to the recycled ASID. Alternatively, software can</span>
+</nobr></div>
+<div style="position:absolute;top:1087.496;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">execute the same SFENCE.VMA instruction while a different ASID is loaded into</span>
+<span style="font-size:18.285;">satp</span>
+<span style="font-size:18.285;font-style:italic;">,</span>
+</nobr></div>
+<div style="position:absolute;top:1109.438;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">provided the next time</span>
+<span style="font-size:18.285;">satp</span>
+<span style="font-size:18.285;font-style:italic;">is loaded with the recycled ASID, it is simultaneously loaded</span>
+</nobr></div>
+<div style="position:absolute;top:1131.380;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">with the new page table.</span>
+</nobr></div>
+<div style="position:absolute;top:1160.296;left:207.095;"><nobr>
+<span style="font-size:18.285;font-style:italic;">• If the implementation does not provide ASIDs, or software chooses to always use ASID 0,</span>
+</nobr></div>
+<div style="position:absolute;top:1183.263;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">then after every</span>
+<span style="font-size:18.285;">satp</span>
+<span style="font-size:18.285;font-style:italic;">write, software should execute SFENCE.VMA with</span>
+<span style="font-size:18.285;">rs1</span>
+<span style="font-size:18.285;font-style:italic;">=</span>
+<span style="font-size:18.285;">x0</span>
+<span style="font-size:18.285;font-style:italic;">. In the</span>
+</nobr></div>
+<div style="position:absolute;top:1205.205;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">common case that no global translations have been modified,</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">should be set to a register</span>
+</nobr></div>
+<div style="position:absolute;top:1227.146;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">other than</span>
+<span style="font-size:18.285;">x0</span>
+<span style="font-size:18.285;font-style:italic;">but which contains the value zero, so that global translations are not flushed.</span>
+</nobr></div>
+<div style="position:absolute;top:1256.062;left:207.095;"><nobr>
+<span style="font-size:18.285;font-style:italic;">• If software modifies a non-leaf PTE, it should execute SFENCE.VMA with</span>
+<span style="font-size:18.285;">rs1</span>
+<span style="font-size:18.285;font-style:italic;">=</span>
+<span style="font-size:18.285;">x0</span>
+<span style="font-size:18.285;font-style:italic;">. If any</span>
+</nobr></div>
+<div style="position:absolute;top:1279.030;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">PTE along the traversal path had its G bit set,</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">must be</span>
+<span style="font-size:18.285;">x0</span>
+<span style="font-size:18.285;font-style:italic;">; otherwise,</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">should be set</span>
+</nobr></div>
+<div style="position:absolute;top:1300.971;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to the ASID for which the translation is being modified.</span>
+</nobr></div>
+</td></tr>
+</table>

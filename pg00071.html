@@ -1,0 +1,154 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00071.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">59</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">A user-level software interrupt is triggered on the current hart by writing 1 to its user software</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupt-pending (USIP) bit in the sip register. A pending user-level software interrupt can be</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">cleared by writing 0 to the USIP bit in sip . User-level software interrupts are disabled when the</span>
+</nobr></div>
+<div style="position:absolute;top:205.174;left:132.145;"><nobr>
+<span style="font-size:20.022;">USIE bit in the sie register is clear. If user-level interrupts are not supported, USIP and USIE are</span>
+</nobr></div>
+<div style="position:absolute;top:230.041;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardwired to zero.</span>
+</nobr></div>
+<div style="position:absolute;top:273.194;left:132.145;"><nobr>
+<span style="font-size:20.022;">All bits besides SSIP, USIP, and UEIP in the sip register are read-only.</span>
+</nobr></div>
+<div style="position:absolute;top:316.347;left:132.145;"><nobr>
+<span style="font-size:20.022;">A supervisor-level timer interrupt is pending if the STIP bit in the sip register is set. Supervisor-</span>
+</nobr></div>
+<div style="position:absolute;top:341.214;left:132.145;"><nobr>
+<span style="font-size:20.022;">level timer interrupts are disabled when the STIE bit in the sie register is clear. The implemen-</span>
+</nobr></div>
+<div style="position:absolute;top:366.081;left:132.145;"><nobr>
+<span style="font-size:20.022;">tation must provide a mechanism to clear a pending timer interrupt.</span>
+</nobr></div>
+<div style="position:absolute;top:409.234;left:132.145;"><nobr>
+<span style="font-size:20.022;">A user-level timer interrupt is pending if the UTIP bit in the sip register is set. User-level timer</span>
+</nobr></div>
+<div style="position:absolute;top:434.101;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupts are disabled when the UTIE bit in the sie register is clear. If user-level interrupts are</span>
+</nobr></div>
+<div style="position:absolute;top:458.970;left:132.145;"><nobr>
+<span style="font-size:20.022;">supported, the ABI should provide a facility for scheduling timer interrupts in terms of real-time</span>
+</nobr></div>
+<div style="position:absolute;top:483.837;left:132.145;"><nobr>
+<span style="font-size:20.022;">counter values. If user-level interrupts are not supported, UTIP and UTIE are hardwired to zero.</span>
+</nobr></div>
+<div style="position:absolute;top:526.990;left:132.145;"><nobr>
+<span style="font-size:20.022;">A supervisor-level external interrupt is pending if the SEIP bit in the sip register is set. Supervisor-</span>
+</nobr></div>
+<div style="position:absolute;top:551.857;left:132.145;"><nobr>
+<span style="font-size:20.022;">level external interrupts are disabled when the SEIE bit in the sie register is clear. The imple-</span>
+</nobr></div>
+<div style="position:absolute;top:576.724;left:132.145;"><nobr>
+<span style="font-size:20.022;">mentation should provide facilities to mask, unmask, and query the cause of external interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:619.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">The UEIP field in sip contains a single read-write bit. UEIP may be written by S-mode software to</span>
+</nobr></div>
+<div style="position:absolute;top:644.744;left:132.145;"><nobr>
+<span style="font-size:20.022;">indicate to U-mode that an external interrupt is pending. Additionally, the platform-level interrupt</span>
+</nobr></div>
+<div style="position:absolute;top:669.611;left:132.145;"><nobr>
+<span style="font-size:20.022;">controller may generate user-level external interrupts. The logical-OR of the software-writable bit</span>
+</nobr></div>
+<div style="position:absolute;top:694.479;left:132.145;"><nobr>
+<span style="font-size:20.022;">and the signal from the external interrupt controller are used to generate external interrupts for</span>
+</nobr></div>
+<div style="position:absolute;top:719.348;left:132.145;"><nobr>
+<span style="font-size:20.022;">user mode. When the UEIP bit is read with a CSRRW, CSRRS, or CSRRC instruction, the value</span>
+</nobr></div>
+<div style="position:absolute;top:744.215;left:132.145;"><nobr>
+<span style="font-size:20.022;">returned in the rd destination register contains the logical-OR of the software-writable bit and the</span>
+</nobr></div>
+<div style="position:absolute;top:769.082;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupt signal from the interrupt controller. However, the value used in the read-modify-write</span>
+</nobr></div>
+<div style="position:absolute;top:793.949;left:132.145;"><nobr>
+<span style="font-size:20.022;">sequence of a CSRRS or CSRRC instruction is only the software-writable UEIP bit, ignoring the</span>
+</nobr></div>
+<div style="position:absolute;top:818.816;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupt value from the external interrupt controller.</span>
+</nobr></div>
+<div style="position:absolute;top:881.579;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Analogous to SEIP, the UEIP field behavior is designed to allow a higher privilege layer to mimic</span>
+</nobr></div>
+<div style="position:absolute;top:903.521;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">external interrupts without losing any real external interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:944.082;left:132.145;"><nobr>
+<span style="font-size:20.022;">User-level external interrupts are disabled when the UEIE bit in the sie register is clear. If the N</span>
+</nobr></div>
+<div style="position:absolute;top:968.949;left:132.145;"><nobr>
+<span style="font-size:20.022;">extension for user-level interrupts is not implemented, UEIP and UEIE are hardwired to zero.</span>
+</nobr></div>
+<div style="position:absolute;top:1031.711;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The</span>
+<span style="font-size:18.285;">sip</span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;">sie</span>
+<span style="font-size:18.285;font-style:italic;">registers are subsets of the</span>
+<span style="font-size:18.285;">mip</span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;">mie</span>
+<span style="font-size:18.285;font-style:italic;">registers. Reading any field, or writing</span>
+</nobr></div>
+<div style="position:absolute;top:1053.654;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">any writable field, of</span>
+<span style="font-size:18.285;">sip</span>
+<span style="font-size:18.285;font-style:italic;">/</span>
+<span style="font-size:18.285;">sie</span>
+<span style="font-size:18.285;font-style:italic;">effects a read or write of the homonymous field of</span>
+<span style="font-size:18.285;">mip</span>
+<span style="font-size:18.285;font-style:italic;">/</span>
+<span style="font-size:18.285;">mie</span>
+<span style="font-size:18.285;font-style:italic;">.</span>
+</nobr></div>
+<div style="position:absolute;top:1076.370;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Bits 3, 7, and 11 of</span>
+<span style="font-size:18.285;">sip</span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;">sie</span>
+<span style="font-size:18.285;font-style:italic;">correspond to the machine-mode software, timer, and</span>
+</nobr></div>
+<div style="position:absolute;top:1098.312;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">external interrupts, respectively. Since most platforms will choose not to make these interrupts</span>
+</nobr></div>
+<div style="position:absolute;top:1120.254;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">delegatable from M-mode to S-mode, they are marked</span>
+<span style="font-size:18.285;font-style:italic;font-weight:bold;">WPRI</span>
+<span style="font-size:18.285;font-style:italic;">in Figures</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(69); return false">4.4</a></span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(69); return false">4.5</a></span>
+<span style="font-size:18.285;font-style:italic;">.</span>
+</nobr></div>
+<div style="position:absolute;top:1191.884;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.1.6</span>
+</nobr></div>
+<div style="position:absolute;top:1191.884;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Supervisor Timers and Performance Counters</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">Supervisor software uses the same hardware performance monitoring facility as user-mode software,</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">including the time , cycle , and instret CSRs. The implementation should provide a mechanism</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">to modify the counter values.</span>
+</nobr></div>
+</td></tr>
+</table>

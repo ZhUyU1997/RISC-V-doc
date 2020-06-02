@@ -1,0 +1,179 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00039.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:131.778;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">In any reasonable use case, the number of context switches between user and supervisor level</span>
+</nobr></div>
+<div style="position:absolute;top:153.720;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">should far outweigh the number of context switches to other privilege levels. Note that coproces-</span>
+</nobr></div>
+<div style="position:absolute;top:175.661;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">sors should not require their context to be saved and restored to service asynchronous interrupts,</span>
+</nobr></div>
+<div style="position:absolute;top:197.603;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">unless the interrupt results in a user-level context swap.</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">27</span>
+</nobr></div>
+<div style="position:absolute;top:254.798;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.7</span>
+</nobr></div>
+<div style="position:absolute;top:254.798;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Trap-Vector Base-Address Register (</span>
+<span style="font-size:21.942;">mtvec</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:312.214;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mtvec register is an MXLEN-bit read/write register that holds trap vector configuration,</span>
+</nobr></div>
+<div style="position:absolute;top:337.082;left:132.145;"><nobr>
+<span style="font-size:20.022;">consisting of a vector base address (BASE) and a vector mode (MODE).</span>
+</nobr></div>
+<div style="position:absolute;top:379.640;left:198.570;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:399.215;left:373.336;"><nobr>
+<span style="font-size:16.456;">BASE[MXLEN-1:2] (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:420.061;left:451.738;"><nobr>
+<span style="font-size:16.456;">MXLEN-2</span>
+</nobr></div>
+<div style="position:absolute;top:379.640;left:779.815;"><nobr>
+<span style="font-size:14.628;">21</span>
+</nobr></div>
+<div style="position:absolute;top:379.640;left:922.525;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:399.215;left:798.664;"><nobr>
+<span style="font-size:16.456;">MODE (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:420.061;left:854.659;"><nobr>
+<span style="font-size:16.456;">2</span>
+</nobr></div>
+<div style="position:absolute;top:467.477;left:287.594;"><nobr>
+<span style="font-size:20.022;">Figure 3.8: Machine trap-vector base-address register ( mtvec ).</span>
+</nobr></div>
+<div style="position:absolute;top:512.074;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mtvec register must always be implemented, but can contain a hardwired read-only value. If</span>
+</nobr></div>
+<div style="position:absolute;top:538.603;left:132.145;"><nobr>
+<span style="font-size:20.022;">mtvec is writable, the set of values the register may hold can vary by implementation. The value in</span>
+</nobr></div>
+<div style="position:absolute;top:561.808;left:132.145;"><nobr>
+<span style="font-size:20.022;">the BASE field must always be aligned on a 4-byte boundary, and the MODE setting may impose</span>
+</nobr></div>
+<div style="position:absolute;top:586.675;left:132.145;"><nobr>
+<span style="font-size:20.022;">additional alignment constraints on the value in the BASE field.</span>
+</nobr></div>
+<div style="position:absolute;top:638.926;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We allow for considerable flexibility in implementation of the trap vector base address. On the</span>
+</nobr></div>
+<div style="position:absolute;top:660.867;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">one hand, we do not wish to burden low-end implementations with a large number of state bits,</span>
+</nobr></div>
+<div style="position:absolute;top:682.809;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">but on the other hand, we wish to allow flexibility for larger systems.</span>
+</nobr></div>
+<div style="position:absolute;top:711.903;left:249.681;"><nobr>
+<span style="font-size:20.022;">Value</span>
+</nobr></div>
+<div style="position:absolute;top:737.503;left:288.612;"><nobr>
+<span style="font-size:20.022;">0</span>
+</nobr></div>
+<div style="position:absolute;top:762.370;left:288.612;"><nobr>
+<span style="font-size:20.022;">1</span>
+</nobr></div>
+<div style="position:absolute;top:786.116;left:273.040;"><nobr>
+<span style="font-size:20.022;font-style:italic;">≥</span>
+<span style="font-size:20.022;">2</span>
+</nobr></div>
+<div style="position:absolute;top:711.903;left:334.395;"><nobr>
+<span style="font-size:20.022;">Name</span>
+</nobr></div>
+<div style="position:absolute;top:737.503;left:332.560;"><nobr>
+<span style="font-size:20.022;">Direct</span>
+</nobr></div>
+<div style="position:absolute;top:762.370;left:321.298;"><nobr>
+<span style="font-size:20.022;">Vectored</span>
+</nobr></div>
+<div style="position:absolute;top:787.237;left:349.689;"><nobr>
+<span style="font-size:20.022;">—</span>
+</nobr></div>
+<div style="position:absolute;top:711.903;left:420.778;"><nobr>
+<span style="font-size:20.022;">Description</span>
+</nobr></div>
+<div style="position:absolute;top:737.503;left:420.778;"><nobr>
+<span style="font-size:20.022;">All exceptions set pc to BASE.</span>
+</nobr></div>
+<div style="position:absolute;top:762.370;left:420.778;"><nobr>
+<span style="font-size:20.022;">Asynchronous interrupts set pc to BASE+4</span>
+<span style="font-size:20.022;font-style:italic;">×</span>
+<span style="font-size:20.022;">cause.</span>
+</nobr></div>
+<div style="position:absolute;top:787.237;left:420.778;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Reserved</span>
+</nobr></div>
+<div style="position:absolute;top:851.388;left:372.798;"><nobr>
+<span style="font-size:20.022;">Table 3.5: Encoding of mtvec MODE field.</span>
+</nobr></div>
+<div style="position:absolute;top:896.323;left:132.145;"><nobr>
+<span style="font-size:20.022;">The encoding of the MODE field is shown in Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(38); return false">3.5</a></span>
+<span style="font-size:20.022;">. When MODE=Direct, all traps into</span>
+</nobr></div>
+<div style="position:absolute;top:921.190;left:132.145;"><nobr>
+<span style="font-size:20.022;">machine mode cause the pc to be set to the address in the BASE field. When MODE=Vectored,</span>
+</nobr></div>
+<div style="position:absolute;top:946.059;left:132.145;"><nobr>
+<span style="font-size:20.022;">all synchronous exceptions into machine mode cause the pc to be set to the address in the BASE</span>
+</nobr></div>
+<div style="position:absolute;top:970.926;left:132.145;"><nobr>
+<span style="font-size:20.022;">field, whereas interrupts cause the pc to be set to the address in the BASE field plus four times the</span>
+</nobr></div>
+<div style="position:absolute;top:995.793;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupt cause number. For example, a machine-mode timer interrupt (see Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(48); return false">3.6</a></span>
+<span style="font-size:20.022;">on page</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(48); return false">37</a></span>
+<span style="font-size:20.022;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1020.660;left:132.145;"><nobr>
+<span style="font-size:20.022;">causes the pc to be set to BASE+ 0x1c .</span>
+</nobr></div>
+<div style="position:absolute;top:1072.911;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">When vectored interrupts are enabled, interrupt cause 0, which corresponds to user-mode soft-</span>
+</nobr></div>
+<div style="position:absolute;top:1094.852;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">ware interrupts, are vectored to the same location as synchronous exceptions. This ambiguity</span>
+</nobr></div>
+<div style="position:absolute;top:1116.794;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">does not arise in practice, since user-mode software interrupts are either disabled or delegated</span>
+</nobr></div>
+<div style="position:absolute;top:1138.737;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to a less-privileged mode.</span>
+</nobr></div>
+<div style="position:absolute;top:1169.559;left:132.145;"><nobr>
+<span style="font-size:20.022;">An implementation may have different alignment constraints for different modes. In particular,</span>
+</nobr></div>
+<div style="position:absolute;top:1194.428;left:132.145;"><nobr>
+<span style="font-size:20.022;">MODE=Vectored may have stricter alignment constraints than MODE=Direct.</span>
+</nobr></div>
+<div style="position:absolute;top:1246.678;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Allowing coarser alignments in Vectored mode enables vectoring to be implemented without a</span>
+</nobr></div>
+<div style="position:absolute;top:1268.620;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">hardware adder circuit.</span>
+</nobr></div>
+<div style="position:absolute;top:1308.540;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Reset and NMI vector locations are given in a platform specification.</span>
+</nobr></div>
+</td></tr>
+</table>

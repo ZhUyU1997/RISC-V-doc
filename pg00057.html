@@ -1,0 +1,162 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00057.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">45</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.5.3</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Atomicity PMAs</span>
+</nobr></div>
+<div style="position:absolute;top:187.946;left:132.145;"><nobr>
+<span style="font-size:20.022;">Atomicity PMAs describes which atomic instructions are supported in this address region. Main</span>
+</nobr></div>
+<div style="position:absolute;top:212.813;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory regions must support the atomic operations required by the processors attached. I/O</span>
+</nobr></div>
+<div style="position:absolute;top:237.680;left:132.145;"><nobr>
+<span style="font-size:20.022;">regions may only support a subset or none of the processor-supported atomic operations.</span>
+</nobr></div>
+<div style="position:absolute;top:280.833;left:132.145;"><nobr>
+<span style="font-size:20.022;">Support for atomic instructions is divided into two categories:</span>
+<span style="font-size:20.022;font-style:italic;">LR/SC</span>
+<span style="font-size:20.022;">and</span>
+<span style="font-size:20.022;font-style:italic;">AMOs</span>
+<span style="font-size:20.022;">. Within</span>
+</nobr></div>
+<div style="position:absolute;top:305.700;left:132.145;"><nobr>
+<span style="font-size:20.022;">AMOs, there are four levels of support:</span>
+<span style="font-size:20.022;font-style:italic;">AMONone</span>
+<span style="font-size:20.022;">,</span>
+<span style="font-size:20.022;font-style:italic;">AMOSwap</span>
+<span style="font-size:20.022;">,</span>
+<span style="font-size:20.022;font-style:italic;">AMOLogical</span>
+<span style="font-size:20.022;">, and</span>
+<span style="font-size:20.022;font-style:italic;">AMOArith-</span>
+</nobr></div>
+<div style="position:absolute;top:330.569;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">metic</span>
+<span style="font-size:20.022;">. AMONone indicates that no AMO operations are supported. AMOSwap indicates that</span>
+</nobr></div>
+<div style="position:absolute;top:355.436;left:132.145;"><nobr>
+<span style="font-size:20.022;">only amoswap instructions are supported in this address range. AMOLogical indicates that swap</span>
+</nobr></div>
+<div style="position:absolute;top:380.303;left:132.145;"><nobr>
+<span style="font-size:20.022;">instructions plus all the logical AMOs ( amoand , amoor , amoxor ) are supported. AMOArithmetic</span>
+</nobr></div>
+<div style="position:absolute;top:405.170;left:132.145;"><nobr>
+<span style="font-size:20.022;">indicates that all RISC-V AMOs are supported. For each level of support, naturally aligned AMOs</span>
+</nobr></div>
+<div style="position:absolute;top:430.038;left:132.145;"><nobr>
+<span style="font-size:20.022;">of a given width are supported if the underlying memory region supports reads and writes of that</span>
+</nobr></div>
+<div style="position:absolute;top:454.907;left:132.145;"><nobr>
+<span style="font-size:20.022;">width.</span>
+</nobr></div>
+<div style="position:absolute;top:497.723;left:246.365;"><nobr>
+<span style="font-size:20.022;">AMO Class</span>
+</nobr></div>
+<div style="position:absolute;top:523.323;left:246.365;"><nobr>
+<span style="font-size:20.022;">AMONone</span>
+</nobr></div>
+<div style="position:absolute;top:548.190;left:246.365;"><nobr>
+<span style="font-size:20.022;">AMOSwap</span>
+</nobr></div>
+<div style="position:absolute;top:573.057;left:246.365;"><nobr>
+<span style="font-size:20.022;">AMOLogical</span>
+</nobr></div>
+<div style="position:absolute;top:597.924;left:246.365;"><nobr>
+<span style="font-size:20.022;">AMOArithmetic</span>
+</nobr></div>
+<div style="position:absolute;top:497.723;left:412.585;"><nobr>
+<span style="font-size:20.022;">Supported Operations</span>
+</nobr></div>
+<div style="position:absolute;top:523.323;left:412.585;"><nobr>
+<span style="font-size:20.022;font-style:italic;">None</span>
+</nobr></div>
+<div style="position:absolute;top:549.852;left:412.585;"><nobr>
+<span style="font-size:20.022;">amoswap</span>
+</nobr></div>
+<div style="position:absolute;top:573.057;left:412.585;"><nobr>
+<span style="font-size:20.022;">above + amoand , amoor , amoxor</span>
+</nobr></div>
+<div style="position:absolute;top:597.924;left:412.585;"><nobr>
+<span style="font-size:20.022;">above + amoadd , amomin , amomax , amominu , amomaxu</span>
+</nobr></div>
+<div style="position:absolute;top:663.187;left:132.145;"><nobr>
+<span style="font-size:20.022;">Table 3.8: Classes of AMOs supported by I/O regions. Main memory regions must always support</span>
+</nobr></div>
+<div style="position:absolute;top:688.056;left:132.145;"><nobr>
+<span style="font-size:20.022;">all AMOs required by the processor.</span>
+</nobr></div>
+<div style="position:absolute;top:764.073;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We recommend providing at least AMOLogical support for I/O regions where possible. Most</span>
+</nobr></div>
+<div style="position:absolute;top:786.014;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">I/O regions will not support LR/SC accesses, as these are most conveniently built on top of a</span>
+</nobr></div>
+<div style="position:absolute;top:807.958;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cache-coherence scheme.</span>
+</nobr></div>
+<div style="position:absolute;top:850.891;left:132.145;"><nobr>
+<span style="font-size:20.022;">Memory regions that support LR/SC will define the conditions under which LR/SC sequences must</span>
+</nobr></div>
+<div style="position:absolute;top:875.759;left:132.145;"><nobr>
+<span style="font-size:20.022;">succeed or must fail. Main memory must guarantee the eventual success of any LR/SC sequence</span>
+</nobr></div>
+<div style="position:absolute;top:900.627;left:132.145;"><nobr>
+<span style="font-size:20.022;">that meets the requirements described in the user ISA specification.</span>
+</nobr></div>
+<div style="position:absolute;top:943.779;left:132.145;"><nobr>
+<span style="font-size:20.022;">Memory regions that support aligned LR/SC or aligned AMOs might also support misaligned</span>
+</nobr></div>
+<div style="position:absolute;top:968.647;left:132.145;"><nobr>
+<span style="font-size:20.022;">LR/SC or misaligned AMOs for some addresses and access widths. If, for a given address and</span>
+</nobr></div>
+<div style="position:absolute;top:993.514;left:132.145;"><nobr>
+<span style="font-size:20.022;">access width, a misaligned LR/SC or AMO generates an address-misaligned exception, then</span>
+<span style="font-size:20.022;font-style:italic;">all</span>
+</nobr></div>
+<div style="position:absolute;top:1018.381;left:132.145;"><nobr>
+<span style="font-size:20.022;">loads, stores, LRs/SCs, and AMOs using that address and access width must generate address-</span>
+</nobr></div>
+<div style="position:absolute;top:1043.248;left:132.145;"><nobr>
+<span style="font-size:20.022;">misaligned exceptions.</span>
+</nobr></div>
+<div style="position:absolute;top:1102.126;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The standard “A” extension does not support misaligned AMOs or LR/SC pairs. Support for</span>
+</nobr></div>
+<div style="position:absolute;top:1124.067;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">misaligned AMOs is provided by the standard “Zam” extension. Support for misaligned LR/SC</span>
+</nobr></div>
+<div style="position:absolute;top:1146.009;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">sequences is not currently standardized, so LR and SC to misaligned addresses must raise an</span>
+</nobr></div>
+<div style="position:absolute;top:1167.951;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">exception.</span>
+</nobr></div>
+<div style="position:absolute;top:1191.261;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Mandating that misaligned loads and stores raise address-misaligned exceptions wherever</span>
+</nobr></div>
+<div style="position:absolute;top:1213.203;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">misaligned AMOs raise address-misaligned exceptions permits the emulation of misaligned AMOs</span>
+</nobr></div>
+<div style="position:absolute;top:1235.145;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">in an M-mode trap handler. The handler guarantees atomicity by acquiring a global mutex and</span>
+</nobr></div>
+<div style="position:absolute;top:1257.086;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">emulating the access within the critical section. Provided that the handler for misaligned loads</span>
+</nobr></div>
+<div style="position:absolute;top:1279.030;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">and stores uses the same mutex, all accesses to a given address that use the same word size will</span>
+</nobr></div>
+<div style="position:absolute;top:1300.971;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">be mutually atomic.</span>
+</nobr></div>
+</td></tr>
+</table>

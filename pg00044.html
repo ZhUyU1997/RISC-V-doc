@@ -1,0 +1,158 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00044.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">32</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.10</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:219.847;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Timer Registers (</span>
+<span style="font-size:21.942;">mtime</span>
+<span style="font-size:21.942;font-weight:bold;">and</span>
+<span style="font-size:21.942;">mtimecmp</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:186.655;left:132.145;"><nobr>
+<span style="font-size:20.022;">Platforms provide a real-time counter, exposed as a memory-mapped machine-mode read-write</span>
+</nobr></div>
+<div style="position:absolute;top:211.522;left:132.145;"><nobr>
+<span style="font-size:20.022;">register, mtime . mtime must run at constant frequency, and the platform must provide a mechanism</span>
+</nobr></div>
+<div style="position:absolute;top:236.390;left:132.145;"><nobr>
+<span style="font-size:20.022;">for determining the timebase of mtime .</span>
+</nobr></div>
+<div style="position:absolute;top:279.542;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mtime register has a 64-bit precision on all RV32 and RV64 systems. Platforms provide a</span>
+</nobr></div>
+<div style="position:absolute;top:304.410;left:132.145;"><nobr>
+<span style="font-size:20.022;">64-bit memory-mapped machine-mode timer compare register ( mtimecmp ), which causes a timer</span>
+</nobr></div>
+<div style="position:absolute;top:329.277;left:132.145;"><nobr>
+<span style="font-size:20.022;">interrupt to be posted when the mtime register contains a value greater than or equal to the value</span>
+</nobr></div>
+<div style="position:absolute;top:354.146;left:132.145;"><nobr>
+<span style="font-size:20.022;">in the mtimecmp register. The interrupt remains posted until it is cleared by writing the mtimecmp</span>
+</nobr></div>
+<div style="position:absolute;top:379.013;left:132.145;"><nobr>
+<span style="font-size:20.022;">register. The interrupt will only be taken if interrupts are enabled and the MTIE bit is set in the</span>
+</nobr></div>
+<div style="position:absolute;top:405.542;left:132.145;"><nobr>
+<span style="font-size:20.022;">mie register.</span>
+</nobr></div>
+<div style="position:absolute;top:446.478;left:264.443;"><nobr>
+<span style="font-size:14.628;">63</span>
+</nobr></div>
+<div style="position:absolute;top:446.478;left:845.687;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:467.421;left:540.019;"><nobr>
+<span style="font-size:16.456;">mtime</span>
+</nobr></div>
+<div style="position:absolute;top:486.899;left:547.676;"><nobr>
+<span style="font-size:16.456;">64</span>
+</nobr></div>
+<div style="position:absolute;top:534.315;left:253.056;"><nobr>
+<span style="font-size:20.022;">Figure 3.13: Machine time register (memory-mapped control register).</span>
+</nobr></div>
+<div style="position:absolute;top:580.623;left:264.443;"><nobr>
+<span style="font-size:14.628;">63</span>
+</nobr></div>
+<div style="position:absolute;top:580.623;left:845.687;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:601.564;left:527.059;"><nobr>
+<span style="font-size:16.456;">mtimecmp</span>
+</nobr></div>
+<div style="position:absolute;top:621.045;left:547.676;"><nobr>
+<span style="font-size:16.456;">64</span>
+</nobr></div>
+<div style="position:absolute;top:668.460;left:212.983;"><nobr>
+<span style="font-size:20.022;">Figure 3.14: Machine time compare register (memory-mapped control register).</span>
+</nobr></div>
+<div style="position:absolute;top:727.878;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The timer facility is defined to use wall-clock time rather than a cycle counter to support modern</span>
+</nobr></div>
+<div style="position:absolute;top:749.821;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">processors that run with a highly variable clock frequency to save energy through dynamic voltage</span>
+</nobr></div>
+<div style="position:absolute;top:771.763;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">and frequency scaling.</span>
+</nobr></div>
+<div style="position:absolute;top:793.704;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Accurate real-time clocks (RTCs) are relatively expensive to provide (requiring a crystal</span>
+</nobr></div>
+<div style="position:absolute;top:815.646;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">or MEMS oscillator) and have to run even when the rest of system is powered down, and so</span>
+</nobr></div>
+<div style="position:absolute;top:837.588;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">there is usually only one in a system located in a different frequency/voltage domain from the</span>
+</nobr></div>
+<div style="position:absolute;top:859.529;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">processors. Hence, the RTC must be shared by all the harts in a system and accesses to the RTC</span>
+</nobr></div>
+<div style="position:absolute;top:881.473;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">will potentially incur the penalty of a voltage-level-shifter and clock-domain crossing. It is thus</span>
+</nobr></div>
+<div style="position:absolute;top:903.414;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">more natural to expose</span>
+<span style="font-size:18.285;">mtime</span>
+<span style="font-size:18.285;font-style:italic;">as a memory-mapped register than as a CSR.</span>
+</nobr></div>
+<div style="position:absolute;top:925.356;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Lower privilege levels do not have their own</span>
+<span style="font-size:18.285;">timecmp</span>
+<span style="font-size:18.285;font-style:italic;">registers. Instead, machine-mode</span>
+</nobr></div>
+<div style="position:absolute;top:947.297;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">software can implement any number of virtual timers on a hart by multiplexing the next timer</span>
+</nobr></div>
+<div style="position:absolute;top:969.239;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">interrupt into the</span>
+<span style="font-size:18.285;">mtimecmp</span>
+<span style="font-size:18.285;font-style:italic;">register.</span>
+</nobr></div>
+<div style="position:absolute;top:991.180;left:212.232;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Simple fixed-frequency systems can use a single clock for both cycle counting and wall-clock</span>
+</nobr></div>
+<div style="position:absolute;top:1013.124;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">time.</span>
+</nobr></div>
+<div style="position:absolute;top:1047.405;left:132.145;"><nobr>
+<span style="font-size:20.022;">Writes to mtime and mtimecmp are guaranteed to be reflected in MTIP eventually, but not neces-</span>
+</nobr></div>
+<div style="position:absolute;top:1072.272;left:132.145;"><nobr>
+<span style="font-size:20.022;">sarily immediately.</span>
+</nobr></div>
+<div style="position:absolute;top:1127.980;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">A spurious timer interrupt might occur if an interrupt handler increments</span>
+<span style="font-size:18.285;">mtimecmp</span>
+<span style="font-size:18.285;font-style:italic;">then im-</span>
+</nobr></div>
+<div style="position:absolute;top:1149.924;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mediately returns, because MTIP might not yet have fallen in the interim. All software should be</span>
+</nobr></div>
+<div style="position:absolute;top:1171.865;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">written to assume this event is possible, but most software should assume this event is extremely</span>
+</nobr></div>
+<div style="position:absolute;top:1193.807;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">unlikely. It is almost always more performant to incur an occasional spurious timer interrupt</span>
+</nobr></div>
+<div style="position:absolute;top:1215.749;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">than to poll MTIP until it falls.</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">In RV32, memory-mapped writes to mtimecmp modify only one 32-bit part of the register. The</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">following code sequence sets a 64-bit mtimecmp value without spuriously generating a timer interrupt</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">due to the intermediate value of the comparand:</span>
+</nobr></div>
+</td></tr>
+</table>

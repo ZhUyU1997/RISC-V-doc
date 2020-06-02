@@ -1,0 +1,439 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00061.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">49</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.6.1</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Physical Memory Protection CSRs</span>
+</nobr></div>
+<div style="position:absolute;top:186.655;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMP entries are described by an 8-bit configuration register and one MXLEN-bit address register.</span>
+</nobr></div>
+<div style="position:absolute;top:211.522;left:132.145;"><nobr>
+<span style="font-size:20.022;">Some PMP settings additionally use the address register associated with the preceding PMP entry.</span>
+</nobr></div>
+<div style="position:absolute;top:236.390;left:132.145;"><nobr>
+<span style="font-size:20.022;">Up to 16 PMP entries are supported. If any PMP entries are implemented, then all PMP CSRs</span>
+</nobr></div>
+<div style="position:absolute;top:261.257;left:132.145;"><nobr>
+<span style="font-size:20.022;">must be implemented, but all PMP CSR fields are</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">and may be hardwired to zero. PMP</span>
+</nobr></div>
+<div style="position:absolute;top:286.126;left:132.145;"><nobr>
+<span style="font-size:20.022;">CSRs are only accessible to M-mode.</span>
+</nobr></div>
+<div style="position:absolute;top:329.277;left:132.145;"><nobr>
+<span style="font-size:20.022;">The PMP configuration registers are densely packed into CSRs to minimize context-switch time.</span>
+</nobr></div>
+<div style="position:absolute;top:354.146;left:132.145;"><nobr>
+<span style="font-size:20.022;">For RV32, four CSRs, pmpcfg0 – pmpcfg3 , hold the configurations pmp0cfg – pmp15cfg for the 16</span>
+</nobr></div>
+<div style="position:absolute;top:379.013;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMP entries, as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(60); return false">3.24</a></span>
+<span style="font-size:20.022;">. For RV64, pmpcfg0 and pmpcfg2 hold the configurations</span>
+</nobr></div>
+<div style="position:absolute;top:403.880;left:132.145;"><nobr>
+<span style="font-size:20.022;">for the 16 PMP entries, as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(60); return false">3.25</a></span>
+<span style="font-size:20.022;">; pmpcfg1 and pmpcfg3 are illegal.</span>
+</nobr></div>
+<div style="position:absolute;top:460.423;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">RV64 systems use</span>
+<span style="font-size:18.285;">pmpcfg2</span>
+<span style="font-size:18.285;font-style:italic;">, rather than</span>
+<span style="font-size:18.285;">pmpcfg1</span>
+<span style="font-size:18.285;font-style:italic;">, to hold configurations for PMP entries 8–15.</span>
+</nobr></div>
+<div style="position:absolute;top:482.365;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">This design reduces the cost of supporting multiple MXLEN values, since the configurations for</span>
+</nobr></div>
+<div style="position:absolute;top:504.306;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">PMP entries 8–11 appear in</span>
+<span style="font-size:18.285;">pmpcfg2</span>
+<span style="font-size:18.285;font-style:italic;">[31:0] for both RV32 and RV64.</span>
+</nobr></div>
+<div style="position:absolute;top:539.826;left:330.271;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:539.826;left:404.230;"><nobr>
+<span style="font-size:14.628;">24 23</span>
+</nobr></div>
+<div style="position:absolute;top:539.826;left:499.355;"><nobr>
+<span style="font-size:14.628;">16 15</span>
+</nobr></div>
+<div style="position:absolute;top:539.826;left:602.248;"><nobr>
+<span style="font-size:14.628;">87</span>
+</nobr></div>
+<div style="position:absolute;top:539.826;left:697.388;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:558.668;left:340.962;"><nobr>
+<span style="font-size:16.456;">pmp3cfg</span>
+</nobr></div>
+<div style="position:absolute;top:578.782;left:367.977;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:558.668;left:435.741;"><nobr>
+<span style="font-size:16.456;">pmp2cfg</span>
+</nobr></div>
+<div style="position:absolute;top:578.782;left:463.112;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:558.668;left:530.886;"><nobr>
+<span style="font-size:16.456;">pmp1cfg</span>
+</nobr></div>
+<div style="position:absolute;top:578.782;left:558.230;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:558.668;left:631.516;"><nobr>
+<span style="font-size:16.456;">pmp0cfg</span>
+</nobr></div>
+<div style="position:absolute;top:578.782;left:653.365;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:560.034;left:727.153;"><nobr>
+<span style="font-size:16.456;">pmpcfg0</span>
+</nobr></div>
+<div style="position:absolute;top:600.165;left:330.271;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:600.165;left:404.230;"><nobr>
+<span style="font-size:14.628;">24 23</span>
+</nobr></div>
+<div style="position:absolute;top:600.165;left:499.355;"><nobr>
+<span style="font-size:14.628;">16 15</span>
+</nobr></div>
+<div style="position:absolute;top:600.165;left:602.248;"><nobr>
+<span style="font-size:14.628;">87</span>
+</nobr></div>
+<div style="position:absolute;top:600.165;left:697.388;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:619.009;left:340.962;"><nobr>
+<span style="font-size:16.456;">pmp7cfg</span>
+</nobr></div>
+<div style="position:absolute;top:639.123;left:367.977;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:619.009;left:435.741;"><nobr>
+<span style="font-size:16.456;">pmp6cfg</span>
+</nobr></div>
+<div style="position:absolute;top:639.123;left:463.112;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:619.009;left:530.886;"><nobr>
+<span style="font-size:16.456;">pmp5cfg</span>
+</nobr></div>
+<div style="position:absolute;top:639.123;left:558.230;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:619.009;left:631.516;"><nobr>
+<span style="font-size:16.456;">pmp4cfg</span>
+</nobr></div>
+<div style="position:absolute;top:639.123;left:653.365;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:620.375;left:727.153;"><nobr>
+<span style="font-size:16.456;">pmpcfg1</span>
+</nobr></div>
+<div style="position:absolute;top:660.505;left:330.271;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:660.505;left:404.230;"><nobr>
+<span style="font-size:14.628;">24 23</span>
+</nobr></div>
+<div style="position:absolute;top:660.505;left:499.355;"><nobr>
+<span style="font-size:14.628;">16 15</span>
+</nobr></div>
+<div style="position:absolute;top:660.505;left:602.248;"><nobr>
+<span style="font-size:14.628;">87</span>
+</nobr></div>
+<div style="position:absolute;top:660.505;left:697.388;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:679.350;left:336.734;"><nobr>
+<span style="font-size:16.456;">pmp11cfg</span>
+</nobr></div>
+<div style="position:absolute;top:699.464;left:367.977;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:679.350;left:431.513;"><nobr>
+<span style="font-size:16.456;">pmp10cfg</span>
+</nobr></div>
+<div style="position:absolute;top:699.464;left:463.112;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:679.350;left:530.886;"><nobr>
+<span style="font-size:16.456;">pmp9cfg</span>
+</nobr></div>
+<div style="position:absolute;top:699.464;left:558.230;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:679.350;left:631.516;"><nobr>
+<span style="font-size:16.456;">pmp8cfg</span>
+</nobr></div>
+<div style="position:absolute;top:699.464;left:653.365;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:680.716;left:727.153;"><nobr>
+<span style="font-size:16.456;">pmpcfg2</span>
+</nobr></div>
+<div style="position:absolute;top:720.846;left:330.271;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:720.846;left:404.230;"><nobr>
+<span style="font-size:14.628;">24 23</span>
+</nobr></div>
+<div style="position:absolute;top:720.846;left:499.355;"><nobr>
+<span style="font-size:14.628;">16 15</span>
+</nobr></div>
+<div style="position:absolute;top:720.846;left:602.248;"><nobr>
+<span style="font-size:14.628;">87</span>
+</nobr></div>
+<div style="position:absolute;top:720.846;left:697.388;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:739.691;left:336.734;"><nobr>
+<span style="font-size:16.456;">pmp15cfg</span>
+</nobr></div>
+<div style="position:absolute;top:759.802;left:367.977;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:739.691;left:431.513;"><nobr>
+<span style="font-size:16.456;">pmp14cfg</span>
+</nobr></div>
+<div style="position:absolute;top:759.802;left:463.112;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:739.691;left:526.657;"><nobr>
+<span style="font-size:16.456;">pmp13cfg</span>
+</nobr></div>
+<div style="position:absolute;top:759.802;left:558.230;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:739.691;left:627.288;"><nobr>
+<span style="font-size:16.456;">pmp12cfg</span>
+</nobr></div>
+<div style="position:absolute;top:759.802;left:653.365;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:741.057;left:727.153;"><nobr>
+<span style="font-size:16.456;">pmpcfg3</span>
+</nobr></div>
+<div style="position:absolute;top:806.108;left:337.844;"><nobr>
+<span style="font-size:20.022;">Figure 3.24: RV32 PMP configuration CSR layout.</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:139.982;"><nobr>
+<span style="font-size:14.628;">63</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:213.941;"><nobr>
+<span style="font-size:14.628;">56 55</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:309.066;"><nobr>
+<span style="font-size:14.628;">48 47</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:404.192;"><nobr>
+<span style="font-size:14.628;">40 39</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:499.317;"><nobr>
+<span style="font-size:14.628;">32 31</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:594.442;"><nobr>
+<span style="font-size:14.628;">24 23</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:689.568;"><nobr>
+<span style="font-size:14.628;">16 15</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:792.475;"><nobr>
+<span style="font-size:14.628;">87</span>
+</nobr></div>
+<div style="position:absolute;top:851.859;left:887.600;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:150.673;"><nobr>
+<span style="font-size:16.456;">pmp7cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:177.688;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:245.452;"><nobr>
+<span style="font-size:16.456;">pmp6cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:272.823;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:340.597;"><nobr>
+<span style="font-size:16.456;">pmp5cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:367.941;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:435.741;"><nobr>
+<span style="font-size:16.456;">pmp4cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:463.076;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:530.886;"><nobr>
+<span style="font-size:16.456;">pmp3cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:558.211;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:626.031;"><nobr>
+<span style="font-size:16.456;">pmp2cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:653.329;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:721.175;"><nobr>
+<span style="font-size:16.456;">pmp1cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:748.464;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:870.704;left:821.806;"><nobr>
+<span style="font-size:16.456;">pmp0cfg</span>
+</nobr></div>
+<div style="position:absolute;top:890.817;left:843.599;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:872.069;left:917.444;"><nobr>
+<span style="font-size:16.456;">pmpcfg0</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:139.982;"><nobr>
+<span style="font-size:14.628;">63</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:213.941;"><nobr>
+<span style="font-size:14.628;">56 55</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:309.066;"><nobr>
+<span style="font-size:14.628;">48 47</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:404.192;"><nobr>
+<span style="font-size:14.628;">40 39</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:499.317;"><nobr>
+<span style="font-size:14.628;">32 31</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:594.442;"><nobr>
+<span style="font-size:14.628;">24 23</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:689.568;"><nobr>
+<span style="font-size:14.628;">16 15</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:792.475;"><nobr>
+<span style="font-size:14.628;">87</span>
+</nobr></div>
+<div style="position:absolute;top:912.200;left:887.601;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:146.444;"><nobr>
+<span style="font-size:16.456;">pmp15cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:177.688;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:241.224;"><nobr>
+<span style="font-size:16.456;">pmp14cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:272.823;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:336.368;"><nobr>
+<span style="font-size:16.456;">pmp13cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:367.941;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:431.513;"><nobr>
+<span style="font-size:16.456;">pmp12cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:463.076;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:526.657;"><nobr>
+<span style="font-size:16.456;">pmp11cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:558.211;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:621.802;"><nobr>
+<span style="font-size:16.456;">pmp10cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:653.329;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:721.175;"><nobr>
+<span style="font-size:16.456;">pmp9cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:748.464;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:931.044;left:821.806;"><nobr>
+<span style="font-size:16.456;">pmp8cfg</span>
+</nobr></div>
+<div style="position:absolute;top:951.158;left:843.599;"><nobr>
+<span style="font-size:16.456;">8</span>
+</nobr></div>
+<div style="position:absolute;top:932.410;left:917.444;"><nobr>
+<span style="font-size:16.456;">pmpcfg2</span>
+</nobr></div>
+<div style="position:absolute;top:997.461;left:337.844;"><nobr>
+<span style="font-size:20.022;">Figure 3.25: RV64 PMP configuration CSR layout.</span>
+</nobr></div>
+<div style="position:absolute;top:1042.811;left:132.145;"><nobr>
+<span style="font-size:20.022;">The PMP address registers are CSRs named pmpaddr0 – pmpaddr15 . Each PMP address register</span>
+</nobr></div>
+<div style="position:absolute;top:1067.678;left:132.145;"><nobr>
+<span style="font-size:20.022;">encodes bits 33–2 of a 34-bit physical address for RV32, as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(61); return false">3.26</a></span>
+<span style="font-size:20.022;">. For RV64, each</span>
+</nobr></div>
+<div style="position:absolute;top:1092.546;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMP address register encodes bits 55–2 of a 56-bit physical address, as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(61); return false">3.27</a></span>
+<span style="font-size:20.022;">. Not</span>
+</nobr></div>
+<div style="position:absolute;top:1117.413;left:132.145;"><nobr>
+<span style="font-size:20.022;">all physical address bits may be implemented, and so the pmpaddr registers are</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:1173.956;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The Sv32 page-based virtual-memory scheme described in Section</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(78); return false">4.3</a></span>
+<span style="font-size:18.285;font-style:italic;">supports 34-bit physical</span>
+</nobr></div>
+<div style="position:absolute;top:1195.898;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">addresses for RV32, so the PMP scheme must support addresses wider than XLEN for RV32.</span>
+</nobr></div>
+<div style="position:absolute;top:1217.841;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The Sv39 and Sv48 page-based virtual-memory schemes described in Sections</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(82); return false">4.4</a></span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(83); return false">4.5</a></span>
+<span style="font-size:18.285;font-style:italic;">support</span>
+</nobr></div>
+<div style="position:absolute;top:1239.783;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">a 56-bit physical address space, so the RV64 PMP address registers impose the same limit.</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(61); return false">3.28</a></span>
+<span style="font-size:20.022;">shows the layout of a PMP configuration register. The R, W, and X bits, when set,</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">indicate that the PMP entry permits read, write, and instruction execution, respectively. When one</span>
+</nobr></div>
+</td></tr>
+</table>

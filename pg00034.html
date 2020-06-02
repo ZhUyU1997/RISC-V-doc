@@ -1,0 +1,152 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00034.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">22</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">For RV64 systems, if U-mode is not supported, then UXL is hardwired to zero. Otherwise, it is</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">field that encodes the current value of UXLEN. In particular, the implementation may</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardwire UXL so that UXLEN=MXLEN or UXLEN=SXLEN.</span>
+</nobr></div>
+<div style="position:absolute;top:223.460;left:132.145;"><nobr>
+<span style="font-size:20.022;">Whenever XLEN in any mode is set to a value less than the widest supported XLEN, all operations</span>
+</nobr></div>
+<div style="position:absolute;top:248.327;left:132.145;"><nobr>
+<span style="font-size:20.022;">must ignore source operand register bits above the configured XLEN, and must sign-extend results</span>
+</nobr></div>
+<div style="position:absolute;top:273.194;left:132.145;"><nobr>
+<span style="font-size:20.022;">to fill the entire widest supported XLEN in the destination register.</span>
+</nobr></div>
+<div style="position:absolute;top:328.843;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We require that operations always fill the entire underlying hardware registers with defined values</span>
+</nobr></div>
+<div style="position:absolute;top:350.785;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to avoid implementation-defined behavior.</span>
+</nobr></div>
+<div style="position:absolute;top:373.290;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">To reduce hardware complexity, the architecture imposes no checks that lower-privilege modes</span>
+</nobr></div>
+<div style="position:absolute;top:395.232;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">have XLEN settings less than or equal to the next-higher privilege mode. In practice, such</span>
+</nobr></div>
+<div style="position:absolute;top:417.173;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">settings would almost always be a software bug, but machine operation is well-defined even in</span>
+</nobr></div>
+<div style="position:absolute;top:439.115;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">this case.</span>
+</nobr></div>
+<div style="position:absolute;top:472.775;left:132.145;"><nobr>
+<span style="font-size:20.022;">If MXLEN is changed from 32 to a wider width, each of mstatus fields SXL and UXL, if not</span>
+</nobr></div>
+<div style="position:absolute;top:497.643;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardwired to a forced value, gets the value corresponding to the widest supported width not wider</span>
+</nobr></div>
+<div style="position:absolute;top:522.510;left:132.145;"><nobr>
+<span style="font-size:20.022;">than the new MXLEN.</span>
+</nobr></div>
+<div style="position:absolute;top:596.328;left:132.145;"><nobr>
+<span style="font-size:20.022;font-weight:bold;">3.1.6.3</span>
+</nobr></div>
+<div style="position:absolute;top:596.328;left:220.382;"><nobr>
+<span style="font-size:20.022;font-weight:bold;">Memory Privilege in</span>
+<span style="font-size:20.022;">mstatus</span>
+<span style="font-size:20.022;font-weight:bold;">Register</span>
+</nobr></div>
+<div style="position:absolute;top:652.941;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MPRV (Modify PRiVilege) bit modifies the privilege level at which loads and stores execute in</span>
+</nobr></div>
+<div style="position:absolute;top:677.808;left:132.145;"><nobr>
+<span style="font-size:20.022;">all privilege modes. When MPRV=0, loads and stores behave as normal, using the translation and</span>
+</nobr></div>
+<div style="position:absolute;top:702.675;left:132.145;"><nobr>
+<span style="font-size:20.022;">protection mechanisms of the current privilege mode. When MPRV=1, load and store memory</span>
+</nobr></div>
+<div style="position:absolute;top:727.542;left:132.145;"><nobr>
+<span style="font-size:20.022;">addresses are translated and protected as though the current privilege mode were set to MPP.</span>
+</nobr></div>
+<div style="position:absolute;top:752.411;left:132.145;"><nobr>
+<span style="font-size:20.022;">Instruction address-translation and protection are unaffected by the setting of MPRV. MPRV is</span>
+</nobr></div>
+<div style="position:absolute;top:777.278;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardwired to 0 if U-mode is not supported.</span>
+</nobr></div>
+<div style="position:absolute;top:820.431;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MXR (Make eXecutable Readable) bit modifies the privilege with which loads access virtual</span>
+</nobr></div>
+<div style="position:absolute;top:845.298;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory. When MXR=0, only loads from pages marked readable (R=1 in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(79); return false">4.15</a></span>
+<span style="font-size:20.022;">) will succeed.</span>
+</nobr></div>
+<div style="position:absolute;top:870.166;left:132.145;"><nobr>
+<span style="font-size:20.022;">When MXR=1, loads from pages marked either readable or executable (R=1 or X=1) will succeed.</span>
+</nobr></div>
+<div style="position:absolute;top:895.033;left:132.145;"><nobr>
+<span style="font-size:20.022;">MXR has no effect when page-based virtual memory is not in effect. MXR is hardwired to 0 if</span>
+</nobr></div>
+<div style="position:absolute;top:919.900;left:132.145;"><nobr>
+<span style="font-size:20.022;">S-mode is not supported.</span>
+</nobr></div>
+<div style="position:absolute;top:981.596;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The MPRV and MXR mechanisms were conceived to improve the efficiency of M-mode routines</span>
+</nobr></div>
+<div style="position:absolute;top:1003.538;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">that emulate missing hardware features, e.g., misaligned loads and stores. MPRV obviates the</span>
+</nobr></div>
+<div style="position:absolute;top:1025.482;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">need to perform address translation in software. MXR allows instruction words to be loaded</span>
+</nobr></div>
+<div style="position:absolute;top:1047.423;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">from pages marked execute-only.</span>
+</nobr></div>
+<div style="position:absolute;top:1069.926;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">For simplicity, MPRV and MXR are in effect regardless of privilege mode, but in normal</span>
+</nobr></div>
+<div style="position:absolute;top:1091.868;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">use will only be enabled for short sequences in machine mode.</span>
+</nobr></div>
+<div style="position:absolute;top:1114.371;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The current privilege mode and the privilege mode specified by MPP might have different</span>
+</nobr></div>
+<div style="position:absolute;top:1136.315;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">XLEN settings. When MPRV=1, load and store memory addresses are treated as though the</span>
+</nobr></div>
+<div style="position:absolute;top:1158.256;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">current XLEN were set to MPP’s XLEN, following the rules in Section</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(32); return false">3.1.6.2</a></span>
+<span style="font-size:18.285;font-style:italic;">.</span>
+</nobr></div>
+<div style="position:absolute;top:1197.963;left:132.145;"><nobr>
+<span style="font-size:20.022;">The SUM (permit Supervisor User Memory access) bit modifies the privilege with which S-mode</span>
+</nobr></div>
+<div style="position:absolute;top:1222.830;left:132.145;"><nobr>
+<span style="font-size:20.022;">loads and stores access virtual memory. When SUM=0, S-mode memory accesses to pages that are</span>
+</nobr></div>
+<div style="position:absolute;top:1247.699;left:132.145;"><nobr>
+<span style="font-size:20.022;">accessible by U-mode (U=1 in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(79); return false">4.15</a></span>
+<span style="font-size:20.022;">) will fault. When SUM=1, these accesses are permitted.</span>
+</nobr></div>
+<div style="position:absolute;top:1272.566;left:132.145;"><nobr>
+<span style="font-size:20.022;">SUM has no effect when page-based virtual memory is not in effect. Note that, while SUM is</span>
+</nobr></div>
+<div style="position:absolute;top:1297.433;left:132.145;"><nobr>
+<span style="font-size:20.022;">ordinarily ignored when not executing in S-mode, it</span>
+<span style="font-size:20.022;font-style:italic;">is</span>
+<span style="font-size:20.022;">in effect when MPRV=1 and MPP=S. SUM</span>
+</nobr></div>
+<div style="position:absolute;top:1322.300;left:132.145;"><nobr>
+<span style="font-size:20.022;">is hardwired to 0 if S-mode is not supported.</span>
+</nobr></div>
+</td></tr>
+</table>

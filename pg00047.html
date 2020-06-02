@@ -1,0 +1,197 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00047.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:153.720;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Implementations can convert reads of the</span>
+<span style="font-size:18.285;">time</span>
+<span style="font-size:18.285;font-style:italic;">CSR into loads to the memory-mapped</span>
+<span style="font-size:18.285;">mtime</span>
+</nobr></div>
+<div style="position:absolute;top:175.661;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">register, or emulate this functionality in M-mode software.</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">35</span>
+</nobr></div>
+<div style="position:absolute;top:239.192;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.13</span>
+</nobr></div>
+<div style="position:absolute;top:239.192;left:219.847;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Counter-Inhibit CSR (</span>
+<span style="font-size:21.942;">mcountinhibit</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:184.950;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:257.271;"><nobr>
+<span style="font-size:14.628;">30</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:329.225;"><nobr>
+<span style="font-size:14.628;">29</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:385.923;"><nobr>
+<span style="font-size:14.628;">28</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:663.225;"><nobr>
+<span style="font-size:14.628;">6</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:706.172;"><nobr>
+<span style="font-size:14.628;">5</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:769.687;"><nobr>
+<span style="font-size:14.628;">4</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:833.187;"><nobr>
+<span style="font-size:14.628;">3</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:881.898;"><nobr>
+<span style="font-size:14.628;">2</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:910.758;"><nobr>
+<span style="font-size:14.628;">1</span>
+</nobr></div>
+<div style="position:absolute;top:300.285;left:942.779;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:319.860;left:164.418;"><nobr>
+<span style="font-size:16.456;">HPM31 HPM30 HPM29</span>
+</nobr></div>
+<div style="position:absolute;top:340.706;left:188.492;"><nobr>
+<span style="font-size:16.456;">1 1 1</span>
+</nobr></div>
+<div style="position:absolute;top:319.860;left:518.262;"><nobr>
+<span style="font-size:16.456;">...</span>
+</nobr></div>
+<div style="position:absolute;top:340.706;left:517.178;"><nobr>
+<span style="font-size:16.456;">23</span>
+</nobr></div>
+<div style="position:absolute;top:319.860;left:685.663;"><nobr>
+<span style="font-size:16.456;">HPM5 HPM4 HPM3 IR 0 CY</span>
+</nobr></div>
+<div style="position:absolute;top:340.706;left:705.802;"><nobr>
+<span style="font-size:16.456;">1 1 1 1 1 1</span>
+</nobr></div>
+<div style="position:absolute;top:387.010;left:327.248;"><nobr>
+<span style="font-size:20.022;">Figure 3.19: Counter-inhibit register mcountinhibit .</span>
+</nobr></div>
+<div style="position:absolute;top:433.299;left:132.145;"><nobr>
+<span style="font-size:20.022;">The counter-inhibit register mcountinhibit is a 32-bit</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">register that controls which of the</span>
+</nobr></div>
+<div style="position:absolute;top:458.166;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardware performance-monitoring counters increment. The settings in this register only control</span>
+</nobr></div>
+<div style="position:absolute;top:483.035;left:132.145;"><nobr>
+<span style="font-size:20.022;">whether the counters increment; their accessibility is not affected by the setting of this register.</span>
+</nobr></div>
+<div style="position:absolute;top:526.186;left:132.145;"><nobr>
+<span style="font-size:20.022;">When the CY, IR, or HPM</span>
+<span style="font-size:20.022;font-style:italic;">n</span>
+<span style="font-size:20.022;">bit in the mcountinhibit register is clear, the cycle , instret , or</span>
+</nobr></div>
+<div style="position:absolute;top:552.717;left:132.145;"><nobr>
+<span style="font-size:20.022;">hpmcounter</span>
+<span style="font-size:20.022;font-style:italic;">n</span>
+<span style="font-size:20.022;">register increments as usual. When the CY, IR, or HPM</span>
+<span style="font-size:20.022;font-style:italic;">n</span>
+<span style="font-size:20.022;">bit is set, the corresponding</span>
+</nobr></div>
+<div style="position:absolute;top:575.922;left:132.145;"><nobr>
+<span style="font-size:20.022;">counter does not increment.</span>
+</nobr></div>
+<div style="position:absolute;top:619.075;left:132.145;"><nobr>
+<span style="font-size:20.022;">If the mcountinhibit register is not implemented, the implementation behaves as though the</span>
+</nobr></div>
+<div style="position:absolute;top:643.942;left:132.145;"><nobr>
+<span style="font-size:20.022;">register were set to zero.</span>
+</nobr></div>
+<div style="position:absolute;top:705.512;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">When the</span>
+<span style="font-size:18.285;">cycle</span>
+<span style="font-size:18.285;font-style:italic;">and</span>
+<span style="font-size:18.285;">instret</span>
+<span style="font-size:18.285;font-style:italic;">counters are not needed, it is desirable to conditionally inhibit</span>
+</nobr></div>
+<div style="position:absolute;top:727.454;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">them to reduce energy consumption. Providing a single CSR to inhibit all counters also allows</span>
+</nobr></div>
+<div style="position:absolute;top:749.395;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the counters to be atomically sampled.</span>
+</nobr></div>
+<div style="position:absolute;top:771.875;left:212.232;"><nobr>
+<span style="font-size:18.285;font-style:italic;">As all the harts on a processor core share a</span>
+<span style="font-size:18.285;">cycle</span>
+<span style="font-size:18.285;font-style:italic;">counter, so they share an</span>
+</nobr></div>
+<div style="position:absolute;top:795.334;left:182.201;"><nobr>
+<span style="font-size:18.285;">mcountinhibit</span>
+<span style="font-size:18.285;font-style:italic;">.CY bit.</span>
+</nobr></div>
+<div style="position:absolute;top:816.296;left:212.234;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Because the</span>
+<span style="font-size:18.285;">time</span>
+<span style="font-size:18.285;font-style:italic;">counter can be shared between multiple cores, it cannot be inhibited with</span>
+</nobr></div>
+<div style="position:absolute;top:838.237;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the</span>
+<span style="font-size:18.285;">mcountinhibit</span>
+<span style="font-size:18.285;font-style:italic;">mechanism.</span>
+</nobr></div>
+<div style="position:absolute;top:907.790;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.14</span>
+</nobr></div>
+<div style="position:absolute;top:907.790;left:219.847;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Scratch Register (</span>
+<span style="font-size:21.942;">mscratch</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:965.712;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mscratch register is an MXLEN-bit read/write register dedicated for use by machine mode.</span>
+</nobr></div>
+<div style="position:absolute;top:990.579;left:132.145;"><nobr>
+<span style="font-size:20.022;">Typically, it is used to hold a pointer to a machine-mode hart-local context space and swapped</span>
+</nobr></div>
+<div style="position:absolute;top:1015.446;left:132.145;"><nobr>
+<span style="font-size:20.022;">with a user register upon entry to an M-mode trap handler.</span>
+</nobr></div>
+<div style="position:absolute;top:1060.178;left:264.443;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:1060.178;left:845.687;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1081.120;left:527.059;"><nobr>
+<span style="font-size:16.456;">mscratch</span>
+</nobr></div>
+<div style="position:absolute;top:1100.598;left:524.659;"><nobr>
+<span style="font-size:16.456;">MXLEN</span>
+</nobr></div>
+<div style="position:absolute;top:1146.901;left:368.544;"><nobr>
+<span style="font-size:20.022;">Figure 3.20: Machine-mode scratch register.</span>
+</nobr></div>
+<div style="position:absolute;top:1213.203;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The MIPS ISA allocated two user registers (</span>
+<span style="font-size:18.285;">k0</span>
+<span style="font-size:18.285;font-style:italic;">/</span>
+<span style="font-size:18.285;">k1</span>
+<span style="font-size:18.285;font-style:italic;">) for use by the operating system. Although</span>
+</nobr></div>
+<div style="position:absolute;top:1235.145;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the MIPS scheme provides a fast and simple implementation, it also reduces available user</span>
+</nobr></div>
+<div style="position:absolute;top:1257.086;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">registers, and does not scale to further privilege levels, or nested traps. It can also require both</span>
+</nobr></div>
+<div style="position:absolute;top:1279.030;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">registers are cleared before returning to user level to avoid a potential security hole and to provide</span>
+</nobr></div>
+<div style="position:absolute;top:1300.971;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">deterministic debugging behavior.</span>
+</nobr></div>
+</td></tr>
+</table>

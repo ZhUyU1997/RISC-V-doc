@@ -1,0 +1,147 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00054.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">42</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">If the event that causes the hart to resume execution does not cause an interrupt to be taken,</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">execution will resume at pc + 4, and software must determine what action to take, including</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">looping back to repeat the WFI if there was no actionable event.</span>
+</nobr></div>
+<div style="position:absolute;top:236.259;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">By allowing wakeup when interrupts are disabled, an alternate entry point to an interrupt handler</span>
+</nobr></div>
+<div style="position:absolute;top:258.201;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">can be called that does not require saving the current context, as the current context can be saved</span>
+</nobr></div>
+<div style="position:absolute;top:280.142;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">or discarded before the WFI is executed.</span>
+</nobr></div>
+<div style="position:absolute;top:302.086;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">As implementations are free to implement WFI as a NOP, software must explicitly check</span>
+</nobr></div>
+<div style="position:absolute;top:324.027;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">for any relevant pending but disabled interrupts in the code following an WFI, and should loop</span>
+</nobr></div>
+<div style="position:absolute;top:345.969;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">back to the WFI if no suitable interrupt was detected. The</span>
+<span style="font-size:18.285;">mip</span>
+<span style="font-size:18.285;font-style:italic;">,</span>
+<span style="font-size:18.285;">sip</span>
+<span style="font-size:18.285;font-style:italic;">, or</span>
+<span style="font-size:18.285;">uip</span>
+<span style="font-size:18.285;font-style:italic;">registers can be</span>
+</nobr></div>
+<div style="position:absolute;top:367.911;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">interrogated to determine the presence of any interrupt in machine, supervisor, or user mode</span>
+</nobr></div>
+<div style="position:absolute;top:389.852;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:411.794;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The operation of WFI is unaffected by the delegation register settings.</span>
+</nobr></div>
+<div style="position:absolute;top:433.738;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">WFI is defined so that an implementation can trap into a higher privilege mode, either im-</span>
+</nobr></div>
+<div style="position:absolute;top:455.679;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mediately on encountering the WFI or after some interval to initiate a machine-mode transition</span>
+</nobr></div>
+<div style="position:absolute;top:477.621;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to a lower power state, for example.</span>
+</nobr></div>
+<div style="position:absolute;top:524.945;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The same “wait-for-event” template might be used for possible future extensions that wait on</span>
+</nobr></div>
+<div style="position:absolute;top:546.887;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">memory locations changing, or message arrival.</span>
+</nobr></div>
+<div style="position:absolute;top:614.790;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">3.3</span>
+</nobr></div>
+<div style="position:absolute;top:614.790;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Reset</span>
+</nobr></div>
+<div style="position:absolute;top:682.148;left:132.145;"><nobr>
+<span style="font-size:20.022;">Upon reset, a hart’s privilege mode is set to M. The mstatus fields MIE and MPRV are reset to 0.</span>
+</nobr></div>
+<div style="position:absolute;top:707.016;left:132.145;"><nobr>
+<span style="font-size:20.022;">The misa register is reset to enable the maximal set of supported extensions and widest MXLEN,</span>
+</nobr></div>
+<div style="position:absolute;top:731.883;left:132.145;"><nobr>
+<span style="font-size:20.022;">as described in Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(26); return false">3.1.1</a></span>
+<span style="font-size:20.022;">. The pc is set to an implementation-defined reset vector. The mcause</span>
+</nobr></div>
+<div style="position:absolute;top:756.750;left:132.145;"><nobr>
+<span style="font-size:20.022;">register is set to a value indicating the cause of the reset. Writable PMP registers’ A and L fields</span>
+</nobr></div>
+<div style="position:absolute;top:781.617;left:132.145;"><nobr>
+<span style="font-size:20.022;">are set to 0. All other hart state is unspecified.</span>
+</nobr></div>
+<div style="position:absolute;top:824.770;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mcause values after reset have implementation-specific interpretation, but the value 0 should</span>
+</nobr></div>
+<div style="position:absolute;top:849.637;left:132.145;"><nobr>
+<span style="font-size:20.022;">be returned on implementations that do not distinguish different reset conditions. Implementations</span>
+</nobr></div>
+<div style="position:absolute;top:874.504;left:132.145;"><nobr>
+<span style="font-size:20.022;">that distinguish different reset conditions should only use 0 to indicate the most complete reset</span>
+</nobr></div>
+<div style="position:absolute;top:899.373;left:132.145;"><nobr>
+<span style="font-size:20.022;">(e.g., hard reset).</span>
+</nobr></div>
+<div style="position:absolute;top:955.325;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Some designs may have multiple causes of reset (e.g., power-on reset, external hard reset,</span>
+</nobr></div>
+<div style="position:absolute;top:977.267;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">brownout detected, watchdog timer elapse, sleep-mode wakeup), which machine-mode software</span>
+</nobr></div>
+<div style="position:absolute;top:999.209;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">and debuggers may wish to distinguish.</span>
+</nobr></div>
+<div style="position:absolute;top:1022.668;left:212.233;"><nobr>
+<span style="font-size:18.285;">mcause</span>
+<span style="font-size:18.285;font-style:italic;">reset values may alias</span>
+<span style="font-size:18.285;">mcause</span>
+<span style="font-size:18.285;font-style:italic;">values following synchronous exceptions. There should</span>
+</nobr></div>
+<div style="position:absolute;top:1043.092;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">be no ambiguity in this overlap, since on reset the</span>
+<span style="font-size:18.285;">pc</span>
+<span style="font-size:18.285;font-style:italic;">is typically set to a different value than</span>
+</nobr></div>
+<div style="position:absolute;top:1065.035;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">on other traps.</span>
+</nobr></div>
+<div style="position:absolute;top:1132.937;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">3.4</span>
+</nobr></div>
+<div style="position:absolute;top:1132.937;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Non-Maskable Interrupts</span>
+</nobr></div>
+<div style="position:absolute;top:1200.295;left:132.145;"><nobr>
+<span style="font-size:20.022;">Non-maskable interrupts (NMIs) are only used for hardware error conditions, and cause an imme-</span>
+</nobr></div>
+<div style="position:absolute;top:1225.162;left:132.145;"><nobr>
+<span style="font-size:20.022;">diate jump to an implementation-defined NMI vector running in M-mode regardless of the state of</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">a hart’s interrupt enable bits. The mepc register is written with the address of the next instruction</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">to be executed at the time the NMI was taken, and mcause is set to a value indicating the source</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">of the NMI. The NMI can thus overwrite state in an active machine-mode interrupt handler.</span>
+</nobr></div>
+</td></tr>
+</table>

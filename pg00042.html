@@ -1,0 +1,182 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00042.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">30</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:147.313;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:244.998;"><nobr>
+<span style="font-size:14.628;">12</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:290.066;"><nobr>
+<span style="font-size:14.628;">11</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:355.395;"><nobr>
+<span style="font-size:14.628;">10</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:421.572;"><nobr>
+<span style="font-size:14.628;">9</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:477.084;"><nobr>
+<span style="font-size:14.628;">8</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:536.006;"><nobr>
+<span style="font-size:14.628;">7</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:601.700;"><nobr>
+<span style="font-size:14.628;">6</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:664.337;"><nobr>
+<span style="font-size:14.628;">5</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:720.552;"><nobr>
+<span style="font-size:14.628;">4</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:778.420;"><nobr>
+<span style="font-size:14.628;">3</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:842.695;"><nobr>
+<span style="font-size:14.628;">2</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:903.927;"><nobr>
+<span style="font-size:14.628;">1</span>
+</nobr></div>
+<div style="position:absolute;top:128.281;left:957.334;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:147.856;left:173.472;"><nobr>
+<span style="font-size:16.456;font-weight:bold;">WPRI</span>
+</nobr></div>
+<div style="position:absolute;top:168.702;left:158.391;"><nobr>
+<span style="font-size:16.456;">MXLEN-12</span>
+</nobr></div>
+<div style="position:absolute;top:147.856;left:275.233;"><nobr>
+<span style="font-size:16.456;">MEIE</span>
+<span style="font-size:16.456;font-weight:bold;">WPRI</span>
+<span style="font-size:16.456;">SEIE UEIE MTIE</span>
+<span style="font-size:16.456;font-weight:bold;">WPRI</span>
+<span style="font-size:16.456;">STIE UTIE MSIE</span>
+<span style="font-size:16.456;font-weight:bold;">WPRI</span>
+<span style="font-size:16.456;">SSIE USIE</span>
+</nobr></div>
+<div style="position:absolute;top:168.702;left:293.614;"><nobr>
+<span style="font-size:16.456;">1 1 1 1 1 1 1 1 1 1 1 1</span>
+</nobr></div>
+<div style="position:absolute;top:216.118;left:329.166;"><nobr>
+<span style="font-size:20.022;">Figure 3.12: Machine interrupt-enable register ( mie ).</span>
+</nobr></div>
+<div style="position:absolute;top:280.245;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory-mapped machine-mode timer compare register. The UTIP and STIP bits may be written</span>
+</nobr></div>
+<div style="position:absolute;top:305.113;left:132.145;"><nobr>
+<span style="font-size:20.022;">by M-mode software to deliver timer interrupts to lower privilege levels. User and supervisor</span>
+</nobr></div>
+<div style="position:absolute;top:329.980;left:132.145;"><nobr>
+<span style="font-size:20.022;">software may clear the UTIP and STIP bits with calls to the AEE and SEE respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:373.132;left:132.145;"><nobr>
+<span style="font-size:20.022;">There is a separate timer interrupt-enable bit, named MTIE, STIE, and UTIE for M-mode, S-mode,</span>
+</nobr></div>
+<div style="position:absolute;top:398.000;left:132.145;"><nobr>
+<span style="font-size:20.022;">and U-mode timer interrupts respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:441.152;left:132.145;"><nobr>
+<span style="font-size:20.022;">Each lower privilege level has a separate software interrupt-pending bit (SSIP, USIP), which can</span>
+</nobr></div>
+<div style="position:absolute;top:466.020;left:132.145;"><nobr>
+<span style="font-size:20.022;">be both read and written by CSR accesses from code running on the local hart at the associated or</span>
+</nobr></div>
+<div style="position:absolute;top:490.889;left:132.145;"><nobr>
+<span style="font-size:20.022;">any higher privilege level. The machine-level MSIP bits are written by accesses to memory-mapped</span>
+</nobr></div>
+<div style="position:absolute;top:515.756;left:132.145;"><nobr>
+<span style="font-size:20.022;">control registers, which are used by remote harts to provide machine-mode interprocessor interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:540.623;left:132.145;"><nobr>
+<span style="font-size:20.022;">Interprocessor interrupts for lower privilege levels are implemented through implementation-specific</span>
+</nobr></div>
+<div style="position:absolute;top:565.490;left:132.145;"><nobr>
+<span style="font-size:20.022;">mechanisms, e.g., via calls to an AEE or SEE, which might ultimately result in a machine-mode</span>
+</nobr></div>
+<div style="position:absolute;top:590.357;left:132.145;"><nobr>
+<span style="font-size:20.022;">write to the receiving hart’s MSIP bit. A hart can write its own MSIP bit using the same memory-</span>
+</nobr></div>
+<div style="position:absolute;top:615.226;left:132.145;"><nobr>
+<span style="font-size:20.022;">mapped control register.</span>
+</nobr></div>
+<div style="position:absolute;top:658.377;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MSIE, SSIE, and USIE fields in the mie CSR enable M-mode software interrupts, S-mode</span>
+</nobr></div>
+<div style="position:absolute;top:683.246;left:132.145;"><nobr>
+<span style="font-size:20.022;">software interrupts, and U-mode software interrupts, respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:748.228;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We only allow a hart to directly write its own SSIP or USIP bits when running in the appropriate</span>
+</nobr></div>
+<div style="position:absolute;top:770.172;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mode, as other harts might be virtualized and possibly descheduled by higher privilege levels. We</span>
+</nobr></div>
+<div style="position:absolute;top:792.113;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">rely on calls to the AEE and SEE to provide interprocessor interrupts for this reason. Machine-</span>
+</nobr></div>
+<div style="position:absolute;top:814.055;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mode harts are not virtualized and can directly interrupt other harts by setting their MSIP</span>
+</nobr></div>
+<div style="position:absolute;top:835.996;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">bits, typically using uncached I/O writes to memory-mapped control registers depending on the</span>
+</nobr></div>
+<div style="position:absolute;top:857.938;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">platform specification.</span>
+</nobr></div>
+<div style="position:absolute;top:900.276;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MEIP field in mip is a read-only bit that indicates a machine-mode external interrupt is</span>
+</nobr></div>
+<div style="position:absolute;top:925.143;left:132.145;"><nobr>
+<span style="font-size:20.022;">pending. MEIP is set and cleared by a platform-specific interrupt controller. The MEIE field in</span>
+</nobr></div>
+<div style="position:absolute;top:951.672;left:132.145;"><nobr>
+<span style="font-size:20.022;">mie enables machine external interrupts when set.</span>
+</nobr></div>
+<div style="position:absolute;top:993.163;left:132.145;"><nobr>
+<span style="font-size:20.022;">The SEIP field in mip contains a single read-write bit. SEIP may be written by M-mode soft-</span>
+</nobr></div>
+<div style="position:absolute;top:1018.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">ware to indicate to S-mode that an external interrupt is pending. Additionally, the platform-</span>
+</nobr></div>
+<div style="position:absolute;top:1042.897;left:132.145;"><nobr>
+<span style="font-size:20.022;">level interrupt controller may generate supervisor-level external interrupts. The logical-OR of the</span>
+</nobr></div>
+<div style="position:absolute;top:1067.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">software-writable bit and the signal from the external interrupt controller is used to generate exter-</span>
+</nobr></div>
+<div style="position:absolute;top:1092.634;left:132.145;"><nobr>
+<span style="font-size:20.022;">nal interrupts to the supervisor. When the SEIP bit is read with a CSRRW, CSRRS, or CSRRC</span>
+</nobr></div>
+<div style="position:absolute;top:1117.501;left:132.145;"><nobr>
+<span style="font-size:20.022;">instruction, the value returned in the rd destination register contains the logical-OR of the software-</span>
+</nobr></div>
+<div style="position:absolute;top:1142.368;left:132.145;"><nobr>
+<span style="font-size:20.022;">writable bit and the interrupt signal from the interrupt controller. However, the value used in the</span>
+</nobr></div>
+<div style="position:absolute;top:1167.235;left:132.145;"><nobr>
+<span style="font-size:20.022;">read-modify-write sequence of a CSRRS or CSRRC instruction is only the software-writable SEIP</span>
+</nobr></div>
+<div style="position:absolute;top:1192.104;left:132.145;"><nobr>
+<span style="font-size:20.022;">bit, ignoring the interrupt value from the external interrupt controller.</span>
+</nobr></div>
+<div style="position:absolute;top:1257.086;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The SEIP field behavior is designed to allow a higher privilege layer to mimic external interrupts</span>
+</nobr></div>
+<div style="position:absolute;top:1279.030;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cleanly, without losing any real external interrupts. The behavior of the CSR instructions is</span>
+</nobr></div>
+<div style="position:absolute;top:1300.971;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">slightly modified from regular CSR accesses as a result.</span>
+</nobr></div>
+</td></tr>
+</table>

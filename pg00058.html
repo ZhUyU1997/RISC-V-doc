@@ -1,0 +1,142 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00058.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">46</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations may raise access exceptions instead of address-misaligned exceptions for some</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">misaligned accesses, indicating the instruction should not be emulated by a trap handler. If, for</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">a given address and access width, all misaligned LRs/SCs and AMOs generate access exceptions,</span>
+</nobr></div>
+<div style="position:absolute;top:205.174;left:132.145;"><nobr>
+<span style="font-size:20.022;">then regular misaligned loads and stores using the same address and access width are not required</span>
+</nobr></div>
+<div style="position:absolute;top:230.041;left:132.145;"><nobr>
+<span style="font-size:20.022;">to execute atomically.</span>
+</nobr></div>
+<div style="position:absolute;top:301.438;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.5.4</span>
+</nobr></div>
+<div style="position:absolute;top:301.438;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Memory-Ordering PMAs</span>
+</nobr></div>
+<div style="position:absolute;top:359.019;left:132.145;"><nobr>
+<span style="font-size:20.022;">Regions of the address space are classified as either</span>
+<span style="font-size:20.022;font-style:italic;">main memory</span>
+<span style="font-size:20.022;">or</span>
+<span style="font-size:20.022;font-style:italic;">I/O</span>
+<span style="font-size:20.022;">for the purposes of ordering</span>
+</nobr></div>
+<div style="position:absolute;top:383.886;left:132.145;"><nobr>
+<span style="font-size:20.022;">by the FENCE instruction and atomic-instruction ordering bits.</span>
+</nobr></div>
+<div style="position:absolute;top:427.039;left:132.145;"><nobr>
+<span style="font-size:20.022;">Accesses by one hart to main memory regions are observable not only by other harts but also</span>
+</nobr></div>
+<div style="position:absolute;top:451.906;left:132.145;"><nobr>
+<span style="font-size:20.022;">by other devices with the capability to initiate requests in the main memory system (e.g., DMA</span>
+</nobr></div>
+<div style="position:absolute;top:476.773;left:132.145;"><nobr>
+<span style="font-size:20.022;">engines). Main memory regions always have either the RVWMO or RVTSO memory model.</span>
+</nobr></div>
+<div style="position:absolute;top:519.926;left:132.145;"><nobr>
+<span style="font-size:20.022;">Accesses by one hart to the I/O space are observable not only by other harts and bus mastering</span>
+</nobr></div>
+<div style="position:absolute;top:544.793;left:132.145;"><nobr>
+<span style="font-size:20.022;">devices, but also by targeted slave I/O devices. Within I/O, regions may further be classified as</span>
+</nobr></div>
+<div style="position:absolute;top:569.662;left:132.145;"><nobr>
+<span style="font-size:20.022;">implementing either</span>
+<span style="font-size:20.022;font-style:italic;">relaxed</span>
+<span style="font-size:20.022;">or</span>
+<span style="font-size:20.022;font-style:italic;">strong</span>
+<span style="font-size:20.022;">ordering. A relaxed I/O region has no ordering guarantees</span>
+</nobr></div>
+<div style="position:absolute;top:594.529;left:132.145;"><nobr>
+<span style="font-size:20.022;">on how memory accesses made by one hart are observable by different harts or I/O devices beyond</span>
+</nobr></div>
+<div style="position:absolute;top:619.396;left:132.145;"><nobr>
+<span style="font-size:20.022;">those enforced by FENCE and AMO instructions. A strongly ordered I/O region ensures that all</span>
+</nobr></div>
+<div style="position:absolute;top:644.263;left:132.145;"><nobr>
+<span style="font-size:20.022;">accesses made by a hart to that region are only observable in program order by all other harts or</span>
+</nobr></div>
+<div style="position:absolute;top:669.130;left:132.145;"><nobr>
+<span style="font-size:20.022;">I/O devices.</span>
+</nobr></div>
+<div style="position:absolute;top:712.283;left:132.145;"><nobr>
+<span style="font-size:20.022;">Each strongly ordered I/O region specifies a numbered ordering channel, which is a mechanism by</span>
+</nobr></div>
+<div style="position:absolute;top:737.150;left:132.145;"><nobr>
+<span style="font-size:20.022;">which ordering guarantees can be provided between different I/O regions. Channel 0 is used to</span>
+</nobr></div>
+<div style="position:absolute;top:762.019;left:132.145;"><nobr>
+<span style="font-size:20.022;">indicate point-to-point strong ordering only, where only accesses by the hart to the single associated</span>
+</nobr></div>
+<div style="position:absolute;top:786.887;left:132.145;"><nobr>
+<span style="font-size:20.022;">I/O region are strongly ordered.</span>
+</nobr></div>
+<div style="position:absolute;top:830.039;left:132.145;"><nobr>
+<span style="font-size:20.022;">Channel 1 is used to provide global strong ordering across all I/O regions. Any accesses by a hart to</span>
+</nobr></div>
+<div style="position:absolute;top:854.906;left:132.145;"><nobr>
+<span style="font-size:20.022;">any I/O region associated with channel 1 can only be observed to have occurred in program order</span>
+</nobr></div>
+<div style="position:absolute;top:879.774;left:132.145;"><nobr>
+<span style="font-size:20.022;">by all other harts and I/O devices, including relative to accesses made by that hart to relaxed I/O</span>
+</nobr></div>
+<div style="position:absolute;top:904.641;left:132.145;"><nobr>
+<span style="font-size:20.022;">regions or strongly ordered I/O regions with different channel numbers. In other words, any access</span>
+</nobr></div>
+<div style="position:absolute;top:929.508;left:132.145;"><nobr>
+<span style="font-size:20.022;">to a region in channel 1 is equivalent to executing a fence io,io instruction before and after the</span>
+</nobr></div>
+<div style="position:absolute;top:954.377;left:132.145;"><nobr>
+<span style="font-size:20.022;">instruction.</span>
+</nobr></div>
+<div style="position:absolute;top:997.528;left:132.145;"><nobr>
+<span style="font-size:20.022;">Other larger channel numbers provide program ordering to accesses by that hart across any regions</span>
+</nobr></div>
+<div style="position:absolute;top:1022.397;left:132.145;"><nobr>
+<span style="font-size:20.022;">with the same channel number.</span>
+</nobr></div>
+<div style="position:absolute;top:1065.548;left:132.145;"><nobr>
+<span style="font-size:20.022;">Systems might support dynamic configuration of ordering properties on each memory region.</span>
+</nobr></div>
+<div style="position:absolute;top:1125.314;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Strong ordering can be used to improve compatibility with legacy device driver code, or to enable</span>
+</nobr></div>
+<div style="position:absolute;top:1147.255;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">increased performance compared to insertion of explicit ordering instructions when the imple-</span>
+</nobr></div>
+<div style="position:absolute;top:1169.197;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mentation is known to not reorder accesses.</span>
+</nobr></div>
+<div style="position:absolute;top:1191.315;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Local strong ordering (channel 0) is the default form of strong ordering as it is often straight-</span>
+</nobr></div>
+<div style="position:absolute;top:1213.256;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">forward to provide if there is only a single in-order communication path between the hart and</span>
+</nobr></div>
+<div style="position:absolute;top:1235.200;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the I/O device.</span>
+</nobr></div>
+<div style="position:absolute;top:1257.316;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Generally, different strongly ordered I/O regions can share the same ordering channel without</span>
+</nobr></div>
+<div style="position:absolute;top:1279.257;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">additional ordering hardware if they share the same interconnect path and the path does not</span>
+</nobr></div>
+<div style="position:absolute;top:1301.201;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">reorder requests.</span>
+</nobr></div>
+</td></tr>
+</table>

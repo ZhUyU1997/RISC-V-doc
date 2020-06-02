@@ -1,0 +1,160 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00040.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">28</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.8</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Trap Delegation Registers (</span>
+<span style="font-size:21.942;">medeleg</span>
+<span style="font-size:21.942;font-weight:bold;">and</span>
+<span style="font-size:21.942;">mideleg</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:187.103;left:132.145;"><nobr>
+<span style="font-size:20.022;">By default, all traps at any privilege level are handled in machine mode, though a machine-mode</span>
+</nobr></div>
+<div style="position:absolute;top:211.970;left:132.145;"><nobr>
+<span style="font-size:20.022;">handler can redirect traps back to the appropriate level with the MRET instruction (Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(51); return false">3.2.2</a></span>
+<span style="font-size:20.022;">).</span>
+</nobr></div>
+<div style="position:absolute;top:236.839;left:132.145;"><nobr>
+<span style="font-size:20.022;">To increase performance, implementations can provide individual read/write bits within medeleg</span>
+</nobr></div>
+<div style="position:absolute;top:261.706;left:132.145;"><nobr>
+<span style="font-size:20.022;">and mideleg to indicate that certain exceptions and interrupts should be processed directly by a</span>
+</nobr></div>
+<div style="position:absolute;top:286.574;left:132.145;"><nobr>
+<span style="font-size:20.022;">lower privilege level. The machine exception delegation register ( medeleg ) and machine interrupt</span>
+</nobr></div>
+<div style="position:absolute;top:311.441;left:132.145;"><nobr>
+<span style="font-size:20.022;">delegation register ( mideleg ) are MXLEN-bit read/write registers.</span>
+</nobr></div>
+<div style="position:absolute;top:354.594;left:132.145;"><nobr>
+<span style="font-size:20.022;">In systems with all three privilege modes (M/S/U), setting a bit in medeleg or mideleg will</span>
+</nobr></div>
+<div style="position:absolute;top:379.461;left:132.145;"><nobr>
+<span style="font-size:20.022;">delegate the corresponding trap in S-mode or U-mode to the S-mode trap handler. If U-mode traps</span>
+</nobr></div>
+<div style="position:absolute;top:404.328;left:132.145;"><nobr>
+<span style="font-size:20.022;">are supported, S-mode may in turn set corresponding bits in the sedeleg and sideleg registers</span>
+</nobr></div>
+<div style="position:absolute;top:429.197;left:132.145;"><nobr>
+<span style="font-size:20.022;">to delegate traps that occur in U-mode to the U-mode trap handler. In systems with S-mode, the</span>
+</nobr></div>
+<div style="position:absolute;top:455.726;left:132.145;"><nobr>
+<span style="font-size:20.022;">medeleg and mideleg registers must exist, whereas the sedeleg and sideleg registers should only</span>
+</nobr></div>
+<div style="position:absolute;top:478.931;left:132.145;"><nobr>
+<span style="font-size:20.022;">exist if the N extension for user-mode interrupts is also implemented.</span>
+</nobr></div>
+<div style="position:absolute;top:522.084;left:132.145;"><nobr>
+<span style="font-size:20.022;">In systems with two privilege modes (M/U) and support for U-mode traps, setting a bit in medeleg</span>
+</nobr></div>
+<div style="position:absolute;top:546.951;left:132.145;"><nobr>
+<span style="font-size:20.022;">or mideleg will delegate the corresponding trap in U-mode to the U-mode trap handler. In systems</span>
+</nobr></div>
+<div style="position:absolute;top:571.818;left:132.145;"><nobr>
+<span style="font-size:20.022;">with only M-mode and U-mode, the medeleg and mideleg registers should only be implemented</span>
+</nobr></div>
+<div style="position:absolute;top:596.686;left:132.145;"><nobr>
+<span style="font-size:20.022;">if the N extension for user-mode interrupts is implemented.</span>
+</nobr></div>
+<div style="position:absolute;top:639.838;left:132.145;"><nobr>
+<span style="font-size:20.022;">In systems with only M-mode, or with both M-mode and U-mode but without U-mode trap support,</span>
+</nobr></div>
+<div style="position:absolute;top:664.706;left:132.145;"><nobr>
+<span style="font-size:20.022;">the medeleg and mideleg registers should not exist.</span>
+</nobr></div>
+<div style="position:absolute;top:720.010;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">In versions 1.9.1 and earlier , these registers existed but were hardwired to zero in M-mode only,</span>
+</nobr></div>
+<div style="position:absolute;top:741.951;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">or M/U without N systems. There is no reason to require they return zero in those cases, as the</span>
+</nobr></div>
+<div style="position:absolute;top:765.412;left:182.201;"><nobr>
+<span style="font-size:18.285;">misa</span>
+<span style="font-size:18.285;font-style:italic;">register indicates whether they exist.</span>
+</nobr></div>
+<div style="position:absolute;top:797.295;left:132.145;"><nobr>
+<span style="font-size:20.022;">When a trap is delegated to a less-privileged mode</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">, the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">cause register is written with the trap</span>
+</nobr></div>
+<div style="position:absolute;top:822.162;left:132.145;"><nobr>
+<span style="font-size:20.022;">cause; the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">epc register is written with the virtual address of the instruction that took the trap;</span>
+</nobr></div>
+<div style="position:absolute;top:847.031;left:132.145;"><nobr>
+<span style="font-size:20.022;">the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">tval register is written with an exception-specific datum; the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP field of mstatus is written</span>
+</nobr></div>
+<div style="position:absolute;top:871.898;left:132.145;"><nobr>
+<span style="font-size:20.022;">with the active privilege mode at the time of the trap; the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PIE field of mstatus is written with</span>
+</nobr></div>
+<div style="position:absolute;top:896.765;left:132.145;"><nobr>
+<span style="font-size:20.022;">the value of the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">IE field at the time of the trap; and the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">IE field of mstatus is cleared. The</span>
+</nobr></div>
+<div style="position:absolute;top:923.294;left:132.145;"><nobr>
+<span style="font-size:20.022;">mcause and mepc registers and the MPP and MPIE fields of mstatus are not written.</span>
+</nobr></div>
+<div style="position:absolute;top:964.785;left:132.145;"><nobr>
+<span style="font-size:20.022;">An implementation shall not hardwire any delegation bits to one, i.e., any trap that can be delegated</span>
+</nobr></div>
+<div style="position:absolute;top:989.652;left:132.145;"><nobr>
+<span style="font-size:20.022;">must support not being delegated. An implementation can choose to subset the delegatable traps,</span>
+</nobr></div>
+<div style="position:absolute;top:1014.519;left:132.145;"><nobr>
+<span style="font-size:20.022;">with the supported delegatable bits found by writing one to every bit location, then reading back</span>
+</nobr></div>
+<div style="position:absolute;top:1039.388;left:132.145;"><nobr>
+<span style="font-size:20.022;">the value in medeleg or mideleg to see which bit positions hold a one.</span>
+</nobr></div>
+<div style="position:absolute;top:1082.539;left:132.145;"><nobr>
+<span style="font-size:20.022;">Traps never transition from a more-privileged mode to a less-privileged mode. For example, if M-</span>
+</nobr></div>
+<div style="position:absolute;top:1107.408;left:132.145;"><nobr>
+<span style="font-size:20.022;">mode has delegated illegal instruction exceptions to S-mode, and M-mode software later executes</span>
+</nobr></div>
+<div style="position:absolute;top:1132.275;left:132.145;"><nobr>
+<span style="font-size:20.022;">an illegal instruction, the trap is taken in M-mode, rather than being delegated to S-mode. By</span>
+</nobr></div>
+<div style="position:absolute;top:1157.143;left:132.145;"><nobr>
+<span style="font-size:20.022;">contrast, traps may be taken horizontally. Using the same example, if M-mode has delegated illegal</span>
+</nobr></div>
+<div style="position:absolute;top:1182.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">instruction exceptions to S-mode, and S-mode software later executes an illegal instruction, the trap</span>
+</nobr></div>
+<div style="position:absolute;top:1206.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">is taken in S-mode.</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">Delegated interrupts result in the interrupt being masked at the delegator privilege level. For</span>
+</nobr></div>
+<div style="position:absolute;top:1274.897;left:132.145;"><nobr>
+<span style="font-size:20.022;">example, if the supervisor timer interrupt (STI) is delegated to S-mode by setting mideleg [5], STIs</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">will not be taken when executing in M-mode. By contrast, if mideleg [5] is clear, STIs can be taken</span>
+</nobr></div>
+</td></tr>
+</table>

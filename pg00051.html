@@ -1,0 +1,161 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00051.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:131.778;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to providing bad addresses, the register can now provide the bad instruction that triggered an</span>
+</nobr></div>
+<div style="position:absolute;top:153.720;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">illegal instruction trap (and may in future be used to return other information). Returning the</span>
+</nobr></div>
+<div style="position:absolute;top:175.661;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">instruction bits accelerates instruction emulation and also removes some races that might be</span>
+</nobr></div>
+<div style="position:absolute;top:197.603;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">present when trying to emulate illegal instructions.</span>
+</nobr></div>
+<div style="position:absolute;top:236.597;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">When page-based virtual memory is enabled,</span>
+<span style="font-size:18.285;">mtval</span>
+<span style="font-size:18.285;font-style:italic;">is written with the faulting virtual address,</span>
+</nobr></div>
+<div style="position:absolute;top:258.538;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">even for physical-memory access exceptions. This design reduces datapath cost for most imple-</span>
+</nobr></div>
+<div style="position:absolute;top:280.480;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mentations, particularly those with hardware page-table walkers.</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">39</span>
+</nobr></div>
+<div style="position:absolute;top:308.639;left:264.443;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:308.639;left:845.687;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:329.582;left:540.019;"><nobr>
+<span style="font-size:16.456;">mtval</span>
+</nobr></div>
+<div style="position:absolute;top:349.060;left:524.659;"><nobr>
+<span style="font-size:16.456;">MXLEN</span>
+</nobr></div>
+<div style="position:absolute;top:395.364;left:377.776;"><nobr>
+<span style="font-size:20.022;">Figure 3.23: Machine Trap Value register.</span>
+</nobr></div>
+<div style="position:absolute;top:440.145;left:132.145;"><nobr>
+<span style="font-size:20.022;">For misaligned loads and stores that cause access or page-fault exceptions, mtval will contain the</span>
+</nobr></div>
+<div style="position:absolute;top:465.012;left:132.145;"><nobr>
+<span style="font-size:20.022;">virtual address of the portion of the access that caused the fault. For instruction-fetch access or</span>
+</nobr></div>
+<div style="position:absolute;top:489.879;left:132.145;"><nobr>
+<span style="font-size:20.022;">page-fault exceptions on systems with variable-length instructions, mtval will contain the virtual</span>
+</nobr></div>
+<div style="position:absolute;top:514.746;left:132.145;"><nobr>
+<span style="font-size:20.022;">address of the portion of the instruction that caused the fault while mepc will point to the beginning</span>
+</nobr></div>
+<div style="position:absolute;top:539.615;left:132.145;"><nobr>
+<span style="font-size:20.022;">of the instruction.</span>
+</nobr></div>
+<div style="position:absolute;top:582.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mtval register can optionally also be used to return the faulting instruction bits on an illegal</span>
+</nobr></div>
+<div style="position:absolute;top:607.635;left:132.145;"><nobr>
+<span style="font-size:20.022;">instruction exception ( mepc points to the faulting instruction in memory).</span>
+</nobr></div>
+<div style="position:absolute;top:650.786;left:132.145;"><nobr>
+<span style="font-size:20.022;">If this feature is not provided, then mtval is set to zero on an illegal instruction fault.</span>
+</nobr></div>
+<div style="position:absolute;top:693.939;left:132.145;"><nobr>
+<span style="font-size:20.022;">If this feature is provided, after an illegal instruction trap, mtval will contain the shortest of:</span>
+</nobr></div>
+<div style="position:absolute;top:735.970;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">the actual faulting instruction</span>
+</nobr></div>
+<div style="position:absolute;top:760.837;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">the first ILEN bits of the faulting instruction</span>
+</nobr></div>
+<div style="position:absolute;top:785.705;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">the first XLEN bits of the faulting instruction</span>
+</nobr></div>
+<div style="position:absolute;top:829.978;left:132.145;"><nobr>
+<span style="font-size:20.022;">The value loaded into mtval is right-justified and all unused upper bits are cleared to zero.</span>
+</nobr></div>
+<div style="position:absolute;top:881.766;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Capturing the faulting instruction in</span>
+<span style="font-size:18.285;">mtval</span>
+<span style="font-size:18.285;font-style:italic;">reduces the overhead of instruction emulation, po-</span>
+</nobr></div>
+<div style="position:absolute;top:903.708;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tentially avoiding several partial instruction loads if the instruction is misaligned, and likely data</span>
+</nobr></div>
+<div style="position:absolute;top:925.650;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cache misses or slow uncached accesses when loads are used to fetch the instruction into a data</span>
+</nobr></div>
+<div style="position:absolute;top:947.591;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">register. There is also a problem of atomicity if another agent is manipulating the instruction</span>
+</nobr></div>
+<div style="position:absolute;top:969.533;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">memory, as might occur in a dynamic translation system.</span>
+</nobr></div>
+<div style="position:absolute;top:991.474;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">A requirement is that the entire instruction (or at least the first XLEN bits) are fetched into</span>
+</nobr></div>
+<div style="position:absolute;top:1014.935;left:182.201;"><nobr>
+<span style="font-size:18.285;">mtval</span>
+<span style="font-size:18.285;font-style:italic;">before taking the trap. This should not constrain implementations, which would typically</span>
+</nobr></div>
+<div style="position:absolute;top:1035.359;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">fetch the entire instruction before attempting to decode the instruction, and avoids complicating</span>
+</nobr></div>
+<div style="position:absolute;top:1057.301;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">software handlers.</span>
+</nobr></div>
+<div style="position:absolute;top:1079.243;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">A value of zero in</span>
+<span style="font-size:18.285;">mtval</span>
+<span style="font-size:18.285;font-style:italic;">signifies either that the feature is not supported, or an illegal zero</span>
+</nobr></div>
+<div style="position:absolute;top:1101.184;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">instruction was fetched. A load from the instruction memory pointed to by</span>
+<span style="font-size:18.285;">mepc</span>
+<span style="font-size:18.285;font-style:italic;">can be used</span>
+</nobr></div>
+<div style="position:absolute;top:1123.128;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to distinguish these two cases (or alternatively, the system configuration information can be</span>
+</nobr></div>
+<div style="position:absolute;top:1145.069;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">interrogated to install the appropriate trap handling before runtime).</span>
+</nobr></div>
+<div style="position:absolute;top:1175.428;left:132.145;"><nobr>
+<span style="font-size:20.022;">If the hardware platform specifies that no exceptions set mtval to a nonzero value, then it may</span>
+</nobr></div>
+<div style="position:absolute;top:1200.295;left:132.145;"><nobr>
+<span style="font-size:20.022;">be hardwired to zero. Otherwise, mtval is a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">register that must be able to hold all valid</span>
+</nobr></div>
+<div style="position:absolute;top:1225.162;left:132.145;"><nobr>
+<span style="font-size:20.022;">physical and virtual addresses and the value 0. It need not be capable of holding all possible invalid</span>
+</nobr></div>
+<div style="position:absolute;top:1250.029;left:132.145;"><nobr>
+<span style="font-size:20.022;">addresses. Implementations may convert some invalid address patterns into other invalid addresses</span>
+</nobr></div>
+<div style="position:absolute;top:1274.898;left:132.145;"><nobr>
+<span style="font-size:20.022;">prior to writing them to mtval . If the feature to return the faulting instruction bits is implemented,</span>
+</nobr></div>
+<div style="position:absolute;top:1301.427;left:132.145;"><nobr>
+<span style="font-size:20.022;">mtval must also be able to hold all values less than 2</span>
+<span style="font-size:14.628;font-style:italic;">N</span>
+<span style="font-size:20.022;">, where</span>
+<span style="font-size:20.022;font-style:italic;">N</span>
+<span style="font-size:20.022;">is the smaller of XLEN and ILEN.</span>
+</nobr></div>
+</td></tr>
+</table>

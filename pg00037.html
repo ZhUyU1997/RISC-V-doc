@@ -1,0 +1,136 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00037.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">25</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">restore). If the status is Initial, the context must be set to an initial constant value on context</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">restore to avoid a security hole, but this can be done without accessing memory. For example, the</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">floating-point registers can all be initialized to the immediate value 0.</span>
+</nobr></div>
+<div style="position:absolute;top:223.460;left:132.145;"><nobr>
+<span style="font-size:20.022;">The FS and XS fields are read by the privileged code before saving the context. The FS field is</span>
+</nobr></div>
+<div style="position:absolute;top:248.327;left:132.145;"><nobr>
+<span style="font-size:20.022;">set directly by privileged code when resuming a user context, while the XS field is set indirectly by</span>
+</nobr></div>
+<div style="position:absolute;top:273.194;left:132.145;"><nobr>
+<span style="font-size:20.022;">writing to the status register of the individual extensions. The status fields will also be updated</span>
+</nobr></div>
+<div style="position:absolute;top:298.061;left:132.145;"><nobr>
+<span style="font-size:20.022;">during execution of instructions, regardless of privilege mode.</span>
+</nobr></div>
+<div style="position:absolute;top:341.214;left:132.145;"><nobr>
+<span style="font-size:20.022;">Extensions to the user-mode ISA often include additional user-mode state, and this state can be</span>
+</nobr></div>
+<div style="position:absolute;top:366.081;left:132.145;"><nobr>
+<span style="font-size:20.022;">considerably larger than the base integer registers. The extensions might only be used for some</span>
+</nobr></div>
+<div style="position:absolute;top:390.950;left:132.145;"><nobr>
+<span style="font-size:20.022;">applications, or might only be needed for short phases within a single application. To improve</span>
+</nobr></div>
+<div style="position:absolute;top:415.817;left:132.145;"><nobr>
+<span style="font-size:20.022;">performance, the user-mode extension can define additional instructions to allow user-mode software</span>
+</nobr></div>
+<div style="position:absolute;top:440.684;left:132.145;"><nobr>
+<span style="font-size:20.022;">to return the unit to an initial state or even to turn off the unit.</span>
+</nobr></div>
+<div style="position:absolute;top:483.837;left:132.145;"><nobr>
+<span style="font-size:20.022;">For example, a coprocessor might require to be configured before use and can be “unconfigured”</span>
+</nobr></div>
+<div style="position:absolute;top:508.704;left:132.145;"><nobr>
+<span style="font-size:20.022;">after use. The unconfigured state would be represented as the Initial state for context save. If the</span>
+</nobr></div>
+<div style="position:absolute;top:533.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">same application remains running between the unconfigure and the next configure (which would</span>
+</nobr></div>
+<div style="position:absolute;top:558.439;left:132.145;"><nobr>
+<span style="font-size:20.022;">set status to Dirty), there is no need to actually reinitialize the state at the unconfigure instruction,</span>
+</nobr></div>
+<div style="position:absolute;top:583.308;left:132.145;"><nobr>
+<span style="font-size:20.022;">as all state is local to the user process, i.e., the Initial state may only cause the coprocessor state</span>
+</nobr></div>
+<div style="position:absolute;top:608.175;left:132.145;"><nobr>
+<span style="font-size:20.022;">to be initialized to a constant value at context restore, not at every unconfigure.</span>
+</nobr></div>
+<div style="position:absolute;top:651.328;left:132.145;"><nobr>
+<span style="font-size:20.022;">Executing a user-mode instruction to disable a unit and place it into the Off state will cause an</span>
+</nobr></div>
+<div style="position:absolute;top:676.195;left:132.145;"><nobr>
+<span style="font-size:20.022;">illegal instruction exception to be raised if any subsequent instruction tries to use the unit before</span>
+</nobr></div>
+<div style="position:absolute;top:701.062;left:132.145;"><nobr>
+<span style="font-size:20.022;">it is turned back on. A user-mode instruction to turn a unit on must also ensure the unit’s state is</span>
+</nobr></div>
+<div style="position:absolute;top:725.929;left:132.145;"><nobr>
+<span style="font-size:20.022;">properly initialized, as the unit might have been used by another context meantime.</span>
+</nobr></div>
+<div style="position:absolute;top:769.082;left:132.145;"><nobr>
+<span style="font-size:20.022;">Changing the setting of FS has no effect on the contents of the floating-point register state. In</span>
+</nobr></div>
+<div style="position:absolute;top:793.949;left:132.145;"><nobr>
+<span style="font-size:20.022;">particular, setting FS=Off does not destroy the state, nor does setting FS=Initial clear the contents.</span>
+</nobr></div>
+<div style="position:absolute;top:818.816;left:132.145;"><nobr>
+<span style="font-size:20.022;">Other extensions might not preserve state when set to Off.</span>
+</nobr></div>
+<div style="position:absolute;top:861.969;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations may choose to track the dirtiness of the floating-point register state imprecisely</span>
+</nobr></div>
+<div style="position:absolute;top:886.836;left:132.145;"><nobr>
+<span style="font-size:20.022;">by reporting the state to be dirty even when it has not been modified. On some implementations,</span>
+</nobr></div>
+<div style="position:absolute;top:911.705;left:132.145;"><nobr>
+<span style="font-size:20.022;">some instructions that do not mutate the floating-point state may cause the state to transition</span>
+</nobr></div>
+<div style="position:absolute;top:936.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">from Initial or Clean to Dirty. On other implementations, dirtiness might not be tracked at all,</span>
+</nobr></div>
+<div style="position:absolute;top:961.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">in which case the valid FS states are Off and Dirty, and an attempt to set FS to Initial or Clean</span>
+</nobr></div>
+<div style="position:absolute;top:986.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">causes it to be set to Dirty.</span>
+</nobr></div>
+<div style="position:absolute;top:1035.591;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">This definition of FS does not disallow setting FS to Dirty as a result of errant speculation. Some</span>
+</nobr></div>
+<div style="position:absolute;top:1057.532;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">platforms may choose to disallow speculatively writing FS to close a potential side channel.</span>
+</nobr></div>
+<div style="position:absolute;top:1085.388;left:132.145;"><nobr>
+<span style="font-size:20.022;">Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(37); return false">3.4</a></span>
+<span style="font-size:20.022;">shows all the possible state transitions for the FS or XS status bits. Note that the standard</span>
+</nobr></div>
+<div style="position:absolute;top:1110.255;left:132.145;"><nobr>
+<span style="font-size:20.022;">floating-point extensions do not support user-mode unconfigure or disable/enable instructions.</span>
+</nobr></div>
+<div style="position:absolute;top:1153.408;left:132.145;"><nobr>
+<span style="font-size:20.022;">Standard privileged instructions to initialize, save, and restore extension state are provided to</span>
+</nobr></div>
+<div style="position:absolute;top:1178.275;left:132.145;"><nobr>
+<span style="font-size:20.022;">insulate privileged code from details of the added extension state by treating the state as an</span>
+</nobr></div>
+<div style="position:absolute;top:1203.142;left:132.145;"><nobr>
+<span style="font-size:20.022;">opaque object.</span>
+</nobr></div>
+<div style="position:absolute;top:1257.086;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Many coprocessor extensions are only used in limited contexts that allows software to safely</span>
+</nobr></div>
+<div style="position:absolute;top:1279.030;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">unconfigure or even disable units when done. This reduces the context-switch overhead of large</span>
+</nobr></div>
+<div style="position:absolute;top:1300.971;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">stateful coprocessors.</span>
+</nobr></div>
+</td></tr>
+</table>

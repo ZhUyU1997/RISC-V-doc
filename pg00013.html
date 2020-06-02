@@ -1,0 +1,95 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00013.jpg"/></div>
+<p style="position:absolute; top:67.755; left:72.000" id="bm000002"></p>
+<div style="position:absolute;top:273.570;left:132.145;"><nobr>
+<span style="font-size:37.923;font-weight:bold;">Chapter 1</span>
+</nobr></div>
+<div style="position:absolute;top:378.027;left:132.145;"><nobr>
+<span style="font-size:45.493;font-weight:bold;">Introduction</span>
+</nobr></div>
+<div style="position:absolute;top:511.995;left:132.145;"><nobr>
+<span style="font-size:20.022;">This document describes the RISC-V privileged architecture, which covers all aspects of RISC-</span>
+</nobr></div>
+<div style="position:absolute;top:536.864;left:132.145;"><nobr>
+<span style="font-size:20.022;">V systems beyond the unprivileged ISA, including privileged instructions as well as additional</span>
+</nobr></div>
+<div style="position:absolute;top:561.731;left:132.145;"><nobr>
+<span style="font-size:20.022;">functionality required for running operating systems and attaching external devices.</span>
+</nobr></div>
+<div style="position:absolute;top:622.709;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Commentary on our design decisions is formatted as in this paragraph, and can be skipped if the</span>
+</nobr></div>
+<div style="position:absolute;top:644.652;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">reader is only interested in the specification itself.</span>
+</nobr></div>
+<div style="position:absolute;top:701.610;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We briefly note that the entire privileged-level design described in this document could be replaced</span>
+</nobr></div>
+<div style="position:absolute;top:723.552;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">with an entirely different privileged-level design without changing the unprivileged ISA, and pos-</span>
+</nobr></div>
+<div style="position:absolute;top:745.493;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">sibly without even changing the ABI. In particular, this privileged specification was designed to</span>
+</nobr></div>
+<div style="position:absolute;top:767.437;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">run existing popular operating systems, and so embodies the conventional level-based protection</span>
+</nobr></div>
+<div style="position:absolute;top:789.378;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">model. Alternate privileged specifications could embody other more flexible protection-domain</span>
+</nobr></div>
+<div style="position:absolute;top:811.320;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">models. For simplicity of expression, the text is written as if this was the only possible privileged</span>
+</nobr></div>
+<div style="position:absolute;top:833.262;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">architecture.</span>
+</nobr></div>
+<div style="position:absolute;top:908.206;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">1.1</span>
+</nobr></div>
+<div style="position:absolute;top:908.206;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">RISC-V Privileged Software Stack Terminology</span>
+</nobr></div>
+<div style="position:absolute;top:975.958;left:132.145;"><nobr>
+<span style="font-size:20.022;">This section describes the terminology we use to describe components of the wide range of possible</span>
+</nobr></div>
+<div style="position:absolute;top:1000.826;left:132.145;"><nobr>
+<span style="font-size:20.022;">privileged software stacks for RISC-V.</span>
+</nobr></div>
+<div style="position:absolute;top:1043.978;left:132.145;"><nobr>
+<span style="font-size:20.022;">Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(13); return false">1.1</a></span>
+<span style="font-size:20.022;">shows some of the possible software stacks that can be supported by the RISC-V archi-</span>
+</nobr></div>
+<div style="position:absolute;top:1068.846;left:132.145;"><nobr>
+<span style="font-size:20.022;">tecture. The left-hand side shows a simple system that supports only a single application running</span>
+</nobr></div>
+<div style="position:absolute;top:1093.713;left:132.145;"><nobr>
+<span style="font-size:20.022;">on an application execution environment (AEE). The application is coded to run with a particular</span>
+</nobr></div>
+<div style="position:absolute;top:1118.580;left:132.145;"><nobr>
+<span style="font-size:20.022;">application binary interface (ABI). The ABI includes the supported user-level ISA plus a set of</span>
+</nobr></div>
+<div style="position:absolute;top:1143.447;left:132.145;"><nobr>
+<span style="font-size:20.022;">ABI calls to interact with the AEE. The ABI hides details of the AEE from the application to al-</span>
+</nobr></div>
+<div style="position:absolute;top:1168.316;left:132.145;"><nobr>
+<span style="font-size:20.022;">low greater flexibility in implementing the AEE. The same ABI could be implemented natively on</span>
+</nobr></div>
+<div style="position:absolute;top:1193.183;left:132.145;"><nobr>
+<span style="font-size:20.022;">multiple different host OSs, or could be supported by a user-mode emulation environment running</span>
+</nobr></div>
+<div style="position:absolute;top:1218.050;left:132.145;"><nobr>
+<span style="font-size:20.022;">on a machine with a different native ISA.</span>
+</nobr></div>
+<div style="position:absolute;top:1279.030;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Our graphical convention represents abstract interfaces using black boxes with white text, to</span>
+</nobr></div>
+<div style="position:absolute;top:1300.971;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">separate them from concrete instances of components implementing the interfaces.</span>
+</nobr></div>
+<div style="position:absolute;top:1349.981;left:556.612;"><nobr>
+<span style="font-size:20.022;">1</span>
+</nobr></div>
+</td></tr>
+</table>

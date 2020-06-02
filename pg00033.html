@@ -1,0 +1,200 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00033.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">21</span>
+</nobr></div>
+<div style="position:absolute;top:153.720;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">A higher-privilege mode</span>
+<span style="font-size:18.285;">y</span>
+<span style="font-size:18.285;font-style:italic;">could disable all of its interrupts before ceding control to a lower-</span>
+</nobr></div>
+<div style="position:absolute;top:175.661;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">privilege mode but this would be unusual as it would leave only a synchronous trap, non-maskable</span>
+</nobr></div>
+<div style="position:absolute;top:197.603;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">interrupt, or reset as means to regain control of the hart.</span>
+</nobr></div>
+<div style="position:absolute;top:230.417;left:132.145;"><nobr>
+<span style="font-size:20.022;">To support nested traps, each privilege mode</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">has a two-level stack of interrupt-enable bits and</span>
+</nobr></div>
+<div style="position:absolute;top:255.285;left:132.145;"><nobr>
+<span style="font-size:20.022;">privilege modes.</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PIE holds the value of the interrupt-enable bit active prior to the trap, and</span>
+</nobr></div>
+<div style="position:absolute;top:280.152;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP holds the previous privilege mode. The</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP fields can only hold privilege modes up to</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">, so</span>
+</nobr></div>
+<div style="position:absolute;top:305.019;left:132.145;"><nobr>
+<span style="font-size:20.022;">MPP is two bits wide, SPP is one bit wide, and UPP is implicitly zero. When a trap is taken from</span>
+</nobr></div>
+<div style="position:absolute;top:329.886;left:132.145;"><nobr>
+<span style="font-size:20.022;">privilege mode</span>
+<span style="font-size:20.022;font-style:italic;">y</span>
+<span style="font-size:20.022;">into privilege mode</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">,</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PIE is set to the value of</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">IE;</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">IE is set to 0; and</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP</span>
+</nobr></div>
+<div style="position:absolute;top:354.755;left:132.145;"><nobr>
+<span style="font-size:20.022;">is set to</span>
+<span style="font-size:20.022;font-style:italic;">y</span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:408.995;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">For lower privilege modes, any trap (synchronous or asynchronous) is usually taken at a higher</span>
+</nobr></div>
+<div style="position:absolute;top:430.937;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">privilege mode with interrupts disabled upon entry. The higher-level trap handler will either</span>
+</nobr></div>
+<div style="position:absolute;top:452.880;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">service the trap and return using the stacked information, or, if not returning immediately to</span>
+</nobr></div>
+<div style="position:absolute;top:474.822;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the interrupted context, will save the privilege stack before re-enabling interrupts, so only one</span>
+</nobr></div>
+<div style="position:absolute;top:496.763;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">entry per stack is required.</span>
+</nobr></div>
+<div style="position:absolute;top:529.576;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MRET, SRET, or URET instructions are used to return from traps in M-mode, S-mode, or</span>
+</nobr></div>
+<div style="position:absolute;top:554.445;left:132.145;"><nobr>
+<span style="font-size:20.022;">U-mode respectively. When executing an</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">RET instruction, supposing</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP holds the value</span>
+<span style="font-size:20.022;font-style:italic;">y</span>
+<span style="font-size:20.022;">,</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">IE</span>
+</nobr></div>
+<div style="position:absolute;top:579.312;left:132.145;"><nobr>
+<span style="font-size:20.022;">is set to</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PIE; the privilege mode is changed to</span>
+<span style="font-size:20.022;font-style:italic;">y</span>
+<span style="font-size:20.022;">;</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PIE is set to 1; and</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP is set to U (or M if</span>
+</nobr></div>
+<div style="position:absolute;top:604.179;left:132.145;"><nobr>
+<span style="font-size:20.022;">user-mode is not supported).</span>
+</nobr></div>
+<div style="position:absolute;top:647.332;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP fields are</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">fields that can hold only privilege mode</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">and any implemented privilege</span>
+</nobr></div>
+<div style="position:absolute;top:672.199;left:132.145;"><nobr>
+<span style="font-size:20.022;">mode lower than</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">. If privilege mode</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">is not implemented, then</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PP must be hardwired to 0.</span>
+</nobr></div>
+<div style="position:absolute;top:726.441;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">M-mode software can determine whether a privilege mode is implemented by writing that mode</span>
+</nobr></div>
+<div style="position:absolute;top:748.382;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to MPP then reading it back.</span>
+</nobr></div>
+<div style="position:absolute;top:770.324;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">If the machine provides only U and M modes, then only a single hardware storage bit is</span>
+</nobr></div>
+<div style="position:absolute;top:792.265;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">required to represent either 00 or 11 in MPP.</span>
+</nobr></div>
+<div style="position:absolute;top:825.080;left:132.145;"><nobr>
+<span style="font-size:20.022;">User-level interrupts are an optional extension and have been allocated the ISA extension letter N.</span>
+</nobr></div>
+<div style="position:absolute;top:849.947;left:132.145;"><nobr>
+<span style="font-size:20.022;">If user-level interrupts are omitted, the UIE and UPIE bits are hardwired to zero. For all other</span>
+</nobr></div>
+<div style="position:absolute;top:874.814;left:132.145;"><nobr>
+<span style="font-size:20.022;">supported privilege modes</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">, the</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">IE and</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">PIE must not be hardwired.</span>
+</nobr></div>
+<div style="position:absolute;top:929.056;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">User-level interrupts are primarily intended to support secure embedded systems with only M-</span>
+</nobr></div>
+<div style="position:absolute;top:950.998;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">mode and U-mode present, but can also be supported in systems running Unix-like operating</span>
+</nobr></div>
+<div style="position:absolute;top:972.939;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">systems to support user-level trap handling.</span>
+</nobr></div>
+<div style="position:absolute;top:1033.040;left:132.145;"><nobr>
+<span style="font-size:20.022;font-weight:bold;">3.1.6.2</span>
+</nobr></div>
+<div style="position:absolute;top:1033.040;left:220.382;"><nobr>
+<span style="font-size:20.022;font-weight:bold;">Base ISA Control in</span>
+<span style="font-size:20.022;">mstatus</span>
+<span style="font-size:20.022;font-weight:bold;">Register</span>
+</nobr></div>
+<div style="position:absolute;top:1089.123;left:132.145;"><nobr>
+<span style="font-size:20.022;">For RV64 systems, the SXL and UXL fields are</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">fields that control the value of XLEN for</span>
+</nobr></div>
+<div style="position:absolute;top:1113.990;left:132.145;"><nobr>
+<span style="font-size:20.022;">S-mode and U-mode, respectively. The encoding of these fields is the same as the MXL field of</span>
+</nobr></div>
+<div style="position:absolute;top:1140.519;left:132.145;"><nobr>
+<span style="font-size:20.022;">misa , shown in Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(27); return false">3.1</a></span>
+<span style="font-size:20.022;">. The effective XLEN in S-mode and U-mode are termed</span>
+<span style="font-size:20.022;font-style:italic;">SXLEN</span>
+<span style="font-size:20.022;">and</span>
+</nobr></div>
+<div style="position:absolute;top:1163.726;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">UXLEN</span>
+<span style="font-size:20.022;">, respectively.</span>
+</nobr></div>
+<div style="position:absolute;top:1206.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">For RV32 systems, the SXL and UXL fields do not exist, and SXLEN=32 and UXLEN=32.</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">For RV64 systems, if S-mode is not supported, then SXL is hardwired to zero. Otherwise, it is</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">field that encodes the current value of SXLEN. In particular, the implementation may</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardwire SXL so that SXLEN=MXLEN.</span>
+</nobr></div>
+</td></tr>
+</table>

@@ -1,0 +1,209 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00083.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">71</span>
+</nobr></div>
+<div style="position:absolute;top:129.451;left:206.227;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">This update and the loading of</span>
+<span style="font-size:20.022;font-style:italic;">pte</span>
+<span style="font-size:20.022;">in step 2 must be atomic; in particular, no intervening</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:226.249;"><nobr>
+<span style="font-size:20.022;">store to the PTE may be perceived to have occurred in-between.</span>
+</nobr></div>
+<div style="position:absolute;top:198.565;left:156.616;"><nobr>
+<span style="font-size:20.022;">8. The translation is successful. The translated physical address is given as follows:</span>
+</nobr></div>
+<div style="position:absolute;top:240.571;left:206.227;"><nobr>
+<span style="font-size:20.022;font-style:italic;">• pa.pgoff</span>
+<span style="font-size:20.022;">=</span>
+<span style="font-size:20.022;font-style:italic;">va.pgoff</span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:273.653;left:206.227;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">If</span>
+<span style="font-size:20.022;font-style:italic;">i &gt;</span>
+<span style="font-size:20.022;">0, then this is a superpage translation and</span>
+<span style="font-size:20.022;font-style:italic;">pa.ppn</span>
+<span style="font-size:20.022;">[</span>
+<span style="font-size:20.022;font-style:italic;">i −</span>
+<span style="font-size:20.022;">1 : 0] =</span>
+<span style="font-size:20.022;font-style:italic;">va.vpn</span>
+<span style="font-size:20.022;">[</span>
+<span style="font-size:20.022;font-style:italic;">i −</span>
+<span style="font-size:20.022;">1 : 0].</span>
+</nobr></div>
+<div style="position:absolute;top:306.735;left:206.227;"><nobr>
+<span style="font-size:20.022;font-style:italic;">• pa.ppn</span>
+<span style="font-size:20.022;">[LEVELS</span>
+<span style="font-size:20.022;font-style:italic;">−</span>
+<span style="font-size:20.022;">1 :</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">] =</span>
+<span style="font-size:20.022;font-style:italic;">pte.ppn</span>
+<span style="font-size:20.022;">[LEVELS</span>
+<span style="font-size:20.022;font-style:italic;">−</span>
+<span style="font-size:20.022;">1 :</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">].</span>
+</nobr></div>
+<div style="position:absolute;top:386.972;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">4.4</span>
+</nobr></div>
+<div style="position:absolute;top:386.972;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Sv39: Page-Based 39-bit Virtual-Memory System</span>
+</nobr></div>
+<div style="position:absolute;top:454.754;left:132.145;"><nobr>
+<span style="font-size:20.022;">This section describes a simple paged virtual-memory system designed for RV64 systems, which</span>
+</nobr></div>
+<div style="position:absolute;top:479.621;left:132.145;"><nobr>
+<span style="font-size:20.022;">supports 39-bit virtual address spaces. The design of Sv39 follows the overall scheme of Sv32, and</span>
+</nobr></div>
+<div style="position:absolute;top:504.490;left:132.145;"><nobr>
+<span style="font-size:20.022;">this section details only the differences between the schemes.</span>
+</nobr></div>
+<div style="position:absolute;top:565.629;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We specified multiple virtual memory systems for RV64 to relieve the tension between providing</span>
+</nobr></div>
+<div style="position:absolute;top:587.571;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">a large address space and minimizing address-translation cost. For many systems, 512 GiB of</span>
+</nobr></div>
+<div style="position:absolute;top:609.514;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">virtual-address space is ample, and so Sv39 suffices. Sv48 increases the virtual address space</span>
+</nobr></div>
+<div style="position:absolute;top:631.456;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to 256 TiB, but increases the physical memory capacity dedicated to page tables, the latency of</span>
+</nobr></div>
+<div style="position:absolute;top:653.397;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">page-table traversals, and the size of hardware structures that store virtual addresses.</span>
+</nobr></div>
+<div style="position:absolute;top:722.199;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.4.1</span>
+</nobr></div>
+<div style="position:absolute;top:722.199;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Addressing and Memory Protection</span>
+</nobr></div>
+<div style="position:absolute;top:780.040;left:132.145;"><nobr>
+<span style="font-size:20.022;">Sv39 implementations support a 39-bit virtual address space, divided into 4 KiB pages. An Sv39</span>
+</nobr></div>
+<div style="position:absolute;top:804.908;left:132.145;"><nobr>
+<span style="font-size:20.022;">address is partitioned as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(82); return false">4.16</a></span>
+<span style="font-size:20.022;">. Instruction fetch addresses and load and store</span>
+</nobr></div>
+<div style="position:absolute;top:829.775;left:132.145;"><nobr>
+<span style="font-size:20.022;">effective addresses, which are 64 bits, must have bits 63–39 all equal to bit 38, or else a page-fault</span>
+</nobr></div>
+<div style="position:absolute;top:854.642;left:132.145;"><nobr>
+<span style="font-size:20.022;">exception will occur. The 27-bit VPN is translated into a 44-bit PPN via a three-level page table,</span>
+</nobr></div>
+<div style="position:absolute;top:879.509;left:132.145;"><nobr>
+<span style="font-size:20.022;">while the 12-bit page offset is untranslated.</span>
+</nobr></div>
+<div style="position:absolute;top:940.650;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">When mapping between narrower and wider addresses, RISC-V usually zero-extends a narrower</span>
+</nobr></div>
+<div style="position:absolute;top:962.591;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">address to a wider size. The mapping between 64-bit virtual addresses and the 39-bit usable</span>
+</nobr></div>
+<div style="position:absolute;top:984.533;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">address space of Sv39 is not based on zero-extension but instead follows an entrenched convention</span>
+</nobr></div>
+<div style="position:absolute;top:1006.475;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">that allows an OS to use one or a few of the most-significant bits of a full-size (64-bit) virtual</span>
+</nobr></div>
+<div style="position:absolute;top:1028.418;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">address to quickly distinguish user and supervisor address regions.</span>
+</nobr></div>
+<div style="position:absolute;top:1068.748;left:228.765;"><nobr>
+<span style="font-size:14.628;">38</span>
+</nobr></div>
+<div style="position:absolute;top:1068.748;left:374.079;"><nobr>
+<span style="font-size:14.628;">30 29</span>
+</nobr></div>
+<div style="position:absolute;top:1068.748;left:540.560;"><nobr>
+<span style="font-size:14.628;">21 20</span>
+</nobr></div>
+<div style="position:absolute;top:1068.748;left:707.040;"><nobr>
+<span style="font-size:14.628;">12 11</span>
+</nobr></div>
+<div style="position:absolute;top:1068.748;left:881.302;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1088.325;left:279.015;"><nobr>
+<span style="font-size:16.456;">VPN[2]</span>
+</nobr></div>
+<div style="position:absolute;top:1109.169;left:302.150;"><nobr>
+<span style="font-size:16.456;">9</span>
+</nobr></div>
+<div style="position:absolute;top:1088.325;left:445.151;"><nobr>
+<span style="font-size:16.456;">VPN[1]</span>
+</nobr></div>
+<div style="position:absolute;top:1109.169;left:468.640;"><nobr>
+<span style="font-size:16.456;">9</span>
+</nobr></div>
+<div style="position:absolute;top:1088.325;left:611.654;"><nobr>
+<span style="font-size:16.456;">VPN[0]</span>
+</nobr></div>
+<div style="position:absolute;top:1109.169;left:635.130;"><nobr>
+<span style="font-size:16.456;">9</span>
+</nobr></div>
+<div style="position:absolute;top:1088.325;left:771.722;"><nobr>
+<span style="font-size:16.456;">page offset</span>
+</nobr></div>
+<div style="position:absolute;top:1109.169;left:797.391;"><nobr>
+<span style="font-size:16.456;">12</span>
+</nobr></div>
+<div style="position:absolute;top:1155.472;left:413.064;"><nobr>
+<span style="font-size:20.022;">Figure 4.16: Sv39 virtual address.</span>
+</nobr></div>
+<div style="position:absolute;top:1204.589;left:193.084;"><nobr>
+<span style="font-size:14.628;">55</span>
+</nobr></div>
+<div style="position:absolute;top:1204.589;left:409.753;"><nobr>
+<span style="font-size:14.628;">30 29</span>
+</nobr></div>
+<div style="position:absolute;top:1204.589;left:576.248;"><nobr>
+<span style="font-size:14.628;">21 20</span>
+</nobr></div>
+<div style="position:absolute;top:1204.589;left:742.728;"><nobr>
+<span style="font-size:14.628;">12 11</span>
+</nobr></div>
+<div style="position:absolute;top:1204.589;left:916.976;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1224.166;left:279.601;"><nobr>
+<span style="font-size:16.456;">PPN[2]</span>
+</nobr></div>
+<div style="position:absolute;top:1245.010;left:297.921;"><nobr>
+<span style="font-size:16.456;">26</span>
+</nobr></div>
+<div style="position:absolute;top:1224.166;left:481.418;"><nobr>
+<span style="font-size:16.456;">PPN[1]</span>
+</nobr></div>
+<div style="position:absolute;top:1245.010;left:504.302;"><nobr>
+<span style="font-size:16.456;">9</span>
+</nobr></div>
+<div style="position:absolute;top:1224.166;left:647.919;"><nobr>
+<span style="font-size:16.456;">PPN[0]</span>
+</nobr></div>
+<div style="position:absolute;top:1245.010;left:670.792;"><nobr>
+<span style="font-size:16.456;">9</span>
+</nobr></div>
+<div style="position:absolute;top:1224.166;left:807.402;"><nobr>
+<span style="font-size:16.456;">page offset</span>
+</nobr></div>
+<div style="position:absolute;top:1245.010;left:833.053;"><nobr>
+<span style="font-size:16.456;">12</span>
+</nobr></div>
+<div style="position:absolute;top:1291.314;left:407.198;"><nobr>
+<span style="font-size:20.022;">Figure 4.17: Sv39 physical address.</span>
+</nobr></div>
+</td></tr>
+</table>

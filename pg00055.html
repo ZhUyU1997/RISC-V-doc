@@ -1,0 +1,142 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">43</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">The values written to mcause on an NMI are implementation-defined, but a value of 0 is reserved</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">to mean “unknown cause” and implementations that do not distinguish sources of NMIs via the</span>
+</nobr></div>
+<div style="position:absolute;top:181.969;left:132.145;"><nobr>
+<span style="font-size:20.022;">mcause register should return 0.</span>
+</nobr></div>
+<div style="position:absolute;top:223.460;left:132.145;"><nobr>
+<span style="font-size:20.022;">Unlike resets, NMIs do not reset processor state, enabling diagnosis, reporting, and possible con-</span>
+</nobr></div>
+<div style="position:absolute;top:248.327;left:132.145;"><nobr>
+<span style="font-size:20.022;">tainment of the hardware error.</span>
+</nobr></div>
+<div style="position:absolute;top:330.933;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">3.5</span>
+</nobr></div>
+<div style="position:absolute;top:330.933;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Physical Memory Attributes</span>
+</nobr></div>
+<div style="position:absolute;top:399.415;left:132.145;"><nobr>
+<span style="font-size:20.022;">The physical memory map for a complete system includes various address ranges, some correspond-</span>
+</nobr></div>
+<div style="position:absolute;top:424.282;left:132.145;"><nobr>
+<span style="font-size:20.022;">ing to memory regions, some to memory-mapped control registers, and some to empty holes in the</span>
+</nobr></div>
+<div style="position:absolute;top:449.149;left:132.145;"><nobr>
+<span style="font-size:20.022;">address space. Some memory regions might not support reads, writes, or execution; some might</span>
+</nobr></div>
+<div style="position:absolute;top:474.018;left:132.145;"><nobr>
+<span style="font-size:20.022;">not support subword or subblock accesses; some might not support atomic operations; and some</span>
+</nobr></div>
+<div style="position:absolute;top:498.885;left:132.145;"><nobr>
+<span style="font-size:20.022;">might not support cache coherence or might have different memory models. Similarly, memory-</span>
+</nobr></div>
+<div style="position:absolute;top:523.752;left:132.145;"><nobr>
+<span style="font-size:20.022;">mapped control registers vary in their supported access widths, support for atomic operations, and</span>
+</nobr></div>
+<div style="position:absolute;top:548.620;left:132.145;"><nobr>
+<span style="font-size:20.022;">whether read and write accesses have associated side effects. In RISC-V systems, these properties</span>
+</nobr></div>
+<div style="position:absolute;top:573.487;left:132.145;"><nobr>
+<span style="font-size:20.022;">and capabilities of each region of the machine’s physical address space are termed</span>
+<span style="font-size:20.022;font-style:italic;">physical memory</span>
+</nobr></div>
+<div style="position:absolute;top:598.356;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">attributes</span>
+<span style="font-size:20.022;">(PMAs). This section describes RISC-V PMA terminology and how RISC-V systems</span>
+</nobr></div>
+<div style="position:absolute;top:623.223;left:132.145;"><nobr>
+<span style="font-size:20.022;">implement and check PMAs.</span>
+</nobr></div>
+<div style="position:absolute;top:666.376;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMAs are inherent properties of the underlying hardware and rarely change during system oper-</span>
+</nobr></div>
+<div style="position:absolute;top:691.243;left:132.145;"><nobr>
+<span style="font-size:20.022;">ation. Unlike physical memory protection values described in Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(59); return false">3.6</a></span>
+<span style="font-size:20.022;">, PMAs do not vary by</span>
+</nobr></div>
+<div style="position:absolute;top:716.110;left:132.145;"><nobr>
+<span style="font-size:20.022;">execution context. The PMAs of some memory regions are fixed at chip design time—for example,</span>
+</nobr></div>
+<div style="position:absolute;top:740.977;left:132.145;"><nobr>
+<span style="font-size:20.022;">for an on-chip ROM. Others are fixed at board design time, depending, for example, on which</span>
+</nobr></div>
+<div style="position:absolute;top:765.844;left:132.145;"><nobr>
+<span style="font-size:20.022;">other chips are connected to off-chip buses. Off-chip buses might also support devices that could</span>
+</nobr></div>
+<div style="position:absolute;top:790.713;left:132.145;"><nobr>
+<span style="font-size:20.022;">be changed on every power cycle (cold pluggable) or dynamically while the system is running (hot</span>
+</nobr></div>
+<div style="position:absolute;top:815.580;left:132.145;"><nobr>
+<span style="font-size:20.022;">pluggable). Some devices might be configurable at run time to support different uses that imply</span>
+</nobr></div>
+<div style="position:absolute;top:840.448;left:132.145;"><nobr>
+<span style="font-size:20.022;">different PMAs—for example, an on-chip scratchpad RAM might be cached privately by one core</span>
+</nobr></div>
+<div style="position:absolute;top:865.315;left:132.145;"><nobr>
+<span style="font-size:20.022;">in one end-application, or accessed as a shared non-cached memory in another end-application.</span>
+</nobr></div>
+<div style="position:absolute;top:908.468;left:132.145;"><nobr>
+<span style="font-size:20.022;">Most systems will require that at least some PMAs are dynamically checked in hardware later in</span>
+</nobr></div>
+<div style="position:absolute;top:933.335;left:132.145;"><nobr>
+<span style="font-size:20.022;">the execution pipeline after the physical address is known, as some operations will not be supported</span>
+</nobr></div>
+<div style="position:absolute;top:958.202;left:132.145;"><nobr>
+<span style="font-size:20.022;">at all physical memory addresses, and some operations require knowing the current setting of a</span>
+</nobr></div>
+<div style="position:absolute;top:983.071;left:132.145;"><nobr>
+<span style="font-size:20.022;">configurable PMA attribute. While many other architectures specify some PMAs in the virtual</span>
+</nobr></div>
+<div style="position:absolute;top:1007.938;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory page tables and use the TLB to inform the pipeline of these properties, this approach</span>
+</nobr></div>
+<div style="position:absolute;top:1032.805;left:132.145;"><nobr>
+<span style="font-size:20.022;">injects platform-specific information into a virtualized layer and can cause system errors unless</span>
+</nobr></div>
+<div style="position:absolute;top:1057.672;left:132.145;"><nobr>
+<span style="font-size:20.022;">attributes are correctly initialized in each page-table entry for each physical memory region. In</span>
+</nobr></div>
+<div style="position:absolute;top:1082.539;left:132.145;"><nobr>
+<span style="font-size:20.022;">addition, the available page sizes might not be optimal for specifying attributes in the physical</span>
+</nobr></div>
+<div style="position:absolute;top:1107.408;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory space, leading to address-space fragmentation and inefficient use of expensive TLB entries.</span>
+</nobr></div>
+<div style="position:absolute;top:1150.559;left:132.145;"><nobr>
+<span style="font-size:20.022;">For RISC-V, we separate out specification and checking of PMAs into a separate hardware structure,</span>
+</nobr></div>
+<div style="position:absolute;top:1175.428;left:132.145;"><nobr>
+<span style="font-size:20.022;">the</span>
+<span style="font-size:20.022;font-style:italic;">PMA checker</span>
+<span style="font-size:20.022;">. In many cases, the attributes are known at system design time for each physical</span>
+</nobr></div>
+<div style="position:absolute;top:1200.296;left:132.145;"><nobr>
+<span style="font-size:20.022;">address region, and can be hardwired into the PMA checker. Where the attributes are run-time</span>
+</nobr></div>
+<div style="position:absolute;top:1225.163;left:132.145;"><nobr>
+<span style="font-size:20.022;">configurable, platform-specific memory-mapped control registers can be provided to specify these</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">attributes at a granularity appropriate to each region on the platform (e.g., for an on-chip SRAM</span>
+</nobr></div>
+<div style="position:absolute;top:1274.897;left:132.145;"><nobr>
+<span style="font-size:20.022;">that can be flexibly divided between cacheable and uncacheable uses). PMAs are checked for any</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">access to physical memory, including accesses that have undergone virtual to physical memory</span>
+</nobr></div>
+</td></tr>
+</table>

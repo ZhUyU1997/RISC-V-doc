@@ -1,0 +1,135 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00081.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">69</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">The U bit indicates whether the page is accessible to user mode. U-mode software may only access</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">the page when U=1. If the SUM bit in the sstatus register is set, supervisor mode software may</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">also access pages with U=1. However, supervisor code normally operates with the SUM bit clear,</span>
+</nobr></div>
+<div style="position:absolute;top:205.174;left:132.145;"><nobr>
+<span style="font-size:20.022;">in which case, supervisor code will fault on accesses to user-mode pages. Irrespective of SUM, the</span>
+</nobr></div>
+<div style="position:absolute;top:230.041;left:132.145;"><nobr>
+<span style="font-size:20.022;">supervisor may not execute code on pages with U=1.</span>
+</nobr></div>
+<div style="position:absolute;top:295.069;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">An alternative PTE format would support different permissions for supervisor and user. We</span>
+</nobr></div>
+<div style="position:absolute;top:317.011;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">omitted this feature because it would be largely redundant with the SUM mechanism (see Sec-</span>
+</nobr></div>
+<div style="position:absolute;top:338.952;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tion</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(68); return false">4.1.3</a></span>
+<span style="font-size:18.285;font-style:italic;">) and would require more encoding space in the PTE.</span>
+</nobr></div>
+<div style="position:absolute;top:381.324;left:132.145;"><nobr>
+<span style="font-size:20.022;">The G bit designates a</span>
+<span style="font-size:20.022;font-style:italic;">global</span>
+<span style="font-size:20.022;">mapping. Global mappings are those that exist in all address spaces.</span>
+</nobr></div>
+<div style="position:absolute;top:406.191;left:132.145;"><nobr>
+<span style="font-size:20.022;">For non-leaf PTEs, the global setting implies that all mappings in the subsequent levels of the page</span>
+</nobr></div>
+<div style="position:absolute;top:431.060;left:132.145;"><nobr>
+<span style="font-size:20.022;">table are global. Note that failing to mark a global mapping as global merely reduces performance,</span>
+</nobr></div>
+<div style="position:absolute;top:455.927;left:132.145;"><nobr>
+<span style="font-size:20.022;">whereas marking a non-global mapping as global is a software bug that, after switching to an</span>
+</nobr></div>
+<div style="position:absolute;top:480.794;left:132.145;"><nobr>
+<span style="font-size:20.022;">address space with a different non-global mapping for that address range, can unpredictably result</span>
+</nobr></div>
+<div style="position:absolute;top:505.661;left:132.145;"><nobr>
+<span style="font-size:20.022;">in either mapping being used.</span>
+</nobr></div>
+<div style="position:absolute;top:570.689;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Global mappings need not be stored redundantly in address-translation caches for multiple</span>
+</nobr></div>
+<div style="position:absolute;top:592.631;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">ASIDs. Additionally, they need not be flushed from local address-translation caches when an</span>
+</nobr></div>
+<div style="position:absolute;top:614.572;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">SFENCE.VMA instruction is executed with</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;"≯</span>
+<span style="font-size:18.285;">= x0</span>
+<span style="font-size:18.285;font-style:italic;">.</span>
+</nobr></div>
+<div style="position:absolute;top:656.943;left:132.145;"><nobr>
+<span style="font-size:20.022;">The RSW field is reserved for use by supervisor software; the implementation shall ignore this field.</span>
+</nobr></div>
+<div style="position:absolute;top:700.096;left:132.145;"><nobr>
+<span style="font-size:20.022;">Each leaf PTE contains an accessed (A) and dirty (D) bit. The A bit indicates the virtual page has</span>
+</nobr></div>
+<div style="position:absolute;top:724.963;left:132.145;"><nobr>
+<span style="font-size:20.022;">been read, written, or fetched from since the last time the A bit was cleared. The D bit indicates</span>
+</nobr></div>
+<div style="position:absolute;top:749.831;left:132.145;"><nobr>
+<span style="font-size:20.022;">the virtual page has been written since the last time the D bit was cleared.</span>
+</nobr></div>
+<div style="position:absolute;top:792.983;left:132.145;"><nobr>
+<span style="font-size:20.022;">Two schemes to manage the A and D bits are permitted:</span>
+</nobr></div>
+<div style="position:absolute;top:855.154;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">When a virtual page is accessed and the A bit is clear, or is written and the D bit is clear, a</span>
+</nobr></div>
+<div style="position:absolute;top:881.144;left:182.201;"><nobr>
+<span style="font-size:20.022;">page-fault exception is raised.</span>
+</nobr></div>
+<div style="position:absolute;top:926.258;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">When a virtual page is accessed and the A bit is clear, or is written and the D bit is clear, the</span>
+</nobr></div>
+<div style="position:absolute;top:952.246;left:182.201;"><nobr>
+<span style="font-size:20.022;">implementation sets the corresponding bit(s) in the PTE. The PTE update must be atomic</span>
+</nobr></div>
+<div style="position:absolute;top:977.113;left:182.201;"><nobr>
+<span style="font-size:20.022;">with respect to other accesses to the PTE, and must atomically check that the PTE is valid</span>
+</nobr></div>
+<div style="position:absolute;top:1001.982;left:182.201;"><nobr>
+<span style="font-size:20.022;">and grants sufficient permissions. The PTE update must be exact (i.e., not speculative), and</span>
+</nobr></div>
+<div style="position:absolute;top:1026.849;left:182.201;"><nobr>
+<span style="font-size:20.022;">observed in program order by the local hart. Furthermore, the PTE update must appear</span>
+</nobr></div>
+<div style="position:absolute;top:1051.716;left:182.201;"><nobr>
+<span style="font-size:20.022;">in the global memory order no later than the explicit memory access, or any subsequent</span>
+</nobr></div>
+<div style="position:absolute;top:1076.584;left:182.201;"><nobr>
+<span style="font-size:20.022;">explicit memory access to that virtual page by the local hart. The ordering on loads and</span>
+</nobr></div>
+<div style="position:absolute;top:1101.451;left:182.201;"><nobr>
+<span style="font-size:20.022;">stores provided by FENCE instructions and the acquire/release bits on atomic instructions</span>
+</nobr></div>
+<div style="position:absolute;top:1126.320;left:182.201;"><nobr>
+<span style="font-size:20.022;">also orders the PTE updates associated with those loads and stores as observed by remote</span>
+</nobr></div>
+<div style="position:absolute;top:1151.187;left:182.201;"><nobr>
+<span style="font-size:20.022;">harts.</span>
+</nobr></div>
+<div style="position:absolute;top:1186.738;left:182.201;"><nobr>
+<span style="font-size:20.022;">The PTE update is not required to be atomic with respect to the explicit memory access that</span>
+</nobr></div>
+<div style="position:absolute;top:1211.605;left:182.201;"><nobr>
+<span style="font-size:20.022;">caused the update, and the sequence is interruptible. However, the hart must not perform</span>
+</nobr></div>
+<div style="position:absolute;top:1236.474;left:182.201;"><nobr>
+<span style="font-size:20.022;">the explicit memory access before the PTE update is globally visible.</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">All harts in a system must employ the same PTE-update scheme as each other.</span>
+</nobr></div>
+</td></tr>
+</table>

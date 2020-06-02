@@ -1,0 +1,73 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00018.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">6</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(18); return false">2.1</a></span>
+<span style="font-size:20.022;">also indicates the convention to allocate CSR addresses between standard and custom uses.</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">The CSR addresses reserved for custom uses will not be redefined by future standard extensions.</span>
+</nobr></div>
+<div style="position:absolute;top:198.592;left:132.145;"><nobr>
+<span style="font-size:20.022;">Machine-mode standard read-write CSRs 0x7A0 – 0x7BF are reserved for use by the debug system.</span>
+</nobr></div>
+<div style="position:absolute;top:223.460;left:132.145;"><nobr>
+<span style="font-size:20.022;">Of these CSRs, 0x7A0 – 0x7AF are accessible to machine mode, whereas 0x7B0 – 0x7BF are only visible</span>
+</nobr></div>
+<div style="position:absolute;top:248.327;left:132.145;"><nobr>
+<span style="font-size:20.022;">to debug mode. Implementations should raise illegal instruction exceptions on machine-mode access</span>
+</nobr></div>
+<div style="position:absolute;top:273.194;left:132.145;"><nobr>
+<span style="font-size:20.022;">to the latter set of registers.</span>
+</nobr></div>
+<div style="position:absolute;top:332.083;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Effective virtualization requires that as many instructions run natively as possible inside a virtu-</span>
+</nobr></div>
+<div style="position:absolute;top:354.024;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">alized environment, while any privileged accesses trap to the virtual machine monitor [</span>
+<span style="font-size:18.285;font-style:italic;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(90); return false">1</a></span>
+<span style="font-size:18.285;font-style:italic;">]. CSRs</span>
+</nobr></div>
+<div style="position:absolute;top:375.966;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">that are read-only at some lower privilege level are shadowed into separate CSR addresses if they</span>
+</nobr></div>
+<div style="position:absolute;top:397.908;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">are made read-write at a higher privilege level. This avoids trapping permitted lower-privilege ac-</span>
+</nobr></div>
+<div style="position:absolute;top:419.849;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cesses while still causing traps on illegal accesses. Currently, the counters are the only shadowed</span>
+</nobr></div>
+<div style="position:absolute;top:441.793;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">CSRs.</span>
+</nobr></div>
+<div style="position:absolute;top:513.092;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">2.2</span>
+</nobr></div>
+<div style="position:absolute;top:513.092;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">CSR Listing</span>
+</nobr></div>
+<div style="position:absolute;top:580.450;left:132.145;"><nobr>
+<span style="font-size:20.022;">Tables</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(19); return false">2.2</a></span>
+<span style="font-size:20.022;">–</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(22); return false">2.5</a></span>
+<span style="font-size:20.022;">list the CSRs that have currently been allocated CSR addresses. The timers, coun-</span>
+</nobr></div>
+<div style="position:absolute;top:605.317;left:132.145;"><nobr>
+<span style="font-size:20.022;">ters, and floating-point CSRs are standard user-level CSRs, as well as the additional user trap</span>
+</nobr></div>
+<div style="position:absolute;top:630.184;left:132.145;"><nobr>
+<span style="font-size:20.022;">registers added by the N extension. The other registers are used by privileged code, as described</span>
+</nobr></div>
+<div style="position:absolute;top:655.052;left:132.145;"><nobr>
+<span style="font-size:20.022;">in the following chapters. Note that not all registers are required on all implementations.</span>
+</nobr></div>
+</td></tr>
+</table>

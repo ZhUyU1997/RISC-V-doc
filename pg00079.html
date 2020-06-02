@@ -1,0 +1,145 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00079.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">67</span>
+</nobr></div>
+<div style="position:absolute;top:130.754;left:207.095;"><nobr>
+<span style="font-size:18.285;font-style:italic;">• If software modifies a leaf PTE, it should execute SFENCE.VMA with</span>
+<span style="font-size:18.285;">rs1</span>
+<span style="font-size:18.285;font-style:italic;">set to a virtual</span>
+</nobr></div>
+<div style="position:absolute;top:153.720;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">address within the page. If any PTE along the traversal path had its G bit set,</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">must</span>
+</nobr></div>
+<div style="position:absolute;top:175.661;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">be</span>
+<span style="font-size:18.285;">x0</span>
+<span style="font-size:18.285;font-style:italic;">; otherwise,</span>
+<span style="font-size:18.285;">rs2</span>
+<span style="font-size:18.285;font-style:italic;">should be set to the ASID for which the translation is being modified.</span>
+</nobr></div>
+<div style="position:absolute;top:206.226;left:207.095;"><nobr>
+<span style="font-size:18.285;font-style:italic;">• For the special cases of increasing the permissions on a leaf PTE and changing an invalid</span>
+</nobr></div>
+<div style="position:absolute;top:229.191;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">PTE to a valid leaf, software may choose to execute the SFENCE.VMA lazily. After</span>
+</nobr></div>
+<div style="position:absolute;top:251.133;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">modifying the PTE but before executing SFENCE.VMA, either the new or old permissions</span>
+</nobr></div>
+<div style="position:absolute;top:273.074;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">will be used. In the latter case, a page fault exception might occur, at which point software</span>
+</nobr></div>
+<div style="position:absolute;top:295.018;left:226.249;"><nobr>
+<span style="font-size:18.285;font-style:italic;">should execute SFENCE.VMA in accordance with the previous bullet point.</span>
+</nobr></div>
+<div style="position:absolute;top:337.141;left:132.145;"><nobr>
+<span style="font-size:20.022;">For forward compatibility with future versions of this specification, supervisor software should</span>
+</nobr></div>
+<div style="position:absolute;top:362.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">adhere to the following constraints on ASID usage. Supervisor software that uses ASIDs should</span>
+</nobr></div>
+<div style="position:absolute;top:386.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">use a nonzero ASID value to refer to the same address space across all harts in the SEE and should</span>
+</nobr></div>
+<div style="position:absolute;top:411.745;left:132.145;"><nobr>
+<span style="font-size:20.022;">not use an ASID value of 0. Supervisor software that does not use ASIDs should always set the</span>
+</nobr></div>
+<div style="position:absolute;top:436.612;left:132.145;"><nobr>
+<span style="font-size:20.022;">ASID field in the satp CSR to 0.</span>
+</nobr></div>
+<div style="position:absolute;top:501.330;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">A future extension may define ASIDs to be global across the SEE, facilitating such optimizations</span>
+</nobr></div>
+<div style="position:absolute;top:523.273;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">as multicast TLB shootdown and sharing translation caches between harts.</span>
+</nobr></div>
+<div style="position:absolute;top:546.380;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The extension will provide a mechanism so that existing supervisor software that always uses</span>
+</nobr></div>
+<div style="position:absolute;top:568.322;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">ASID 0 will continue to function as it currently does.</span>
+</nobr></div>
+<div style="position:absolute;top:649.783;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">4.3</span>
+</nobr></div>
+<div style="position:absolute;top:649.783;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Sv32: Page-Based 32-bit Virtual-Memory Systems</span>
+</nobr></div>
+<div style="position:absolute;top:718.241;left:132.145;"><nobr>
+<span style="font-size:20.022;">When Sv32 is written to the MODE field in the satp register (see Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(74); return false">4.1.12</a></span>
+<span style="font-size:20.022;">), the supervisor</span>
+</nobr></div>
+<div style="position:absolute;top:743.108;left:132.145;"><nobr>
+<span style="font-size:20.022;">operates in a 32-bit paged virtual-memory system. In this mode, supervisor and user virtual</span>
+</nobr></div>
+<div style="position:absolute;top:767.977;left:132.145;"><nobr>
+<span style="font-size:20.022;">addresses are translated into supervisor physical addresses by traversing a radix-tree page table.</span>
+</nobr></div>
+<div style="position:absolute;top:792.844;left:132.145;"><nobr>
+<span style="font-size:20.022;">Sv32 is supported on RV32 systems and is designed to include mechanisms sufficient for supporting</span>
+</nobr></div>
+<div style="position:absolute;top:817.711;left:132.145;"><nobr>
+<span style="font-size:20.022;">modern Unix-based operating systems.</span>
+</nobr></div>
+<div style="position:absolute;top:882.429;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The initial RISC-V paged virtual-memory architectures have been designed as straightforward</span>
+</nobr></div>
+<div style="position:absolute;top:904.371;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">implementations to support existing operating systems. We have architected page table layouts</span>
+</nobr></div>
+<div style="position:absolute;top:926.314;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to support a hardware page-table walker. Software TLB refills are a performance bottleneck on</span>
+</nobr></div>
+<div style="position:absolute;top:948.255;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">high-performance systems, and are especially troublesome with decoupled specialized coprocessors.</span>
+</nobr></div>
+<div style="position:absolute;top:970.197;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">An implementation can choose to implement software TLB refills using a machine-mode trap</span>
+</nobr></div>
+<div style="position:absolute;top:992.139;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">handler as an extension to M-mode.</span>
+</nobr></div>
+<div style="position:absolute;top:1067.177;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.3.1</span>
+</nobr></div>
+<div style="position:absolute;top:1067.177;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Addressing and Memory Protection</span>
+</nobr></div>
+<div style="position:absolute;top:1125.692;left:132.145;"><nobr>
+<span style="font-size:20.022;">Sv32 implementations support a 32-bit virtual address space, divided into 4 KiB pages. An Sv32</span>
+</nobr></div>
+<div style="position:absolute;top:1150.561;left:132.145;"><nobr>
+<span style="font-size:20.022;">virtual address is partitioned into a virtual page number (VPN) and page offset, as shown in</span>
+</nobr></div>
+<div style="position:absolute;top:1175.428;left:132.145;"><nobr>
+<span style="font-size:20.022;">Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(79); return false">4.13</a></span>
+<span style="font-size:20.022;">. When Sv32 virtual memory mode is selected in the MODE field of the satp register,</span>
+</nobr></div>
+<div style="position:absolute;top:1200.295;left:132.145;"><nobr>
+<span style="font-size:20.022;">supervisor virtual addresses are translated into supervisor physical addresses via a two-level page</span>
+</nobr></div>
+<div style="position:absolute;top:1225.162;left:132.145;"><nobr>
+<span style="font-size:20.022;">table. The 20-bit VPN is translated into a 22-bit physical page number (PPN), while the 12-</span>
+</nobr></div>
+<div style="position:absolute;top:1250.029;left:132.145;"><nobr>
+<span style="font-size:20.022;">bit page offset is untranslated. The resulting supervisor-level physical addresses are then checked</span>
+</nobr></div>
+<div style="position:absolute;top:1274.898;left:132.145;"><nobr>
+<span style="font-size:20.022;">using any physical memory protection structures (Sections</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(59); return false">3.6</a></span>
+<span style="font-size:20.022;">), before being directly converted to</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">machine-level physical addresses.</span>
+</nobr></div>
+</td></tr>
+</table>

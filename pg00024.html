@@ -1,0 +1,133 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00024.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">12</span>
+</nobr></div>
+<div style="position:absolute;top:126.195;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">2.3</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:126.195;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">CSR Field Specifications</span>
+</nobr></div>
+<div style="position:absolute;top:193.551;left:132.145;"><nobr>
+<span style="font-size:20.022;">The following definitions and abbreviations are used in specifying the behavior of fields within the</span>
+</nobr></div>
+<div style="position:absolute;top:218.420;left:132.145;"><nobr>
+<span style="font-size:20.022;">CSRs.</span>
+</nobr></div>
+<div style="position:absolute;top:288.115;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Reserved Writes Preserve Values, Reads Ignore Values (WPRI)</span>
+</nobr></div>
+<div style="position:absolute;top:345.531;left:132.145;"><nobr>
+<span style="font-size:20.022;">Some whole read/write fields are reserved for future use. Software should ignore the values read</span>
+</nobr></div>
+<div style="position:absolute;top:370.398;left:132.145;"><nobr>
+<span style="font-size:20.022;">from these fields, and should preserve the values held in these fields when writing values to other</span>
+</nobr></div>
+<div style="position:absolute;top:395.265;left:132.145;"><nobr>
+<span style="font-size:20.022;">fields of the same register. For forward compatibility, implementations that do not furnish these</span>
+</nobr></div>
+<div style="position:absolute;top:420.132;left:132.145;"><nobr>
+<span style="font-size:20.022;">fields must hardwire them to zero. These fields are labeled</span>
+<span style="font-size:20.022;font-weight:bold;">WPRI</span>
+<span style="font-size:20.022;">in the register descriptions.</span>
+</nobr></div>
+<div style="position:absolute;top:473.467;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">To simplify the software model, any backward-compatible future definition of previously reserved</span>
+</nobr></div>
+<div style="position:absolute;top:495.409;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">fields within a CSR must cope with the possibility that a non-atomic read/modify/write sequence</span>
+</nobr></div>
+<div style="position:absolute;top:517.350;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">is used to update other fields in the CSR. Alternatively, the original CSR definition must specify</span>
+</nobr></div>
+<div style="position:absolute;top:539.292;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">that subfields can only be updated atomically, which may require a two-instruction clear bit/set</span>
+</nobr></div>
+<div style="position:absolute;top:561.235;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">bit sequence in general that can be problematic if intermediate values are not legal.</span>
+</nobr></div>
+<div style="position:absolute;top:619.684;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Write/Read Only Legal Values (WLRL)</span>
+</nobr></div>
+<div style="position:absolute;top:677.099;left:132.145;"><nobr>
+<span style="font-size:20.022;">Some read/write CSR fields specify behavior for only a subset of possible bit encodings, with other</span>
+</nobr></div>
+<div style="position:absolute;top:701.967;left:132.145;"><nobr>
+<span style="font-size:20.022;">bit encodings reserved. Software should not write anything other than legal values to such a field,</span>
+</nobr></div>
+<div style="position:absolute;top:726.836;left:132.145;"><nobr>
+<span style="font-size:20.022;">and should not assume a read will return a legal value unless the last write was of a legal value,</span>
+</nobr></div>
+<div style="position:absolute;top:751.703;left:132.145;"><nobr>
+<span style="font-size:20.022;">or the register has not been written since another operation (e.g., reset) set the register to a legal</span>
+</nobr></div>
+<div style="position:absolute;top:776.570;left:132.145;"><nobr>
+<span style="font-size:20.022;">value. These fields are labeled</span>
+<span style="font-size:20.022;font-weight:bold;">WLRL</span>
+<span style="font-size:20.022;">in the register descriptions.</span>
+</nobr></div>
+<div style="position:absolute;top:829.903;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Hardware implementations need only implement enough state bits to differentiate between the</span>
+</nobr></div>
+<div style="position:absolute;top:851.845;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">supported values, but must always return the complete specified bit-encoding of any supported</span>
+</nobr></div>
+<div style="position:absolute;top:873.788;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">value when read.</span>
+</nobr></div>
+<div style="position:absolute;top:905.694;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations are permitted but not required to raise an illegal instruction exception if an</span>
+</nobr></div>
+<div style="position:absolute;top:930.561;left:132.145;"><nobr>
+<span style="font-size:20.022;">instruction attempts to write a non-supported value to a</span>
+<span style="font-size:20.022;font-weight:bold;">WLRL</span>
+<span style="font-size:20.022;">field. Implementations can</span>
+</nobr></div>
+<div style="position:absolute;top:955.428;left:132.145;"><nobr>
+<span style="font-size:20.022;">return arbitrary bit patterns on the read of a</span>
+<span style="font-size:20.022;font-weight:bold;">WLRL</span>
+<span style="font-size:20.022;">field when the last write was of an illegal</span>
+</nobr></div>
+<div style="position:absolute;top:980.297;left:132.145;"><nobr>
+<span style="font-size:20.022;">value, but the value returned should deterministically depend on the illegal written value and the</span>
+</nobr></div>
+<div style="position:absolute;top:1005.165;left:132.145;"><nobr>
+<span style="font-size:20.022;">value of the field prior to the write.</span>
+</nobr></div>
+<div style="position:absolute;top:1074.860;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Write Any Values, Reads Legal Values (WARL)</span>
+</nobr></div>
+<div style="position:absolute;top:1132.275;left:132.145;"><nobr>
+<span style="font-size:20.022;">Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be</span>
+</nobr></div>
+<div style="position:absolute;top:1157.142;left:132.145;"><nobr>
+<span style="font-size:20.022;">written while guaranteeing to return a legal value whenever read. Assuming that writing the CSR</span>
+</nobr></div>
+<div style="position:absolute;top:1182.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">has no other side effects, the range of supported values can be determined by attempting to write</span>
+</nobr></div>
+<div style="position:absolute;top:1206.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">a desired setting then reading to see if the value was retained. These fields are labeled</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">in</span>
+</nobr></div>
+<div style="position:absolute;top:1231.746;left:132.145;"><nobr>
+<span style="font-size:20.022;">the register descriptions.</span>
+</nobr></div>
+<div style="position:absolute;top:1274.897;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations will not raise an exception on writes of unsupported values to a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">field.</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">Implementations can return any legal value on the read of a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">field when the last write was of</span>
+</nobr></div>
+</td></tr>
+</table>

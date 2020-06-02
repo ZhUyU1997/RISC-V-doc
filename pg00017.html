@@ -1,0 +1,98 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00017.jpg"/></div>
+<p style="position:absolute; top:67.755; left:72.000" id="bm000003"></p>
+<div style="position:absolute;top:273.570;left:132.145;"><nobr>
+<span style="font-size:37.923;font-weight:bold;">Chapter 2</span>
+</nobr></div>
+<div style="position:absolute;top:378.027;left:132.145;"><nobr>
+<span style="font-size:45.493;font-weight:bold;">Control and Status Registers (CSRs)</span>
+</nobr></div>
+<div style="position:absolute;top:514.234;left:132.145;"><nobr>
+<span style="font-size:20.022;">The SYSTEM major opcode is used to encode all privileged instructions in the RISC-V ISA. These</span>
+</nobr></div>
+<div style="position:absolute;top:539.101;left:132.145;"><nobr>
+<span style="font-size:20.022;">can be divided into two main classes: those that atomically read-modify-write control and status</span>
+</nobr></div>
+<div style="position:absolute;top:563.968;left:132.145;"><nobr>
+<span style="font-size:20.022;">registers (CSRs), and all other privileged instructions. In addition to the user-level state described</span>
+</nobr></div>
+<div style="position:absolute;top:588.836;left:132.145;"><nobr>
+<span style="font-size:20.022;">in Volume I of this manual, an implementation may contain additional CSRs, accessible by some</span>
+</nobr></div>
+<div style="position:absolute;top:613.705;left:132.145;"><nobr>
+<span style="font-size:20.022;">subset of the privilege levels using the CSR instructions described in the user-level manual. In</span>
+</nobr></div>
+<div style="position:absolute;top:638.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">this chapter, we map out the CSR address space. The following chapters describe the function of</span>
+</nobr></div>
+<div style="position:absolute;top:663.439;left:132.145;"><nobr>
+<span style="font-size:20.022;">each of the CSRs according to privilege level, as well as the other privileged instructions which</span>
+</nobr></div>
+<div style="position:absolute;top:688.306;left:132.145;"><nobr>
+<span style="font-size:20.022;">are generally closely associated with a particular privilege level. Note that although CSRs and</span>
+</nobr></div>
+<div style="position:absolute;top:713.173;left:132.145;"><nobr>
+<span style="font-size:20.022;">instructions are associated with one privilege level, they are also accessible at all higher privilege</span>
+</nobr></div>
+<div style="position:absolute;top:738.042;left:132.145;"><nobr>
+<span style="font-size:20.022;">levels.</span>
+</nobr></div>
+<div style="position:absolute;top:818.291;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">2.1</span>
+</nobr></div>
+<div style="position:absolute;top:818.291;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">CSR Address Mapping Conventions</span>
+</nobr></div>
+<div style="position:absolute;top:886.298;left:132.145;"><nobr>
+<span style="font-size:20.022;">The standard RISC-V ISA sets aside a 12-bit encoding space (csr[11:0]) for up to 4,096 CSRs.</span>
+</nobr></div>
+<div style="position:absolute;top:911.167;left:132.145;"><nobr>
+<span style="font-size:20.022;">By convention, the upper 4 bits of the CSR address (csr[11:8]) are used to encode the read and</span>
+</nobr></div>
+<div style="position:absolute;top:936.034;left:132.145;"><nobr>
+<span style="font-size:20.022;">write accessibility of the CSRs according to privilege level as shown in Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(18); return false">2.1</a></span>
+<span style="font-size:20.022;">. The top two bits</span>
+</nobr></div>
+<div style="position:absolute;top:960.901;left:132.145;"><nobr>
+<span style="font-size:20.022;">(csr[11:10]) indicate whether the register is read/write ( 00 , 01 , or 10 ) or read-only ( 11 ). The next</span>
+</nobr></div>
+<div style="position:absolute;top:985.769;left:132.145;"><nobr>
+<span style="font-size:20.022;">two bits (csr[9:8]) encode the lowest privilege level that can access the CSR.</span>
+</nobr></div>
+<div style="position:absolute;top:1048.110;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The CSR address convention uses the upper bits of the CSR address to encode default access</span>
+</nobr></div>
+<div style="position:absolute;top:1070.053;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">privileges. This simplifies error checking in the hardware and provides a larger CSR space, but</span>
+</nobr></div>
+<div style="position:absolute;top:1091.995;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">does constrain the mapping of CSRs into the address space.</span>
+</nobr></div>
+<div style="position:absolute;top:1114.626;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Implementations might allow a more-privileged level to trap otherwise permitted CSR ac-</span>
+</nobr></div>
+<div style="position:absolute;top:1136.570;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cesses by a less-privileged level to allow these accesses to be intercepted. This change should be</span>
+</nobr></div>
+<div style="position:absolute;top:1158.511;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">transparent to the less-privileged software.</span>
+</nobr></div>
+<div style="position:absolute;top:1225.162;left:132.145;"><nobr>
+<span style="font-size:20.022;">Attempts to access a non-existent CSR raise an illegal instruction exception. Attempts to access a</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">CSR without appropriate privilege level or to write a read-only register also raise illegal instruction</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">exceptions. A read/write register might also contain some bits that are read-only, in which case</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">writes to the read-only bits are ignored.</span>
+</nobr></div>
+<div style="position:absolute;top:1349.981;left:556.612;"><nobr>
+<span style="font-size:20.022;">5</span>
+</nobr></div>
+</td></tr>
+</table>

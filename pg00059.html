@@ -1,0 +1,160 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00059.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">47</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.5.5</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Coherence and Cacheability PMAs</span>
+</nobr></div>
+<div style="position:absolute;top:188.918;left:132.145;"><nobr>
+<span style="font-size:20.022;">Coherence is a property defined for a single physical address, and indicates that writes to that</span>
+</nobr></div>
+<div style="position:absolute;top:213.785;left:132.145;"><nobr>
+<span style="font-size:20.022;">address by one agent will eventually be made visible to other agents in the system. Coherence</span>
+</nobr></div>
+<div style="position:absolute;top:238.653;left:132.145;"><nobr>
+<span style="font-size:20.022;">is not to be confused with the memory consistency model of a system, which defines what values</span>
+</nobr></div>
+<div style="position:absolute;top:263.520;left:132.145;"><nobr>
+<span style="font-size:20.022;">a memory read can return given the previous history of reads and writes to the entire memory</span>
+</nobr></div>
+<div style="position:absolute;top:288.387;left:132.145;"><nobr>
+<span style="font-size:20.022;">system. In RISC-V platforms, the use of hardware-incoherent regions is discouraged due to software</span>
+</nobr></div>
+<div style="position:absolute;top:313.256;left:132.145;"><nobr>
+<span style="font-size:20.022;">complexity, performance, and energy impacts.</span>
+</nobr></div>
+<div style="position:absolute;top:356.407;left:132.145;"><nobr>
+<span style="font-size:20.022;">The cacheability of a memory region should not affect the software view of the region except</span>
+</nobr></div>
+<div style="position:absolute;top:381.276;left:132.145;"><nobr>
+<span style="font-size:20.022;">for differences reflected in other PMAs, such as main memory versus I/O classification, memory</span>
+</nobr></div>
+<div style="position:absolute;top:406.143;left:132.145;"><nobr>
+<span style="font-size:20.022;">ordering, supported accesses and atomic operations, and coherence. For this reason, we treat</span>
+</nobr></div>
+<div style="position:absolute;top:431.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">cacheability as a platform-level setting managed by machine-mode software only.</span>
+</nobr></div>
+<div style="position:absolute;top:474.163;left:132.145;"><nobr>
+<span style="font-size:20.022;">Where a platform supports configurable cacheability settings for a memory region, a platform-</span>
+</nobr></div>
+<div style="position:absolute;top:499.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">specific machine-mode routine will change the settings and flush caches if necessary, so the system</span>
+</nobr></div>
+<div style="position:absolute;top:523.897;left:132.145;"><nobr>
+<span style="font-size:20.022;">is only incoherent during the transition between cacheability settings. This transitory state should</span>
+</nobr></div>
+<div style="position:absolute;top:548.764;left:132.145;"><nobr>
+<span style="font-size:20.022;">not be visible to lower privilege levels.</span>
+</nobr></div>
+<div style="position:absolute;top:619.651;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We categorize RISC-V caches into three types:</span>
+<span style="font-size:18.285;">master-private</span>
+<span style="font-size:18.285;font-style:italic;">,</span>
+<span style="font-size:18.285;">shared</span>
+<span style="font-size:18.285;font-style:italic;">, and</span>
+<span style="font-size:18.285;">slave-private</span>
+<span style="font-size:18.285;font-style:italic;">.</span>
+</nobr></div>
+<div style="position:absolute;top:641.592;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Master-private caches are attached to a single master agent, i.e., one that issues read/write</span>
+</nobr></div>
+<div style="position:absolute;top:663.534;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">requests to the memory system. Shared caches are located between masters and slaves and may</span>
+</nobr></div>
+<div style="position:absolute;top:685.476;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">be hierarchically organized. Slave-private caches do not impact coherence, as they are local to</span>
+</nobr></div>
+<div style="position:absolute;top:707.417;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">a single slave and do not affect other PMAs at a master, so are not considered further here.</span>
+</nobr></div>
+<div style="position:absolute;top:729.359;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We use</span>
+<span style="font-size:18.285;">private cache</span>
+<span style="font-size:18.285;font-style:italic;">to mean a master-private cache in the following section, unless explicitly</span>
+</nobr></div>
+<div style="position:absolute;top:751.302;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">stated otherwise.</span>
+</nobr></div>
+<div style="position:absolute;top:775.643;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Coherence is straightforward to provide for a shared memory region that is not cached by any</span>
+</nobr></div>
+<div style="position:absolute;top:797.584;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">agent. The PMA for such a region would simply indicate it should not be cached in a private or</span>
+</nobr></div>
+<div style="position:absolute;top:819.526;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">shared cache.</span>
+</nobr></div>
+<div style="position:absolute;top:843.868;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Coherence is also straightforward for read-only regions, which can be safely cached by multiple</span>
+</nobr></div>
+<div style="position:absolute;top:865.810;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">agents without requiring a cache-coherence scheme. The PMA for this region would indicate that</span>
+</nobr></div>
+<div style="position:absolute;top:887.751;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">it can be cached, but that writes are not supported.</span>
+</nobr></div>
+<div style="position:absolute;top:912.093;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Some read-write regions might only be accessed by a single agent, in which case they can be</span>
+</nobr></div>
+<div style="position:absolute;top:934.035;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cached privately by that agent without requiring a coherence scheme. The PMA for such regions</span>
+</nobr></div>
+<div style="position:absolute;top:955.977;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">would indicate they can be cached. The data can also be cached in a shared cache, as other</span>
+</nobr></div>
+<div style="position:absolute;top:977.918;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">agents should not access the region.</span>
+</nobr></div>
+<div style="position:absolute;top:1002.260;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">If an agent can cache a read-write region that is accessible by other agents, whether caching</span>
+</nobr></div>
+<div style="position:absolute;top:1024.202;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">or non-caching, a cache-coherence scheme is required to avoid use of stale values. In regions</span>
+</nobr></div>
+<div style="position:absolute;top:1046.144;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">lacking hardware cache coherence (hardware-incoherent regions), cache coherence can be im-</span>
+</nobr></div>
+<div style="position:absolute;top:1068.085;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">plemented entirely in software, but software coherence schemes are notoriously difficult to im-</span>
+</nobr></div>
+<div style="position:absolute;top:1090.029;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">plement correctly and often have severe performance impacts due to the need for conservative</span>
+</nobr></div>
+<div style="position:absolute;top:1111.970;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">software-directed cache-flushing. Hardware cache-coherence schemes require more complex hard-</span>
+</nobr></div>
+<div style="position:absolute;top:1133.912;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">ware and can impact performance due to the cache-coherence probes, but are otherwise invisible</span>
+</nobr></div>
+<div style="position:absolute;top:1155.854;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">to software.</span>
+</nobr></div>
+<div style="position:absolute;top:1180.196;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">For each hardware cache-coherent region, the PMA would indicate that the region is coherent</span>
+</nobr></div>
+<div style="position:absolute;top:1202.137;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">and which hardware coherence controller to use if the system has multiple coherence controllers.</span>
+</nobr></div>
+<div style="position:absolute;top:1224.079;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">For some systems, the coherence controller might be an outer-level shared cache, which might</span>
+</nobr></div>
+<div style="position:absolute;top:1246.021;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">itself access further outer-level cache-coherence controllers hierarchically.</span>
+</nobr></div>
+<div style="position:absolute;top:1270.363;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Most memory regions within a platform will be coherent to software, because they will be</span>
+</nobr></div>
+<div style="position:absolute;top:1292.305;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">fixed as either uncached, read-only, hardware cache-coherent, or only accessed by one agent.</span>
+</nobr></div>
+</td></tr>
+</table>

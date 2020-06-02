@@ -1,0 +1,116 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00027.jpg"/></div>
+<p style="position:absolute; top:67.755; left:72.000" id="bm000004"></p>
+<div style="position:absolute;top:273.570;left:132.145;"><nobr>
+<span style="font-size:37.923;font-weight:bold;">Chapter 3</span>
+</nobr></div>
+<div style="position:absolute;top:378.027;left:132.145;"><nobr>
+<span style="font-size:45.493;font-weight:bold;">Machine-Level ISA, Version 1.11</span>
+</nobr></div>
+<div style="position:absolute;top:511.995;left:132.145;"><nobr>
+<span style="font-size:20.022;">This chapter describes the machine-level operations available in machine-mode (M-mode), which is</span>
+</nobr></div>
+<div style="position:absolute;top:536.864;left:132.145;"><nobr>
+<span style="font-size:20.022;">the highest privilege mode in a RISC-V system. M-mode is used for low-level access to a hardware</span>
+</nobr></div>
+<div style="position:absolute;top:561.731;left:132.145;"><nobr>
+<span style="font-size:20.022;">platform and is the first mode entered at reset. M-mode can also be used to implement features that</span>
+</nobr></div>
+<div style="position:absolute;top:586.598;left:132.145;"><nobr>
+<span style="font-size:20.022;">are too difficult or expensive to implement in hardware directly. The RISC-V machine-level ISA</span>
+</nobr></div>
+<div style="position:absolute;top:611.465;left:132.145;"><nobr>
+<span style="font-size:20.022;">contains a common core that is extended depending on which other privilege levels are supported</span>
+</nobr></div>
+<div style="position:absolute;top:636.333;left:132.145;"><nobr>
+<span style="font-size:20.022;">and other details of the hardware implementation.</span>
+</nobr></div>
+<div style="position:absolute;top:712.437;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">3.1</span>
+</nobr></div>
+<div style="position:absolute;top:712.437;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Machine-Level CSRs</span>
+</nobr></div>
+<div style="position:absolute;top:779.795;left:132.145;"><nobr>
+<span style="font-size:20.022;">In addition to the machine-level CSRs described in this section, M-mode code can access all CSRs</span>
+</nobr></div>
+<div style="position:absolute;top:804.662;left:132.145;"><nobr>
+<span style="font-size:20.022;">at lower privilege levels.</span>
+</nobr></div>
+<div style="position:absolute;top:874.343;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.1</span>
+</nobr></div>
+<div style="position:absolute;top:874.343;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine ISA Register</span>
+<span style="font-size:21.942;">misa</span>
+</nobr></div>
+<div style="position:absolute;top:931.758;left:132.145;"><nobr>
+<span style="font-size:20.022;">The misa CSR is a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">read-write register reporting the ISA supported by the hart. This</span>
+</nobr></div>
+<div style="position:absolute;top:956.625;left:132.145;"><nobr>
+<span style="font-size:20.022;">register must be readable in any implementation, but a value of zero can be returned to indicate</span>
+</nobr></div>
+<div style="position:absolute;top:981.494;left:132.145;"><nobr>
+<span style="font-size:20.022;">the misa register has not been implemented, requiring that CPU capabilities be determined through</span>
+</nobr></div>
+<div style="position:absolute;top:1006.361;left:132.145;"><nobr>
+<span style="font-size:20.022;">a separate non-standard mechanism.</span>
+</nobr></div>
+<div style="position:absolute;top:1048.135;left:198.216;"><nobr>
+<span style="font-size:14.628;">MXLEN-1 MXLEN-2 MXLEN-3 26 25</span>
+</nobr></div>
+<div style="position:absolute;top:1067.712;left:192.932;"><nobr>
+<span style="font-size:16.456;">MXL[1:0] (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1067.712;left:374.299;"><nobr>
+<span style="font-size:16.456;font-weight:bold;">WLRL</span>
+</nobr></div>
+<div style="position:absolute;top:1088.556;left:267.928;"><nobr>
+<span style="font-size:16.456;">2</span>
+</nobr></div>
+<div style="position:absolute;top:1088.556;left:360.940;"><nobr>
+<span style="font-size:16.456;">MXLEN-28</span>
+</nobr></div>
+<div style="position:absolute;top:1067.712;left:599.789;"><nobr>
+<span style="font-size:16.456;">Extensions[25:0] (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1088.556;left:684.623;"><nobr>
+<span style="font-size:16.456;">26</span>
+</nobr></div>
+<div style="position:absolute;top:1048.135;left:923.059;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1135.972;left:382.643;"><nobr>
+<span style="font-size:20.022;">Figure 3.1: Machine ISA register ( misa ).</span>
+</nobr></div>
+<div style="position:absolute;top:1182.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MXL (Machine XLEN) field encodes the native base integer ISA width as shown in Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(27); return false">3.1</a></span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:1206.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">The MXL field may be writable in implementations that support multiple base ISA widths. The</span>
+</nobr></div>
+<div style="position:absolute;top:1231.746;left:132.145;"><nobr>
+<span style="font-size:20.022;">effective XLEN in M-mode,</span>
+<span style="font-size:20.022;font-style:italic;">MXLEN</span>
+<span style="font-size:20.022;">, is given by the setting of MXL, or has a fixed value if misa</span>
+</nobr></div>
+<div style="position:absolute;top:1256.613;left:132.145;"><nobr>
+<span style="font-size:20.022;">is zero. The MXL field is always set to the widest supported ISA variant at reset.</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">The misa CSR is MXLEN bits wide. If the value read from misa is nonzero, field MXL of that value</span>
+</nobr></div>
+<div style="position:absolute;top:1349.981;left:551.605;"><nobr>
+<span style="font-size:20.022;">15</span>
+</nobr></div>
+</td></tr>
+</table>

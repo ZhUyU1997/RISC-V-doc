@@ -1,0 +1,131 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00060.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">48</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.5.6</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:129.240;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Idempotency PMAs</span>
+</nobr></div>
+<div style="position:absolute;top:187.566;left:132.145;"><nobr>
+<span style="font-size:20.022;">Idempotency PMAs describe whether reads and writes to an address region are idempotent. Main</span>
+</nobr></div>
+<div style="position:absolute;top:212.433;left:132.145;"><nobr>
+<span style="font-size:20.022;">memory regions are assumed to be idempotent. For I/O regions, idempotency on reads and writes</span>
+</nobr></div>
+<div style="position:absolute;top:237.300;left:132.145;"><nobr>
+<span style="font-size:20.022;">can be specified separately (e.g., reads are idempotent but writes are not). If accesses are non-</span>
+</nobr></div>
+<div style="position:absolute;top:262.167;left:132.145;"><nobr>
+<span style="font-size:20.022;">idempotent, i.e., there is potentially a side effect on any read or write access, then speculative or</span>
+</nobr></div>
+<div style="position:absolute;top:287.036;left:132.145;"><nobr>
+<span style="font-size:20.022;">redundant accesses must be avoided.</span>
+</nobr></div>
+<div style="position:absolute;top:330.187;left:132.145;"><nobr>
+<span style="font-size:20.022;">For the purposes of defining the idempotency PMAs, changes in observed memory ordering created</span>
+</nobr></div>
+<div style="position:absolute;top:355.056;left:132.145;"><nobr>
+<span style="font-size:20.022;">by redundant accesses are not considered a side effect.</span>
+</nobr></div>
+<div style="position:absolute;top:418.768;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">While hardware should always be designed to avoid speculative or redundant accesses to memory</span>
+</nobr></div>
+<div style="position:absolute;top:440.711;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">regions marked as non-idempotent, it is also necessary to ensure software or compiler optimiza-</span>
+</nobr></div>
+<div style="position:absolute;top:462.653;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">tions do not generate spurious accesses to non-idempotent memory regions.</span>
+</nobr></div>
+<div style="position:absolute;top:524.534;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Non-idempotent regions might not support misaligned accesses. Misaligned accesses to such</span>
+</nobr></div>
+<div style="position:absolute;top:546.477;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">regions should raise access exceptions rather than address-misaligned exceptions, indicating that</span>
+</nobr></div>
+<div style="position:absolute;top:568.419;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">software should not emulate the misaligned access using multiple smaller accesses, which could</span>
+</nobr></div>
+<div style="position:absolute;top:590.360;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">cause unexpected side effects.</span>
+</nobr></div>
+<div style="position:absolute;top:670.071;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">3.6</span>
+</nobr></div>
+<div style="position:absolute;top:670.071;left:199.577;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Physical Memory Protection</span>
+</nobr></div>
+<div style="position:absolute;top:738.339;left:132.145;"><nobr>
+<span style="font-size:20.022;">To support secure processing and contain faults, it is desirable to limit the physical addresses</span>
+</nobr></div>
+<div style="position:absolute;top:763.207;left:132.145;"><nobr>
+<span style="font-size:20.022;">accessible by software running on a hart. An optional physical memory protection (PMP) unit</span>
+</nobr></div>
+<div style="position:absolute;top:788.074;left:132.145;"><nobr>
+<span style="font-size:20.022;">provides per-hart machine-mode control registers to allow physical memory access privileges (read,</span>
+</nobr></div>
+<div style="position:absolute;top:812.941;left:132.145;"><nobr>
+<span style="font-size:20.022;">write, execute) to be specified for each physical memory region. The PMP values are checked in</span>
+</nobr></div>
+<div style="position:absolute;top:837.808;left:132.145;"><nobr>
+<span style="font-size:20.022;">parallel with the PMA checks described in Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(54); return false">3.5</a></span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:880.961;left:132.145;"><nobr>
+<span style="font-size:20.022;">The granularity of PMP access control settings are platform-specific and within a platform may</span>
+</nobr></div>
+<div style="position:absolute;top:905.828;left:132.145;"><nobr>
+<span style="font-size:20.022;">vary by physical memory region, but the standard PMP encoding supports regions as small as four</span>
+</nobr></div>
+<div style="position:absolute;top:930.697;left:132.145;"><nobr>
+<span style="font-size:20.022;">bytes. Certain regions’ privileges can be hardwired—for example, some regions might only ever be</span>
+</nobr></div>
+<div style="position:absolute;top:955.564;left:132.145;"><nobr>
+<span style="font-size:20.022;">visible in machine mode but in no lower-privilege layers.</span>
+</nobr></div>
+<div style="position:absolute;top:1019.278;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Platforms vary widely in demands for physical memory protection, and some platforms may</span>
+</nobr></div>
+<div style="position:absolute;top:1041.220;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">provide other PMP structures in addition to or instead of the scheme described in this section.</span>
+</nobr></div>
+<div style="position:absolute;top:1082.541;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMP checks are applied to all accesses when the hart is running in S or U modes, and for loads</span>
+</nobr></div>
+<div style="position:absolute;top:1107.408;left:132.145;"><nobr>
+<span style="font-size:20.022;">and stores when the MPRV bit is set in the mstatus register and the MPP field in the mstatus</span>
+</nobr></div>
+<div style="position:absolute;top:1132.275;left:132.145;"><nobr>
+<span style="font-size:20.022;">register contains S or U. PMP checks are also applied to page-table accesses for virtual-address</span>
+</nobr></div>
+<div style="position:absolute;top:1157.143;left:132.145;"><nobr>
+<span style="font-size:20.022;">translation, for which the effective privilege mode is S. Optionally, PMP checks may additionally</span>
+</nobr></div>
+<div style="position:absolute;top:1182.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">apply to M-mode accesses, in which case the PMP registers themselves are locked, so that even</span>
+</nobr></div>
+<div style="position:absolute;top:1206.877;left:132.145;"><nobr>
+<span style="font-size:20.022;">M-mode software cannot change them without a system reset. In effect, PMP can</span>
+<span style="font-size:20.022;font-style:italic;">grant</span>
+<span style="font-size:20.022;">permissions</span>
+</nobr></div>
+<div style="position:absolute;top:1231.746;left:132.145;"><nobr>
+<span style="font-size:20.022;">to S and U modes, which by default have none, and can</span>
+<span style="font-size:20.022;font-style:italic;">revoke</span>
+<span style="font-size:20.022;">permissions from M-mode, which</span>
+</nobr></div>
+<div style="position:absolute;top:1256.613;left:132.145;"><nobr>
+<span style="font-size:20.022;">by default has full permissions.</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">PMP violations are always trapped precisely at the processor.</span>
+</nobr></div>
+</td></tr>
+</table>

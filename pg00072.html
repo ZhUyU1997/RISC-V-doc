@@ -1,0 +1,175 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00072.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">60</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">The implementation must provide a facility for scheduling timer interrupts in terms of the real-time</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">counter, time .</span>
+</nobr></div>
+<div style="position:absolute;top:233.057;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.1.7</span>
+</nobr></div>
+<div style="position:absolute;top:233.057;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Counter-Enable Register (</span>
+<span style="font-size:21.942;">scounteren</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:175.320;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:247.640;"><nobr>
+<span style="font-size:14.628;">30</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:319.595;"><nobr>
+<span style="font-size:14.628;">29</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:376.293;"><nobr>
+<span style="font-size:14.628;">28</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:653.595;"><nobr>
+<span style="font-size:14.628;">6</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:696.542;"><nobr>
+<span style="font-size:14.628;">5</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:760.057;"><nobr>
+<span style="font-size:14.628;">4</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:823.556;"><nobr>
+<span style="font-size:14.628;">3</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:872.268;"><nobr>
+<span style="font-size:14.628;">2</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:910.754;"><nobr>
+<span style="font-size:14.628;">1</span>
+</nobr></div>
+<div style="position:absolute;top:296.970;left:952.414;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:316.545;left:154.788;"><nobr>
+<span style="font-size:16.456;">HPM31 HPM30 HPM29</span>
+</nobr></div>
+<div style="position:absolute;top:337.389;left:178.862;"><nobr>
+<span style="font-size:16.456;">1 1 1</span>
+</nobr></div>
+<div style="position:absolute;top:316.545;left:508.632;"><nobr>
+<span style="font-size:16.456;">...</span>
+</nobr></div>
+<div style="position:absolute;top:337.389;left:507.548;"><nobr>
+<span style="font-size:16.456;">23</span>
+</nobr></div>
+<div style="position:absolute;top:316.545;left:676.033;"><nobr>
+<span style="font-size:16.456;">HPM5 HPM4 HPM3 IR TM CY</span>
+</nobr></div>
+<div style="position:absolute;top:337.389;left:696.172;"><nobr>
+<span style="font-size:16.456;">1 1 1 1 1 1</span>
+</nobr></div>
+<div style="position:absolute;top:384.807;left:341.348;"><nobr>
+<span style="font-size:20.022;">Figure 4.6: Counter-enable register ( scounteren ).</span>
+</nobr></div>
+<div style="position:absolute;top:434.127;left:132.145;"><nobr>
+<span style="font-size:20.022;">The counter-enable register scounteren is a 32-bit register that controls the availability of the</span>
+</nobr></div>
+<div style="position:absolute;top:458.994;left:132.145;"><nobr>
+<span style="font-size:20.022;">hardware performance monitoring counters to U-mode.</span>
+</nobr></div>
+<div style="position:absolute;top:502.147;left:132.145;"><nobr>
+<span style="font-size:20.022;">When the CY, TM, IR, or HPM</span>
+<span style="font-size:20.022;font-style:italic;">n</span>
+<span style="font-size:20.022;">bit in the scounteren register is clear, attempts to read the cycle ,</span>
+</nobr></div>
+<div style="position:absolute;top:528.676;left:132.145;"><nobr>
+<span style="font-size:20.022;">time , instret , or hpmcounter</span>
+<span style="font-size:20.022;font-style:italic;">n</span>
+<span style="font-size:20.022;">register while executing in U-mode will cause an illegal instruction</span>
+</nobr></div>
+<div style="position:absolute;top:551.881;left:132.145;"><nobr>
+<span style="font-size:20.022;">exception. When one of these bits is set, access to the corresponding register is permitted.</span>
+</nobr></div>
+<div style="position:absolute;top:596.695;left:132.145;"><nobr>
+<span style="font-size:20.022;">scounteren must be implemented. However, any of the bits may contain a hardwired value of zero,</span>
+</nobr></div>
+<div style="position:absolute;top:619.901;left:132.145;"><nobr>
+<span style="font-size:20.022;">indicating reads to the corresponding counter will cause an exception when executing in U-mode.</span>
+</nobr></div>
+<div style="position:absolute;top:644.768;left:132.145;"><nobr>
+<span style="font-size:20.022;">Hence, they are effectively</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">fields.</span>
+</nobr></div>
+<div style="position:absolute;top:722.385;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.1.8</span>
+</nobr></div>
+<div style="position:absolute;top:722.385;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Supervisor Scratch Register (</span>
+<span style="font-size:21.942;">sscratch</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:781.212;left:132.145;"><nobr>
+<span style="font-size:20.022;">The sscratch register is an SXLEN-bit read/write register, dedicated for use by the supervisor.</span>
+</nobr></div>
+<div style="position:absolute;top:806.079;left:132.145;"><nobr>
+<span style="font-size:20.022;">Typically, sscratch is used to hold a pointer to the hart-local supervisor context while the hart is</span>
+</nobr></div>
+<div style="position:absolute;top:830.946;left:132.145;"><nobr>
+<span style="font-size:20.022;">executing user code. At the beginning of a trap handler, sscratch is swapped with a user register</span>
+</nobr></div>
+<div style="position:absolute;top:855.813;left:132.145;"><nobr>
+<span style="font-size:20.022;">to provide an initial working register.</span>
+</nobr></div>
+<div style="position:absolute;top:902.462;left:264.443;"><nobr>
+<span style="font-size:14.628;">SXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:902.462;left:845.687;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1073.451;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.1.9</span>
+</nobr></div>
+<div style="position:absolute;top:923.402;left:527.059;"><nobr>
+<span style="font-size:16.456;">sscratch</span>
+</nobr></div>
+<div style="position:absolute;top:942.883;left:527.711;"><nobr>
+<span style="font-size:16.456;">SXLEN</span>
+</nobr></div>
+<div style="position:absolute;top:989.186;left:385.895;"><nobr>
+<span style="font-size:20.022;">Figure 4.7: Supervisor Scratch Register.</span>
+</nobr></div>
+<div style="position:absolute;top:1073.451;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Supervisor Exception Program Counter (</span>
+<span style="font-size:21.942;">sepc</span>
+<span style="font-size:21.942;font-weight:bold;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1133.937;left:132.145;"><nobr>
+<span style="font-size:20.022;">sepc is an SXLEN-bit read/write register formatted as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(72); return false">4.8</a></span>
+<span style="font-size:20.022;">. The low bit of sepc</span>
+</nobr></div>
+<div style="position:absolute;top:1157.143;left:132.145;"><nobr>
+<span style="font-size:20.022;">( sepc[0] ) is always zero. On implementations that support only IALIGN=32, the two low bits</span>
+</nobr></div>
+<div style="position:absolute;top:1182.010;left:132.145;"><nobr>
+<span style="font-size:20.022;">( sepc[1:0] ) are always zero.</span>
+</nobr></div>
+<div style="position:absolute;top:1225.162;left:132.145;"><nobr>
+<span style="font-size:20.022;">If an implementation allows IALIGN to be either 16 or 32 (by changing CSR misa , for example),</span>
+</nobr></div>
+<div style="position:absolute;top:1250.030;left:132.145;"><nobr>
+<span style="font-size:20.022;">then, whenever IALIGN=32, bit sepc[1] is masked on reads so that it appears to be 0. This</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">masking occurs also for the implicit read by the SRET instruction. Though masked, sepc[1]</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">remains writable when IALIGN=32.</span>
+</nobr></div>
+</td></tr>
+</table>

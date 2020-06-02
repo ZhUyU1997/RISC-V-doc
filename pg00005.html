@@ -1,0 +1,157 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:974.404;"><nobr>
+<span style="font-size:20.022;">iii</span>
+</nobr></div>
+<div style="position:absolute;top:126.195;left:132.145;"><nobr>
+<span style="font-size:26.330;font-weight:bold;">Preface to Version 1.10</span>
+</nobr></div>
+<div style="position:absolute;top:196.476;left:132.145;"><nobr>
+<span style="font-size:20.022;">This is version 1.10 of the RISC-V privileged architecture proposal. Changes from version 1.9.1</span>
+</nobr></div>
+<div style="position:absolute;top:221.343;left:132.145;"><nobr>
+<span style="font-size:20.022;">include:</span>
+</nobr></div>
+<div style="position:absolute;top:297.727;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The previous version of this document was released under a Creative Commons Attribution</span>
+</nobr></div>
+<div style="position:absolute;top:323.716;left:182.201;"><nobr>
+<span style="font-size:20.022;">4.0 International License by the original authors, and this and future versions of this document</span>
+</nobr></div>
+<div style="position:absolute;top:348.583;left:182.201;"><nobr>
+<span style="font-size:20.022;">will be released under the same license.</span>
+</nobr></div>
+<div style="position:absolute;top:374.157;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The explicit convention on shadow CSR addresses has been removed to reclaim CSR space.</span>
+</nobr></div>
+<div style="position:absolute;top:400.147;left:182.201;"><nobr>
+<span style="font-size:20.022;">Shadow CSRs can still be added as needed.</span>
+</nobr></div>
+<div style="position:absolute;top:425.721;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The mvendorid register now contains the JEDEC code of the core provider as opposed to</span>
+</nobr></div>
+<div style="position:absolute;top:451.709;left:182.201;"><nobr>
+<span style="font-size:20.022;">a code supplied by the Foundation. This avoids redundancy and offloads work from the</span>
+</nobr></div>
+<div style="position:absolute;top:476.576;left:182.201;"><nobr>
+<span style="font-size:20.022;">Foundation.</span>
+</nobr></div>
+<div style="position:absolute;top:502.152;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The interrupt-enable stack discipline has been simplified.</span>
+</nobr></div>
+<div style="position:absolute;top:528.847;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">An optional mechanism to change the base ISA used by supervisor and user modes has been</span>
+</nobr></div>
+<div style="position:absolute;top:554.838;left:182.201;"><nobr>
+<span style="font-size:20.022;">added to the mstatus CSR, and the field previously called Base in misa has been renamed</span>
+</nobr></div>
+<div style="position:absolute;top:579.705;left:182.201;"><nobr>
+<span style="font-size:20.022;">to MXL for consistency.</span>
+</nobr></div>
+<div style="position:absolute;top:605.279;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">Clarified expected use of XS to summarize additional extension state status fields in mstatus .</span>
+</nobr></div>
+<div style="position:absolute;top:631.976;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">Optional vectored interrupt support has been added to the mtvec and stvec CSRs.</span>
+</nobr></div>
+<div style="position:absolute;top:658.671;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The SEIP and UEIP bits in the mip CSR have been redefined to support software injection</span>
+</nobr></div>
+<div style="position:absolute;top:684.659;left:182.201;"><nobr>
+<span style="font-size:20.022;">of external interrupts.</span>
+</nobr></div>
+<div style="position:absolute;top:710.235;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The mbadaddr register has been subsumed by a more general mtval register that can now</span>
+</nobr></div>
+<div style="position:absolute;top:736.223;left:182.201;"><nobr>
+<span style="font-size:20.022;">capture bad instruction bits on an illegal instruction fault to speed instruction emulation.</span>
+</nobr></div>
+<div style="position:absolute;top:761.797;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The machine-mode base-and-bounds translation and protection schemes have been removed</span>
+</nobr></div>
+<div style="position:absolute;top:787.788;left:182.201;"><nobr>
+<span style="font-size:20.022;">from the specification as part of moving the virtual memory configuration to sptbr (now</span>
+</nobr></div>
+<div style="position:absolute;top:814.317;left:182.201;"><nobr>
+<span style="font-size:20.022;">satp ). Some of the motivation for the base and bound schemes are now covered by the PMP</span>
+</nobr></div>
+<div style="position:absolute;top:837.522;left:182.201;"><nobr>
+<span style="font-size:20.022;">registers, but space remains available in mstatus to add these back at a later date if deemed</span>
+</nobr></div>
+<div style="position:absolute;top:862.389;left:182.201;"><nobr>
+<span style="font-size:20.022;">useful.</span>
+</nobr></div>
+<div style="position:absolute;top:887.965;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">In systems with only M-mode, or with both M-mode and U-mode but without U-mode</span>
+</nobr></div>
+<div style="position:absolute;top:913.953;left:182.201;"><nobr>
+<span style="font-size:20.022;">trap support, the medeleg and mideleg registers now do not exist, whereas previously they</span>
+</nobr></div>
+<div style="position:absolute;top:938.820;left:182.201;"><nobr>
+<span style="font-size:20.022;">returned zero.</span>
+</nobr></div>
+<div style="position:absolute;top:964.396;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">Virtual-memory page faults now have mcause values distinct from physical-memory access</span>
+</nobr></div>
+<div style="position:absolute;top:990.385;left:182.200;"><nobr>
+<span style="font-size:20.022;">exceptions. Page-fault exceptions can now be delegated to S-mode without delegating excep-</span>
+</nobr></div>
+<div style="position:absolute;top:1015.252;left:182.200;"><nobr>
+<span style="font-size:20.022;">tions generated by PMA and PMP checks.</span>
+</nobr></div>
+<div style="position:absolute;top:1040.826;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">An optional physical-memory protection (PMP) scheme has been proposed.</span>
+</nobr></div>
+<div style="position:absolute;top:1067.523;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The supervisor virtual memory configuration has been moved from the mstatus register to</span>
+</nobr></div>
+<div style="position:absolute;top:1093.511;left:182.201;"><nobr>
+<span style="font-size:20.022;">the sptbr register. Accordingly, the sptbr register has been renamed to satp (Supervisor</span>
+</nobr></div>
+<div style="position:absolute;top:1118.378;left:182.201;"><nobr>
+<span style="font-size:20.022;">Address Translation and Protection) to reflect its broadened role.</span>
+</nobr></div>
+<div style="position:absolute;top:1143.954;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The SFENCE.VM instruction has been removed in favor of the improved SFENCE.VMA</span>
+</nobr></div>
+<div style="position:absolute;top:1169.942;left:182.201;"><nobr>
+<span style="font-size:20.022;">instruction.</span>
+</nobr></div>
+<div style="position:absolute;top:1195.516;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The mstatus bit MXR has been exposed to S-mode via sstatus .</span>
+</nobr></div>
+<div style="position:absolute;top:1222.213;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">The polarity of the PUM bit in sstatus has been inverted to shorten code sequences involving</span>
+</nobr></div>
+<div style="position:absolute;top:1248.202;left:182.201;"><nobr>
+<span style="font-size:20.022;">MXR. The bit has been renamed to SUM.</span>
+</nobr></div>
+<div style="position:absolute;top:1273.776;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">Hardware management of page-table entry Accessed and Dirty bits has been made optional;</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:182.201;"><nobr>
+<span style="font-size:20.022;">simpler implementations may trap to software to set them.</span>
+</nobr></div>
+</td></tr>
+</table>

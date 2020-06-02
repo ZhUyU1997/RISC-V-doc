@@ -1,0 +1,195 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00082.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">70</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:153.720;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Mandating that the PTE updates to be exact, atomic, and in program order simplifies the spec-</span>
+</nobr></div>
+<div style="position:absolute;top:175.661;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">ification, and makes the feature more useful for system software. Simple implementations may</span>
+</nobr></div>
+<div style="position:absolute;top:197.603;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">instead generate page-fault exceptions.</span>
+</nobr></div>
+<div style="position:absolute;top:220.024;left:212.233;"><nobr>
+<span style="font-size:18.285;font-style:italic;">The A and D bits are never cleared by the implementation. If the supervisor software does</span>
+</nobr></div>
+<div style="position:absolute;top:241.965;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">not rely on accessed and/or dirty bits, e.g. if it does not swap memory pages to secondary storage</span>
+</nobr></div>
+<div style="position:absolute;top:263.907;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">or if the pages are being used to map I/O space, it should always set them to 1 in the PTE to</span>
+</nobr></div>
+<div style="position:absolute;top:285.850;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">improve performance.</span>
+</nobr></div>
+<div style="position:absolute;top:325.224;left:132.145;"><nobr>
+<span style="font-size:20.022;">Any level of PTE may be a leaf PTE, so in addition to 4 KiB pages, Sv32 supports 4 MiB</span>
+<span style="font-size:20.022;font-style:italic;">megapages</span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:350.091;left:132.145;"><nobr>
+<span style="font-size:20.022;">A megapage must be virtually and physically aligned to a 4 MiB boundary; a page-fault exception</span>
+</nobr></div>
+<div style="position:absolute;top:374.959;left:132.145;"><nobr>
+<span style="font-size:20.022;">is raised if the physical address is insufficiently aligned.</span>
+</nobr></div>
+<div style="position:absolute;top:418.111;left:132.145;"><nobr>
+<span style="font-size:20.022;">For non-leaf PTEs, the D, A, and U bits are reserved for future use and must be cleared by software</span>
+</nobr></div>
+<div style="position:absolute;top:442.979;left:132.145;"><nobr>
+<span style="font-size:20.022;">for forward compatibility.</span>
+</nobr></div>
+<div style="position:absolute;top:515.804;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.3.2</span>
+</nobr></div>
+<div style="position:absolute;top:515.804;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Virtual Address Translation Process</span>
+</nobr></div>
+<div style="position:absolute;top:573.670;left:132.145;"><nobr>
+<span style="font-size:20.022;">A virtual address</span>
+<span style="font-size:20.022;font-style:italic;">va</span>
+<span style="font-size:20.022;">is translated into a physical address</span>
+<span style="font-size:20.022;font-style:italic;">pa</span>
+<span style="font-size:20.022;">as follows:</span>
+</nobr></div>
+<div style="position:absolute;top:640.681;left:156.616;"><nobr>
+<span style="font-size:20.022;">1. Let</span>
+<span style="font-size:20.022;font-style:italic;">a</span>
+<span style="font-size:20.022;">be satp</span>
+<span style="font-size:20.022;font-style:italic;">.ppn ×</span>
+<span style="font-size:20.022;">PAGESIZE, and let</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">= LEVELS</span>
+<span style="font-size:20.022;font-style:italic;">−</span>
+<span style="font-size:20.022;">1. (For Sv32, PAGESIZE=2</span>
+<span style="font-size:14.628;">12</span>
+<span style="font-size:20.022;">and</span>
+</nobr></div>
+<div style="position:absolute;top:665.548;left:182.201;"><nobr>
+<span style="font-size:20.022;">LEVELS=2.)</span>
+</nobr></div>
+<div style="position:absolute;top:708.785;left:156.616;"><nobr>
+<span style="font-size:20.022;">2. Let</span>
+<span style="font-size:20.022;font-style:italic;">pte</span>
+<span style="font-size:20.022;">be the value of the PTE at address</span>
+<span style="font-size:20.022;font-style:italic;">a</span>
+<span style="font-size:20.022;">+</span>
+<span style="font-size:20.022;font-style:italic;">va.vpn</span>
+<span style="font-size:20.022;">[</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">]</span>
+<span style="font-size:20.022;font-style:italic;">×</span>
+<span style="font-size:20.022;">PTESIZE. (For Sv32, PTESIZE=4.)</span>
+</nobr></div>
+<div style="position:absolute;top:733.654;left:182.201;"><nobr>
+<span style="font-size:20.022;">If accessing</span>
+<span style="font-size:20.022;font-style:italic;">pte</span>
+<span style="font-size:20.022;">violates a PMA or PMP check, raise an access exception corresponding to</span>
+</nobr></div>
+<div style="position:absolute;top:758.521;left:182.201;"><nobr>
+<span style="font-size:20.022;">the original access type.</span>
+</nobr></div>
+<div style="position:absolute;top:801.760;left:156.616;"><nobr>
+<span style="font-size:20.022;">3. If</span>
+<span style="font-size:20.022;font-style:italic;">pte.v</span>
+<span style="font-size:20.022;">= 0, or if</span>
+<span style="font-size:20.022;font-style:italic;">pte.r</span>
+<span style="font-size:20.022;">= 0 and</span>
+<span style="font-size:20.022;font-style:italic;">pte.w</span>
+<span style="font-size:20.022;">= 1, stop and raise a page-fault exception corresponding</span>
+</nobr></div>
+<div style="position:absolute;top:826.627;left:182.201;"><nobr>
+<span style="font-size:20.022;">to the original access type.</span>
+</nobr></div>
+<div style="position:absolute;top:869.865;left:156.616;"><nobr>
+<span style="font-size:20.022;">4. Otherwise, the PTE is valid. If</span>
+<span style="font-size:20.022;font-style:italic;">pte.r</span>
+<span style="font-size:20.022;">= 1 or</span>
+<span style="font-size:20.022;font-style:italic;">pte.x</span>
+<span style="font-size:20.022;">= 1, go to step 5. Otherwise, this PTE is a</span>
+</nobr></div>
+<div style="position:absolute;top:894.734;left:182.201;"><nobr>
+<span style="font-size:20.022;">pointer to the next level of the page table. Let</span>
+<span style="font-size:20.022;font-style:italic;">i</span>
+<span style="font-size:20.022;">=</span>
+<span style="font-size:20.022;font-style:italic;">i −</span>
+<span style="font-size:20.022;">1. If</span>
+<span style="font-size:20.022;font-style:italic;">i &lt;</span>
+<span style="font-size:20.022;">0, stop and raise a page-fault</span>
+</nobr></div>
+<div style="position:absolute;top:919.601;left:182.201;"><nobr>
+<span style="font-size:20.022;">exception corresponding to the original access type. Otherwise, let</span>
+<span style="font-size:20.022;font-style:italic;">a</span>
+<span style="font-size:20.022;">=</span>
+<span style="font-size:20.022;font-style:italic;">pte.ppn ×</span>
+<span style="font-size:20.022;">PAGESIZE</span>
+</nobr></div>
+<div style="position:absolute;top:944.468;left:182.201;"><nobr>
+<span style="font-size:20.022;">and go to step 2.</span>
+</nobr></div>
+<div style="position:absolute;top:987.707;left:156.616;"><nobr>
+<span style="font-size:20.022;">5. A leaf PTE has been found. Determine if the requested memory access is allowed by the</span>
+</nobr></div>
+<div style="position:absolute;top:1012.574;left:182.201;"><nobr>
+<span style="font-size:20.022;font-style:italic;">pte.r</span>
+<span style="font-size:20.022;">,</span>
+<span style="font-size:20.022;font-style:italic;">pte.w</span>
+<span style="font-size:20.022;">,</span>
+<span style="font-size:20.022;font-style:italic;">pte.x</span>
+<span style="font-size:20.022;">, and</span>
+<span style="font-size:20.022;font-style:italic;">pte.u</span>
+<span style="font-size:20.022;">bits, given the current privilege mode and the value of the</span>
+</nobr></div>
+<div style="position:absolute;top:1037.441;left:182.201;"><nobr>
+<span style="font-size:20.022;">SUM and MXR fields of the mstatus register. If not, stop and raise a page-fault exception</span>
+</nobr></div>
+<div style="position:absolute;top:1062.308;left:182.201;"><nobr>
+<span style="font-size:20.022;">corresponding to the original access type.</span>
+</nobr></div>
+<div style="position:absolute;top:1105.547;left:156.616;"><nobr>
+<span style="font-size:20.022;">6. If</span>
+<span style="font-size:20.022;font-style:italic;">i &gt;</span>
+<span style="font-size:20.022;">0 and</span>
+<span style="font-size:20.022;font-style:italic;">pte.ppn</span>
+<span style="font-size:20.022;">[</span>
+<span style="font-size:20.022;font-style:italic;">i −</span>
+<span style="font-size:20.022;">1 : 0]</span>
+<span style="font-size:20.022;font-style:italic;"≯</span>
+<span style="font-size:20.022;">= 0, this is a misaligned superpage; stop and raise a page-fault</span>
+</nobr></div>
+<div style="position:absolute;top:1130.415;left:182.201;"><nobr>
+<span style="font-size:20.022;">exception corresponding to the original access type.</span>
+</nobr></div>
+<div style="position:absolute;top:1173.654;left:156.616;"><nobr>
+<span style="font-size:20.022;">7. If</span>
+<span style="font-size:20.022;font-style:italic;">pte.a</span>
+<span style="font-size:20.022;">= 0, or if the memory access is a store and</span>
+<span style="font-size:20.022;font-style:italic;">pte.d</span>
+<span style="font-size:20.022;">= 0, either raise a page-fault</span>
+</nobr></div>
+<div style="position:absolute;top:1198.521;left:182.201;"><nobr>
+<span style="font-size:20.022;">exception corresponding to the original access type, or:</span>
+</nobr></div>
+<div style="position:absolute;top:1240.639;left:206.227;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">Set</span>
+<span style="font-size:20.022;font-style:italic;">pte.a</span>
+<span style="font-size:20.022;">to 1 and, if the memory access is a store, also set</span>
+<span style="font-size:20.022;font-style:italic;">pte.d</span>
+<span style="font-size:20.022;">to 1.</span>
+</nobr></div>
+<div style="position:absolute;top:1273.778;left:206.227;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">If this access violates a PMA or PMP check, raise an access exception corresponding to</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:226.249;"><nobr>
+<span style="font-size:20.022;">the original access type.</span>
+</nobr></div>
+</td></tr>
+</table>

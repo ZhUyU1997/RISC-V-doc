@@ -1,0 +1,152 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00030.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;">18</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:331.141;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">If an ISA feature</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">depends on an ISA feature</span>
+<span style="font-size:20.022;font-style:italic;">y</span>
+<span style="font-size:20.022;">, then attempting to enable feature</span>
+<span style="font-size:20.022;font-style:italic;">x</span>
+<span style="font-size:20.022;">but disable</span>
+</nobr></div>
+<div style="position:absolute;top:155.440;left:132.145;"><nobr>
+<span style="font-size:20.022;">feature</span>
+<span style="font-size:20.022;font-style:italic;">y</span>
+<span style="font-size:20.022;">results in both features being disabled. For example, setting “F”=0 and “D”=1 results</span>
+</nobr></div>
+<div style="position:absolute;top:180.307;left:132.145;"><nobr>
+<span style="font-size:20.022;">in both “F” and “D” being cleared.</span>
+</nobr></div>
+<div style="position:absolute;top:223.460;left:132.145;"><nobr>
+<span style="font-size:20.022;">An implementation may impose additional constraints on the collective setting of two or more misa</span>
+</nobr></div>
+<div style="position:absolute;top:248.327;left:132.145;"><nobr>
+<span style="font-size:20.022;">fields, in which case they function collectively as a single</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">field. An attempt to write an</span>
+</nobr></div>
+<div style="position:absolute;top:273.194;left:132.145;"><nobr>
+<span style="font-size:20.022;">unsupported combination causes those bits to be set to some supported combination.</span>
+</nobr></div>
+<div style="position:absolute;top:316.347;left:132.145;"><nobr>
+<span style="font-size:20.022;">Writing misa may increase IALIGN, e.g., by disabling the “C” extension. If an instruction that</span>
+</nobr></div>
+<div style="position:absolute;top:341.214;left:132.145;"><nobr>
+<span style="font-size:20.022;">would write misa increases IALIGN, and the subsequent instruction’s address is not IALIGN-bit</span>
+</nobr></div>
+<div style="position:absolute;top:366.081;left:132.145;"><nobr>
+<span style="font-size:20.022;">aligned, the write to misa is suppressed, leaving misa unchanged.</span>
+</nobr></div>
+<div style="position:absolute;top:439.525;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.2</span>
+</nobr></div>
+<div style="position:absolute;top:439.525;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Vendor ID Register</span>
+<span style="font-size:21.942;">mvendorid</span>
+</nobr></div>
+<div style="position:absolute;top:497.516;left:132.145;"><nobr>
+<span style="font-size:20.022;">The mvendorid CSR is a 32-bit read-only register providing the JEDEC manufacturer ID of the</span>
+</nobr></div>
+<div style="position:absolute;top:522.383;left:132.145;"><nobr>
+<span style="font-size:20.022;">provider of the core. This register must be readable in any implementation, but a value of 0 can be</span>
+</nobr></div>
+<div style="position:absolute;top:547.250;left:132.145;"><nobr>
+<span style="font-size:20.022;">returned to indicate the field is not implemented or that this is a non-commercial implementation.</span>
+</nobr></div>
+<div style="position:absolute;top:592.128;left:187.599;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:592.128;left:768.843;"><nobr>
+<span style="font-size:14.628;">7</span>
+</nobr></div>
+<div style="position:absolute;top:592.128;left:804.184;"><nobr>
+<span style="font-size:14.628;">6</span>
+</nobr></div>
+<div style="position:absolute;top:592.128;left:933.495;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:611.703;left:459.908;"><nobr>
+<span style="font-size:16.456;">Bank</span>
+</nobr></div>
+<div style="position:absolute;top:632.548;left:470.832;"><nobr>
+<span style="font-size:16.456;">25</span>
+</nobr></div>
+<div style="position:absolute;top:611.703;left:847.653;"><nobr>
+<span style="font-size:16.456;">Offset</span>
+</nobr></div>
+<div style="position:absolute;top:632.548;left:865.655;"><nobr>
+<span style="font-size:16.456;">7</span>
+</nobr></div>
+<div style="position:absolute;top:679.964;left:367.322;"><nobr>
+<span style="font-size:20.022;">Figure 3.2: Vendor ID register ( mvendorid ).</span>
+</nobr></div>
+<div style="position:absolute;top:729.106;left:132.145;"><nobr>
+<span style="font-size:20.022;">JEDEC manufacturer IDs are ordinarily encoded as a sequence of one-byte continuation codes 0x7f ,</span>
+</nobr></div>
+<div style="position:absolute;top:753.973;left:132.145;"><nobr>
+<span style="font-size:20.022;">terminated by a one-byte ID not equal to 0x7f , with an odd parity bit in the most-significant bit</span>
+</nobr></div>
+<div style="position:absolute;top:778.840;left:132.145;"><nobr>
+<span style="font-size:20.022;">of each byte. mvendorid encodes the number of one-byte continuation codes in the Bank field, and</span>
+</nobr></div>
+<div style="position:absolute;top:803.707;left:132.145;"><nobr>
+<span style="font-size:20.022;">encodes the final byte in the Offset field, discarding the parity bit. For example, the JEDEC man-</span>
+</nobr></div>
+<div style="position:absolute;top:828.576;left:132.145;"><nobr>
+<span style="font-size:20.022;">ufacturer ID 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x7f 0x8a (twelve</span>
+</nobr></div>
+<div style="position:absolute;top:853.443;left:132.145;"><nobr>
+<span style="font-size:20.022;">continuation codes followed by 0x8a ) would be encoded in the mvendorid field as 0x60a .</span>
+</nobr></div>
+<div style="position:absolute;top:915.379;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Previously the vendor ID was to be a number allocated by the RISC-V Foundation, but this</span>
+</nobr></div>
+<div style="position:absolute;top:937.321;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">duplicates the work of JEDEC in maintaining a manufacturer ID standard. At time of writing,</span>
+</nobr></div>
+<div style="position:absolute;top:959.264;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">registering a manufacturer ID with JEDEC has a one-time cost of $ 500.</span>
+</nobr></div>
+<div style="position:absolute;top:1029.452;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">3.1.3</span>
+</nobr></div>
+<div style="position:absolute;top:1029.452;left:207.516;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Machine Architecture ID Register</span>
+<span style="font-size:21.942;">marchid</span>
+</nobr></div>
+<div style="position:absolute;top:1087.443;left:132.145;"><nobr>
+<span style="font-size:20.022;">The marchid CSR is an MXLEN-bit read-only register encoding the base microarchitecture of the</span>
+</nobr></div>
+<div style="position:absolute;top:1112.310;left:132.145;"><nobr>
+<span style="font-size:20.022;">hart. This register must be readable in any implementation, but a value of 0 can be returned to</span>
+</nobr></div>
+<div style="position:absolute;top:1137.177;left:132.145;"><nobr>
+<span style="font-size:20.022;">indicate the field is not implemented. The combination of mvendorid and marchid should uniquely</span>
+</nobr></div>
+<div style="position:absolute;top:1162.045;left:132.145;"><nobr>
+<span style="font-size:20.022;">identify the type of hart microarchitecture that is implemented.</span>
+</nobr></div>
+<div style="position:absolute;top:1206.922;left:269.929;"><nobr>
+<span style="font-size:14.628;">MXLEN-1</span>
+</nobr></div>
+<div style="position:absolute;top:1226.499;left:503.202;"><nobr>
+<span style="font-size:16.456;">Architecture ID</span>
+</nobr></div>
+<div style="position:absolute;top:1247.343;left:530.145;"><nobr>
+<span style="font-size:16.456;">MXLEN</span>
+</nobr></div>
+<div style="position:absolute;top:1294.759;left:314.401;"><nobr>
+<span style="font-size:20.022;">Figure 3.3: Machine Architecture ID register ( marchid ).</span>
+</nobr></div>
+<div style="position:absolute;top:1206.922;left:851.173;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+</td></tr>
+</table>

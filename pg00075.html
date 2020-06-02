@@ -1,0 +1,197 @@
+<table border="0" height="1453" width="1123">
+<tr><td>
+<div style="position:absolute; top:0; left:0;"><img height="1453" width="1123"src="bgimg/bg00075.jpg"/></div>
+<div style="position:absolute;top:74.119;left:132.145;"><nobr>
+<span style="font-size:20.022;font-style:italic;">Volume II: RISC-V Privileged Architectures V20190608-Priv-MSU-Ratified</span>
+</nobr></div>
+<div style="position:absolute;top:74.119;left:971.067;"><nobr>
+<span style="font-size:20.022;">63</span>
+</nobr></div>
+<div style="position:absolute;top:130.572;left:132.145;"><nobr>
+<span style="font-size:20.022;">If this feature is not provided, then stval is set to zero on an illegal instruction fault.</span>
+</nobr></div>
+<div style="position:absolute;top:173.723;left:132.145;"><nobr>
+<span style="font-size:20.022;">If this feature is provided, after an illegal instruction trap, stval will contain the shortest of:</span>
+</nobr></div>
+<div style="position:absolute;top:215.755;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">the actual faulting instruction</span>
+</nobr></div>
+<div style="position:absolute;top:240.622;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">the first ILEN bits of the faulting instruction</span>
+</nobr></div>
+<div style="position:absolute;top:265.491;left:162.179;"><nobr>
+<span style="font-size:20.022;font-style:italic;">•</span>
+<span style="font-size:20.022;">the first XLEN bits of the faulting instruction</span>
+</nobr></div>
+<div style="position:absolute;top:309.765;left:132.145;"><nobr>
+<span style="font-size:20.022;">The value loaded into stval is right-justified and all unused upper bits are cleared to zero.</span>
+</nobr></div>
+<div style="position:absolute;top:354.578;left:132.145;"><nobr>
+<span style="font-size:20.022;">stval is a</span>
+<span style="font-size:20.022;font-weight:bold;">WARL</span>
+<span style="font-size:20.022;">register that must be able to hold all valid physical and virtual addresses and</span>
+</nobr></div>
+<div style="position:absolute;top:377.785;left:132.145;"><nobr>
+<span style="font-size:20.022;">the value 0. It need not be capable of holding all possible invalid addresses. Implementations may</span>
+</nobr></div>
+<div style="position:absolute;top:402.652;left:132.145;"><nobr>
+<span style="font-size:20.022;">convert some invalid address patterns into other invalid addresses prior to writing them to stval .</span>
+</nobr></div>
+<div style="position:absolute;top:427.519;left:132.145;"><nobr>
+<span style="font-size:20.022;">If the feature to return the faulting instruction bits is implemented, stval must also be able to</span>
+</nobr></div>
+<div style="position:absolute;top:452.386;left:132.145;"><nobr>
+<span style="font-size:20.022;">hold all values less than 2</span>
+<span style="font-size:14.628;font-style:italic;">N</span>
+<span style="font-size:20.022;">, where</span>
+<span style="font-size:20.022;font-style:italic;">N</span>
+<span style="font-size:20.022;">is the smaller of XLEN and ILEN.</span>
+</nobr></div>
+<div style="position:absolute;top:524.842;left:132.145;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">4.1.12</span>
+</nobr></div>
+<div style="position:absolute;top:524.842;left:219.847;"><nobr>
+<span style="font-size:21.942;font-weight:bold;">Supervisor Address Translation and Protection (</span>
+<span style="font-size:21.942;">satp</span>
+<span style="font-size:21.942;font-weight:bold;">) Register</span>
+</nobr></div>
+<div style="position:absolute;top:582.638;left:132.145;"><nobr>
+<span style="font-size:20.022;">The satp register is an SXLEN-bit read/write register, formatted as shown in Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(74); return false">4.11</a></span>
+<span style="font-size:20.022;">for</span>
+</nobr></div>
+<div style="position:absolute;top:607.505;left:132.145;"><nobr>
+<span style="font-size:20.022;">SXLEN=32 and Figure</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(74); return false">4.12</a></span>
+<span style="font-size:20.022;">for SXLEN=64, which controls supervisor-mode address translation</span>
+</nobr></div>
+<div style="position:absolute;top:632.372;left:132.145;"><nobr>
+<span style="font-size:20.022;">and protection. This register holds the physical page number (PPN) of the root page table, i.e., its</span>
+</nobr></div>
+<div style="position:absolute;top:657.239;left:132.145;"><nobr>
+<span style="font-size:20.022;">supervisor physical address divided by 4 KiB; an address space identifier (ASID), which facilitates</span>
+</nobr></div>
+<div style="position:absolute;top:682.106;left:132.145;"><nobr>
+<span style="font-size:20.022;">address-translation fences on a per-address-space basis; and the MODE field, which selects the</span>
+</nobr></div>
+<div style="position:absolute;top:706.974;left:132.145;"><nobr>
+<span style="font-size:20.022;">current address-translation scheme. Further details on the access to this register are described in</span>
+</nobr></div>
+<div style="position:absolute;top:731.843;left:132.145;"><nobr>
+<span style="font-size:20.022;">Section</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(34); return false">3.1.6.4</a></span>
+<span style="font-size:20.022;">.</span>
+</nobr></div>
+<div style="position:absolute;top:772.409;left:268.413;"><nobr>
+<span style="font-size:14.628;">31</span>
+</nobr></div>
+<div style="position:absolute;top:772.409;left:344.171;"><nobr>
+<span style="font-size:14.628;">30</span>
+</nobr></div>
+<div style="position:absolute;top:772.409;left:513.270;"><nobr>
+<span style="font-size:14.628;">22 21</span>
+</nobr></div>
+<div style="position:absolute;top:772.409;left:901.597;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:793.349;left:214.562;"><nobr>
+<span style="font-size:16.456;">MODE (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:812.828;left:271.955;"><nobr>
+<span style="font-size:16.456;">1</span>
+</nobr></div>
+<div style="position:absolute;top:793.349;left:377.544;"><nobr>
+<span style="font-size:16.456;">ASID (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:812.828;left:429.443;"><nobr>
+<span style="font-size:16.456;">9</span>
+</nobr></div>
+<div style="position:absolute;top:793.349;left:672.784;"><nobr>
+<span style="font-size:16.456;">PPN (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:812.828;left:710.635;"><nobr>
+<span style="font-size:16.456;">22</span>
+</nobr></div>
+<div style="position:absolute;top:859.131;left:215.013;"><nobr>
+<span style="font-size:20.022;">Figure 4.11: RV32 Supervisor address translation and protection register satp .</span>
+</nobr></div>
+<div style="position:absolute;top:928.929;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">Storing a PPN in</span>
+<span style="font-size:18.285;">satp</span>
+<span style="font-size:18.285;font-style:italic;">, rather than a physical address, supports a physical address space larger</span>
+</nobr></div>
+<div style="position:absolute;top:950.871;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">than 4 GiB for RV32.</span>
+</nobr></div>
+<div style="position:absolute;top:992.731;left:137.783;"><nobr>
+<span style="font-size:14.628;">63</span>
+</nobr></div>
+<div style="position:absolute;top:992.731;left:259.312;"><nobr>
+<span style="font-size:14.628;">60 59</span>
+</nobr></div>
+<div style="position:absolute;top:992.731;left:497.148;"><nobr>
+<span style="font-size:14.628;">44 43</span>
+</nobr></div>
+<div style="position:absolute;top:992.731;left:980.630;"><nobr>
+<span style="font-size:14.628;">0</span>
+</nobr></div>
+<div style="position:absolute;top:1013.674;left:147.368;"><nobr>
+<span style="font-size:16.456;">MODE (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1033.152;left:199.275;"><nobr>
+<span style="font-size:16.456;">4</span>
+</nobr></div>
+<div style="position:absolute;top:1013.674;left:337.657;"><nobr>
+<span style="font-size:16.456;">ASID (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1033.152;left:385.315;"><nobr>
+<span style="font-size:16.456;">16</span>
+</nobr></div>
+<div style="position:absolute;top:1013.674;left:704.255;"><nobr>
+<span style="font-size:16.456;">PPN (</span>
+<span style="font-size:16.456;font-weight:bold;">WARL</span>
+<span style="font-size:16.456;">)</span>
+</nobr></div>
+<div style="position:absolute;top:1033.152;left:742.092;"><nobr>
+<span style="font-size:16.456;">44</span>
+</nobr></div>
+<div style="position:absolute;top:1079.456;left:132.145;"><nobr>
+<span style="font-size:20.022;">Figure 4.12: RV64 Supervisor address translation and protection register satp , for MODE values</span>
+</nobr></div>
+<div style="position:absolute;top:1104.323;left:132.145;"><nobr>
+<span style="font-size:20.022;">Bare, Sv39, and Sv48.</span>
+</nobr></div>
+<div style="position:absolute;top:1170.010;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">We store the ASID and the page table base address in the same CSR to allow the pair to be</span>
+</nobr></div>
+<div style="position:absolute;top:1191.952;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">changed atomically on a context switch. Swapping them non-atomically could pollute the old</span>
+</nobr></div>
+<div style="position:absolute;top:1213.893;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">virtual address space with new translations, or vice-versa. This approach also slightly reduces</span>
+</nobr></div>
+<div style="position:absolute;top:1235.835;left:182.201;"><nobr>
+<span style="font-size:18.285;font-style:italic;">the cost of a context switch.</span>
+</nobr></div>
+<div style="position:absolute;top:1274.899;left:132.145;"><nobr>
+<span style="font-size:20.022;">Table</span>
+<span style="font-size:20.022;color: #000080;"><a href="#" onClick="javascript:parent.GotoNewPage(75); return false">4.3</a></span>
+<span style="font-size:20.022;">shows the encodings of the MODE field for RV32 and RV64. When MODE=Bare,</span>
+</nobr></div>
+<div style="position:absolute;top:1299.766;left:132.145;"><nobr>
+<span style="font-size:20.022;">supervisor virtual addresses are equal to supervisor physical addresses, and there is no additional</span>
+</nobr></div>
+</td></tr>
+</table>

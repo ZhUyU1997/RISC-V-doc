@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.https": {
+        "enable": true,
+        "cert": "/home/yzhu/Desktop/RISC-V-doc/server/server.crt",
+        "key": "/home/yzhu/Desktop/RISC-V-doc/server/server.key",
+        "passphrase": "123456"
+    }
+}
